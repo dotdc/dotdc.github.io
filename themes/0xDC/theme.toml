@@ -1,0 +1,18 @@
+name = "0xDC"
+license = "MIT"
+description = "A theme for 0xDC.me based on Hugo Clarity."
+homepage = "https://0xdc.me"
+tags = ["dark", "technical", "blog"]
+features = ["dark", "technical", "blog"]
+min_version = "0.91.0"
+
+[author]
+  name = "David Calvert"
+  homepage = "https://0xdc.me"
+
+# Authors of Hugo Clarity
+original = [
+  {name = "Chip Zoller", homepage = "https://neonmirrors.net"},
+  {name = "Dan Weru", homepage = "https://github.com/onweru"},
+  {name = "Ivan Boothe", homepage = "https://rootwork.org"}
+]

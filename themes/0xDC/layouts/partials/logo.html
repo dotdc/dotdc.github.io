@@ -1,0 +1,8 @@
+{{- $t := site.Title -}}
+<a href='{{ absLangURL "" }}' class="nav_brand {{ with .class }} {{ . }}{{ end }}" title="0xDC">
+  {{- with .logo}}
+  <img src="{{ absURL . }}" class="logo" alt="{{ $t }}">
+  {{- else -}}
+  <span class="green">0x</span>DC<span class="blink">_</span>
+  {{- end }}
+</a>

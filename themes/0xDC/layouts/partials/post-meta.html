@@ -1,0 +1,48 @@
+{{- $showShare := ne (.Param "showshare") false }}
+{{- $showDate := ne (.Param "showdate") false }}
+{{- $showReadTime := ne (.Param "showreadtime") false }}
+{{- $showPostMeta := or ($showShare) ($showDate) ($showReadTime) (isset .Params "tags") }}
+{{- $scratch := newScratch }}
+{{- $scratch.Set "writeSeparator" false }}
+{{- if $showPostMeta }}
+  <div class="post_meta">
+{{- end }}
+
+  {{- if $showDate }}
+  {{ if eq .Parent.Type "blog" }}
+    <a href='/about' title="David Calvert">
+      <img loading="lazy" decoding="async" class="author" src="/img/dc.jpg"/>
+    </a>
+    <div class="post_date">
+      David Calvert<br>
+      <span class="grey">{{ .Date.Format (default "January 2, 2006" $.Site.Params.dateFormat) -}}</span>
+    </div>
+    {{- $scratch.Set "writeSeparator" true }}
+  {{ else}}
+    <!-- Block for /tags & /categories -->
+  {{ end }}
+  {{- end }}
+  {{- if $showReadTime }}
+    <span class="post_time">{{ if ($scratch.Get "writeSeparator") }} · {{ end }}{{ T "reading_time" . }}</span>
+    {{- $scratch.Set "writeSeparator" true }}
+  {{- end }}
+{{- if $showPostMeta }}
+  </div>
+  {{- with .Params.tags -}}
+    <div>
+      {{- if ($scratch.Get "writeSeparator") }}&nbsp;{{ end }}
+      {{- range . }}
+        {{- $tag := urlize . -}}
+        <a href='{{ absLangURL (printf "tags/%s/" $tag) }}' title="{{ . }}" class="post_tag button button_translucent">
+          #&nbsp;{{- . }}
+        </a>
+      {{- end }}
+    
+    {{- $scratch.Set "writeSeparator" true }}
+  {{- end }}
+  {{- if $showShare }}
+    <span class="page_only">{{ if ($scratch.Get "writeSeparator") }}{{ end }}{{ partial "share" . }}</span>
+    {{- $scratch.Set "writeSeparator" true }}
+  {{- end }}
+</div>
+{{- end }}

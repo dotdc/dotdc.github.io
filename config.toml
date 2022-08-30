@@ -1,0 +1,37 @@
+baseurl = "http://0xDC.me/"
+#baseurl = "http://localhost:1313/"
+languageCode = "en-us"
+title = '0xDC.me'
+theme = "0xDC"
+paginate = 5
+
+[params]
+  author = "David Calvert"
+  twitter = "0xDC_"
+  largeTwitterCard = true
+  description = "My Blog"
+  enforceDarkMode = true
+  enableSearch = false
+  showReadTime = false
+
+[menu]
+[[menu.main]]
+  identifier = 'about'
+  name = 'About'
+  title = 'A few bits about me'
+  url = '/about'
+  weight = 1
+
+[[menu.main]]
+  identifier = 'blog'
+  name = 'bloG'
+  title = 'My blog'
+  url = '/blog'
+  weight = 5
+
+[[menu.main]]
+  identifier = 'projects'
+  name = 'projects'
+  title = 'My projects'
+  url = '/projects'
+  weight = 10

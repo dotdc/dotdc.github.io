@@ -1,0 +1,21 @@
+<li class="post_item">
+  <div class="excerpt">
+    <div class="excerpt_header">
+      <div class="excerpt_left">
+        <h3 class="post_link">
+          <a href="{{ .Permalink }}" title="{{ .Title }}"><span class="post-title-prefix">></span>&nbsp;{{ .Title | markdownify  }}</a>
+        </h3>
+        {{ partial "post-meta" . }}
+      </div>
+      <a href="{{ .Permalink }}" title="{{ .Title }}" class="excerpt_thumb">
+        {{- with .Params.thumbnail }}
+        <div class="excerpt_thumbnail">
+          {{- partial "image" (dict "file" . "alt" $.Title "type" "thumbnail" "Page" $.Page ) }}
+        </div>
+        {{ else }}
+        <div class="excerpt_thumb">
+          {{- end }}
+        </div>
+      </a>
+    </div>
+  </li>
