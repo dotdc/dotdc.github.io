@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>tech on 0xDC.me</title><link>http://0xDC.me/categories/tech/</link><description>Recent content in tech on 0xDC.me</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 06 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://0xDC.me/categories/tech/index.xml" rel="self" type="application/rss+xml"/><item><title>Is your Kubernetes API Server exposed?</title><link>http://0xDC.me/blog/is-your-kubernetes-api-server-exposed/</link><pubDate>Wed, 06 Jul 2022 00:00:00 +0000</pubDate><guid>http://0xDC.me/blog/is-your-kubernetes-api-server-exposed/</guid><description>
+&lt;blockquote>
+&lt;p>This article was originally published on &lt;a href="https://medium.com/@dotdc/is-your-kubernetes-api-server-exposed-learn-how-to-check-and-fix-609ab9638fae">Medium&lt;/a>.&lt;/p>
+&lt;/blockquote>
+&lt;p>After reading “&lt;a href="https://www.shadowserver.org/news/over-380-000-open-kubernetes-api-servers/">Over 380 000 open Kubernetes API servers&lt;/a>”, I asked myself if some of the clusters I manage could be exposed. I then decided to check and I think you should too!&lt;/p></description></item><item><title>A set of modern Grafana dashboards for Kubernetes</title><link>http://0xDC.me/blog/a-set-of-modern-grafana-dashboards-for-kubernetes/</link><pubDate>Tue, 21 Jun 2022 00:00:00 +0000</pubDate><guid>http://0xDC.me/blog/a-set-of-modern-grafana-dashboards-for-kubernetes/</guid><description>
+&lt;blockquote>
+&lt;p>This article was originally published on &lt;a href="https://medium.com/@dotdc/a-set-of-modern-grafana-dashboards-for-kubernetes-4b989c72a4b2">Medium&lt;/a>.&lt;/p>
+&lt;/blockquote>
+&lt;p>In this article, I will present a set of modern Grafana dashboards I made for Kubernetes, explain why I decided to create them and how they work.&lt;/p></description></item></channel></rss>
