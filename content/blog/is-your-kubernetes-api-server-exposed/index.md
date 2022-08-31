@@ -56,7 +56,7 @@ server:https://XXXXXXXXX.abc.us-west-1.eks.amazonaws.com
 Once you have this, you can simply try to query the `/version` endpoint from your terminal or any web browser:
 
 ```
-$ curl -khttps://XXXXXXXXX.abc.us-west-1.eks.amazonaws.com/version
+$ curl -k https://XXXXXXXXX.abc.us-west-1.eks.amazonaws.com/version
 {
   "major": "1",
   "minor": "20+",
