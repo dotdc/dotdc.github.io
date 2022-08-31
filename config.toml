@@ -1,4 +1,4 @@
-baseurl = "http://0xDC.me/"
+baseurl = "https://dotdc.github.io/"
 #baseurl = "http://localhost:1313/"
 languageCode = "en-us"
 title = '0xDC.me'
