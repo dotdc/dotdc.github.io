@@ -18,11 +18,11 @@ Here's a few projects where I'm involved on GitHub:
 
 > [prometheus-community/helm-charts](https://github.com/prometheus-community/helm-charts)
 >
-> Maintainer of the kube-state-metrics chart.
+> Prometheus community Helm charts.
 
-> [dotdc/0xDC.me](https://github.com/dotdc/0xDC.me)
+> [dotdc/dotdc.github.io](https://github.com/dotdc/dotdc.github.io)
 >
-> My Hugo blog.
+> Files for 0xDC.me.
 
 > [dotdc/dotfiles](https://github.com/dotdc/dotfiles)
 >
