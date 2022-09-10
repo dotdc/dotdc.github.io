@@ -10,8 +10,8 @@ categories = [
     "tech"
 ]
 canonicalUrl = "https://medium.com/@dotdc/a-set-of-modern-grafana-dashboards-for-kubernetes-4b989c72a4b2"
-thumbnail = "/img/thumbs/grafana-dashboards-kubernetes.jpg"
-featureImage = "grafana-dashboards-kubernetes-banner.png"
+thumbnail = "/img/thumbs/grafana-dashboards-kubernetes.webp"
+featureImage = "grafana-dashboards-kubernetes-banner.webp"
 featureImageAlt = 'Banner of the grafana-dashboards-kubernetes project'
 +++
 
@@ -87,7 +87,7 @@ Which panels are included?
 - Total Kubernetes resources count by type
 - CPU, RAM & Network utilization by namespace and by node
 
-![Screenshot: k8s-views-global.json](k8s-views-global.json.png "Screenshot: k8s-views-global.json")
+![Screenshot: k8s-views-global.json](k8s-views-global.json.webp "Screenshot: k8s-views-global.json")
 
 ### Kubernetes / Views / Namespaces
 
@@ -107,7 +107,7 @@ Which panels are included?
 - Pods state, number of containers per pods & replicas availability
 - Persistent volumes capacity & inodes in your namespace(s)
 
-![Screenshot: k8s-views-namespaces.json](k8s-views-namespaces.json.png "Screenshot: k8s-views-namespaces.json")
+![Screenshot: k8s-views-namespaces.json](k8s-views-namespaces.json.webp "Screenshot: k8s-views-namespaces.json")
 
 ### Kubernetes / Views / Nodes
 
@@ -127,7 +127,7 @@ Which panels are included?
 - Persistent volumes information of workloads attached to nodes
 - Local node storage capacity, inodes, IOs & errors
 
-![Screenshot: k8s-views-nodes.json](k8s-views-nodes.json.png "Screenshot: k8s-views-nodes.json")
+![Screenshot: k8s-views-nodes.json](k8s-views-nodes.json.webp "Screenshot: k8s-views-nodes.json")
 
 ### Kubernetes / Views / Pods
 
@@ -146,7 +146,7 @@ Which panels are included?
 - CPU & RAM resource usage of your containers (real usage)
 - Network usage of your pods
 
-![Screenshot: k8s-views-pods.json](k8s-views-pods.json.png "Screenshot: k8s-views-pods.json")
+![Screenshot: k8s-views-pods.json](k8s-views-pods.json.webp "Screenshot: k8s-views-pods.json")
 
 ### Kubernetes / System / API Server
 
@@ -163,7 +163,7 @@ Which panels are included?
 - Kubernetes API Server requests by code, verb, latency & errors
 - API Server’s CPU & RAM usage
 
-![Screenshot: k8s-system-api-server.json](k8s-system-api-server.json.png "Screenshot: k8s-system-api-server.json")
+![Screenshot: k8s-system-api-server.json](k8s-system-api-server.json.webp "Screenshot: k8s-system-api-server.json")
 
 ### Kubernetes / System / CoreDNS
 
@@ -178,7 +178,7 @@ Which panels are included?
 - Kubernetes API Server requests by code, verb, latency & errors
 - API Server’s CPU & RAM usage
 
-![Screenshot: k8s-system-coredns.json](k8s-system-coredns.json.png "Screenshot: k8s-system-coredns.json")
+![Screenshot: k8s-system-coredns.json](k8s-system-coredns.json.webp "Screenshot: k8s-system-coredns.json")
 
 ### Kubernetes Addons / Trivy / Starboard Operator
 
@@ -196,7 +196,7 @@ Which panels are included?
 - Vulnerability list with a CVE/GHSA link on each of them
 - Config audit report namespaces & severity
 
-![Screenshot: k8s-addons-starboard-operator.json](k8s-addons-starboard-operator.json.png "Screenshot: k8s-addons-starboard-operator.json")
+![Screenshot: k8s-addons-starboard-operator.json](k8s-addons-starboard-operator.json.webp "Screenshot: k8s-addons-starboard-operator.json")
 
 ## Final words
 

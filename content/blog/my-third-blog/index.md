@@ -9,8 +9,8 @@ tags = [
 categories = [
     "news"
 ]
-thumbnail = "/img/thumbs/0xdc.png"
-featureImage = "new-blog-banner.png"
+thumbnail = "/img/thumbs/0xdc.webp"
+featureImage = "new-blog-banner.webp"
 featureImageAlt = '0xDC logo'
 +++
 
@@ -21,13 +21,13 @@ Earlier this year, I started to write about my work again and decided to publish
 ## Reasons
 
 If you ever used Medium before, you may have encountered their infamous paywall!
-![Screenshot: Medium's paywall](medium-paywall.png "Screenshot: Medium's paywall")
+![Screenshot: Medium's paywall](medium-paywall.webp "Screenshot: Medium's paywall")
 
 Because I never really used Medium before, I wasn't aware and was quite surprised when I saw this.\
 I started to look for information, but their [membership](https://medium.com/membership) page is quite empty, and even the [metered paywall](https://help.medium.com/hc/en-us/articles/360017581433-About-the-metered-paywall) page doesn't explain the free tier limitations.
 
 I was going to live with it, but after publishing my second article, I started to receive messages as private notes inviting me to post my articles on consolidated journals in exchange for money.
-![Screenshot: Private notes on my 2nd article](medium-private-notes.png "Screenshot: Private notes on my 2nd article")
+![Screenshot: Private notes on my 2nd article](medium-private-notes.webp "Screenshot: Private notes on my 2nd article")
 
 I know that private notes can be turned off, but I also realized that Medium's algorithm was filling my feed with more and more "members only" articles, and that it will probably only get worse. So I decided to try [Hashnode](https://hashnode.com) and found the platform really cool! It has way more options, and gives you a lot of control on your content, but I ultimately decided to create my own independent blog to have total freedom.
 
@@ -48,7 +48,7 @@ Technical stack:
 - Theme: Custom design based on [chipzoller/hugo-clarity](https://github.com/chipzoller/hugo-clarity)
 
 I will probably improve it over time, but I'm already pretty happy with how it looks!
-![Screenshot: 0xDC.me](0xdc-first-look.png "Screenshot: 0xDC.me")
+![Screenshot: 0xDC.me](0xdc-first-look.webp "Screenshot: 0xDC.me")
 
 ## What kind of content to expect?
 

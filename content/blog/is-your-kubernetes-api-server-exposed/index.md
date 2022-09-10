@@ -10,8 +10,8 @@ categories = [
     "tech"
 ]
 canonicalUrl = "https://medium.com/@dotdc/is-your-kubernetes-api-server-exposed-learn-how-to-check-and-fix-609ab9638fae"
-thumbnail = "/img/thumbs/k8s-security.jpg"
-featureImage = "k8s-security-banner.jpeg"
+thumbnail = "/img/thumbs/k8s-security.webp"
+featureImage = "k8s-security-banner.webp"
 featureImageAlt = "Picture from Tumisu on pixabay"
 +++
 
@@ -38,7 +38,7 @@ There could be many different answers to this question, but the most common one 
 
 I’m going to use [Amazon Elastic Kubernetes Service](https://aws.amazon.com/eks/) ([EKS](https://aws.amazon.com/eks/)) as an example here. When you create an EKS cluster on AWS, here’s what you will find by default on Step 2 “Specify networking” :
 
-![Screenshot: AWS Cluster endpoint access](aws-cluster-endpoint.png "Screenshot: AWS Cluster endpoint access")
+![Screenshot: AWS Cluster endpoint access](aws-cluster-endpoint.webp "Screenshot: AWS Cluster endpoint access")
 
 This means that all clusters created using the default configuration expose the API Server to the entire internet (0.0.0.0/0)! A bit scary… but let’s not panic!
 
@@ -85,7 +85,7 @@ This one is straightforward and you should be able to  it immediately in your AW
 
 Once there, unfold *Advanced settings* and you will be able to add up to 40 source CIDR block. If you want to allow a single IP address, just append /32 after like this:
 
-![Screenshot: AWS Cluster endpoint access with CIDR](aws-cluster-endpoint-cidr.png "Screenshot: AWS Cluster endpoint access with CIDR")
+![Screenshot: AWS Cluster endpoint access with CIDR](aws-cluster-endpoint-cidr.webp "Screenshot: AWS Cluster endpoint access with CIDR")
 
 With this solution, your Kubernetes API server is still exposed publicly on internet, but only the configured CIDR block will be allowed to access it.
 
@@ -110,7 +110,7 @@ I personally recommend to:
 
 Here’s how the architecture looks like:
 
-![AWS architecture made with https://www.cloudcraft.co](aws-bastion-arch.png "AWS architecture made with https://www.cloudcraft.co")
+![AWS architecture made with https://www.cloudcraft.co](aws-bastion-arch.webp "AWS architecture made with https://www.cloudcraft.co")
 
 While this article used the AWS cloud provider, you should be able to reproduce something similar on most cloud providers.
 
