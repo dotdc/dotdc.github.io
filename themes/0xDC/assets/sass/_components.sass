@@ -169,10 +169,9 @@
     display: block
     align-items: center
     position: relative
-
-.footer p
-  font-family: 'Major Mono Display'
-  font-size: 24px
+    padding: 13px 0
+    font-family: 'Major Mono Display'
+    font-size: 24px
 
 .button
   color: $green
@@ -614,6 +613,7 @@ figcaption
       text-decoration: none
     svg
       fill: $green
+      width: 14px
     &:hover svg
       fill: #272727
       opacity: 1
@@ -853,3 +853,51 @@ figcaption
 
 .green-list
   list-style: none
+
+.social-icons
+  display: inline-block
+  background-color: $white
+  height: 25px
+  width: 25px
+  vertical-align: middle
+
+.social-icons:hover
+  background-color: #30c992
+
+.link2
+  -webkit-mask-image: url('#{$iconsPath}link2.svg')
+  mask-image: url('#{$iconsPath}link2.svg')
+  height: 26px
+  width: 25px
+
+.github
+  -webkit-mask-image: url('#{$iconsPath}github.svg')
+  mask-image: url('#{$iconsPath}github.svg')
+  height: 26px
+  width: 25px
+
+.twitter
+  -webkit-mask-image: url('#{$iconsPath}twitter.svg')
+  mask-image: url('#{$iconsPath}twitter.svg')
+
+.linkedin
+  -webkit-mask-image: url('#{$iconsPath}linkedin.svg')
+  mask-image: url('#{$iconsPath}linkedin.svg')
+  height: 29px
+  width: 25px
+
+.hashnode
+  -webkit-mask-image: url('#{$iconsPath}hashnode.svg')
+  mask-image: url('#{$iconsPath}hashnode.svg')
+
+.devto
+  -webkit-mask-image: url('#{$iconsPath}dev.svg')
+  mask-image: url('#{$iconsPath}devdotto.svg')
+  height: 29px
+  width: 25px
+
+.medium
+  -webkit-mask-image: url('#{$iconsPath}medium.svg')
+  mask-image: url('#{$iconsPath}medium.svg')
+  height: 20px
+  width: 25px
