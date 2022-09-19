@@ -52,7 +52,7 @@ The book ends with an unusual description of Steve Jobs, Ed Catmull's thoughts f
 > "Everyone says they want to hire excellent people, but in truth we don't really know, at first, who will rise up to make a difference."
 
 <!-- The unmade future, p.224 -->
-> "The best way to predict the duture is to invent it."
+> "The best way to predict the future is to invent it."
 
 ## Final works
 
