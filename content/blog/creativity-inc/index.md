@@ -2,7 +2,7 @@
 author = "David Calvert"
 title = "Creativity, Inc."
 date = "2022-09-18"
-description = "My book review of Ed Catmul's Creativity, Inc."
+description = "My review of Ed Catmul's book: Creativity, Inc."
 tags = [
     "pixar", "culture", "tales"
 ]
