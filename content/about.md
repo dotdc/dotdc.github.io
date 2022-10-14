@@ -14,12 +14,13 @@ My name is David Calvert, I'm a DevOps Engineer working remotely from the south 
 I'm currently focused on Observability, Reliability and Security aspects of Kubernetes clusters running on AWS.
 
 ❤️ Open Source \
+✍️ Blogger \
 💻 Running Arch Linux \
 🎯 Always learning something new \
 💾 Enjoy old adventure games \
 👶 Dad \
 🧗‍♂️ Rock climber \
 🍺 IPA & Wine \
-🤓 Fun fact: started computing before 2yo!
+🤓 Fun fact: started typing before 2yo!
 <br>
 </div>
