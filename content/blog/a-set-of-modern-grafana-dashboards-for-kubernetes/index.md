@@ -17,8 +17,6 @@ featureImageAlt = 'Banner of the grafana-dashboards-kubernetes project'
 
 > This article was originally published on [Medium](https://medium.com/@dotdc/a-set-of-modern-grafana-dashboards-for-kubernetes-4b989c72a4b2).
 
-[^1]: The above quote is excerpted from Rob Pike's [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) during Gopherfest, November 18, 2015.
-
 In this article, I will present a set of modern Grafana dashboards I made for Kubernetes, explain why I decided to create them and how they work.
 
 <!--more-->
