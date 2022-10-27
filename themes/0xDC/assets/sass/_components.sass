@@ -224,6 +224,7 @@
     line-height: 1
     > a
       display: block
+      margin: 1px 0 15px 25px
       line-height: 1.35
       text-decoration: none
     > a:hover
@@ -277,6 +278,7 @@
     display: inline-flex
   &_meta
     align-items: stretch
+    margin-bottom: 10px
     &, span
       display: inline-flex
       flex-flow: row wrap
@@ -490,7 +492,7 @@
     display: inline-grid
     float: right
     margin-left: 15px
-    width: 250px
+    width: 180px
     &.partition
       display: grid
       padding: 0
@@ -844,6 +846,8 @@ figcaption
   border-radius: 50px
 
 .post-title-prefix
+  position: absolute
+  margin-top: 5px
   font-family: 'Major Mono Display'
   color: $green
 .share
