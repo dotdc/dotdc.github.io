@@ -10,8 +10,8 @@ showShare = false
 sidebar = false
 +++
 
-My name is David Calvert, I'm a DevOps Engineer working remotely from the south of France.\
-I'm currently focused on Observability, Reliability and Security aspects of Kubernetes clusters running on AWS.
+My name is David Calvert, I'm a Site Reliability Engineer working remotely from the south of France.\
+I'm currently focused on Observability, Reliability and Security aspects of Kubernetes clusters.
 
 ❤️ Open Source \
 ✍️ Blogger \
