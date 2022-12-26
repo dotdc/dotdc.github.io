@@ -24,7 +24,7 @@ paginate = 5
 
 [[menu.main]]
   identifier = 'blog'
-  name = 'bloG'
+  name = 'blog'
   title = 'My blog'
   url = '/blog'
   weight = 5
