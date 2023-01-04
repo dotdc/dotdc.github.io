@@ -54,7 +54,7 @@ The book ends with an unusual description of Steve Jobs, Ed Catmull's thoughts f
 <!-- The unmade future, p.224 -->
 > "The best way to predict the future is to invent it."
 
-## Final works
+## Final words
 
 To sum it up, it's a really good read! I'm pretty sure that most people can get something from this book, to name a few: learn how to build a company's culture, leadership advices, Pixar's history, a good tale from the Silicon Valley...
 
