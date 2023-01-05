@@ -59,8 +59,9 @@ For now, I planned to focus on technical articles and book reviews that are some
 
 I hope that you will like my content, feel free to get in touch!
 
-You can follow me on:
+Feel free to follow me on:
 
 - GitHub : [https://github.com/dotdc](https://github.com/dotdc)
+- Mastodon : [https://hachyderm.io/@0xDC](https://hachyderm.io/@0xDC)
 - Twitter : [https://twitter.com/0xDC_](https://twitter.com/0xDC_)
 - LinkedIn : [https://www.linkedin.com/in/0xDC](https://www.linkedin.com/in/0xDC)
