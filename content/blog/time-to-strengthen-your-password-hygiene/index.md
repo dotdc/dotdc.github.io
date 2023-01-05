@@ -55,7 +55,8 @@ If you’re considering a switch, I recommend to try them both before making a c
 If you are a LastPass user:
 
 - read the articles mentioned earlier
-- consideIt’s 2023, tio-Factor Authentication (2FA) everywhere it's available (try to avoid text based when possible)**
+- **rotate all your passwords to the maximum strength available**
+- **use Two-Factor Authentication (2FA) everywhere it's available (try to avoid text based when possible)**
 - consider a [Nitrokey](https://www.nitrokey.com) or a [YubiKey](https://www.yubico.com)
 - regularly check [https://haveibeenpwned.com](https://haveibeenpwned.com/)
 
