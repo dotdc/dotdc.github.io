@@ -209,6 +209,7 @@ You can contribute to this project:
 You can also follow me on:
 
 - GitHub : [https://github.com/dotdc](https://github.com/dotdc)
+- Mastodon : [https://hachyderm.io/@0xDC](https://hachyderm.io/@0xDC)
 - Twitter : [https://twitter.com/0xDC_](https://twitter.com/0xDC_)
 - LinkedIn : [https://www.linkedin.com/in/0xDC](https://www.linkedin.com/in/0xDC)
 
