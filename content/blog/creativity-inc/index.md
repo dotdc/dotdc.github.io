@@ -58,9 +58,10 @@ The book ends with an unusual description of Steve Jobs, Ed Catmull's thoughts f
 
 To sum it up, it's a really good read! I'm pretty sure that most people can get something from this book, to name a few: learn how to build a company's culture, leadership advices, Pixar's history, a good tale from the Silicon Valley...
 
-If you like what I do, feel free to follow me on:
+Feel free to follow me on:
 
 - GitHub : [https://github.com/dotdc](https://github.com/dotdc)
+- Mastodon : [https://hachyderm.io/@0xDC](https://hachyderm.io/@0xDC)
 - Twitter : [https://twitter.com/0xDC_](https://twitter.com/0xDC_)
 - LinkedIn : [https://www.linkedin.com/in/0xDC](https://www.linkedin.com/in/0xDC)
 
