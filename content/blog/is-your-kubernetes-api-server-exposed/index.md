@@ -118,9 +118,10 @@ While this article used the AWS cloud provider, you should be able to reproduce 
 
 I hope that this article has been useful to you! If it’s the case, you should check out my other articles. Feel free to send me some feedback, especially if you find any errors, if you think of any enhancements or if you find something outstanding!
 
-You can follow me on:
+Feel free to follow me on:
 
 - GitHub : [https://github.com/dotdc](https://github.com/dotdc)
+- Mastodon : [https://hachyderm.io/@0xDC](https://hachyderm.io/@0xDC)
 - Twitter : [https://twitter.com/0xDC_](https://twitter.com/0xDC_)
 - LinkedIn : [https://www.linkedin.com/in/0xDC](https://www.linkedin.com/in/0xDC)
 
