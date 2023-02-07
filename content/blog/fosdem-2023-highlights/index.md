@@ -22,11 +22,9 @@ featureImageAlt = 'A picture taken at the ULB campus during FOSDEM 2023.'
 
 I started to attend FOSDEM in 2016 with some former [Orange](https://www.orange.fr/portail) colleagues. Unfortunately, I didn’t have the opportunity to attend since the pandemic, but I'm really glad to be back in person for this 2023 edition! This year, I joined the event with my friend [Tom](https://github.com/wheybags) from [Powder](https://powder.gg/), and we started the weekend by a casual stop to the Delirium cafe Friday night!
 
-## Stands
+## My schedule
 
 After [Richard Hartmann](https://hachyderm.io/@RichiH@chaos.social)’s opening keynote Saturday morning, I made my regular tour of the stands and talked with folks from [OpenUK](https://openuk.uk/), [Open Toolchain](https://www.opentoolchain.org/), [Microblocks](http://microblocks.fun/), [Grafana](https://grafana.com/) and [Open Nebula](https://opennebula.io/). Of course, I also took the time to spin the famous VLC wheel. Was really surprised to see that O'Reilly’s stand and both the BSD and LPI certification exams were missing this year. What happened?
-
-## Meeting humans of FOSDEM
 
 FOSDEM is always a good opportunity to discover new things and make new friends by talking with people from the open source community. This year I had the chance to talk with :
 
@@ -39,6 +37,9 @@ FOSDEM is always a good opportunity to discover new things and make new friends 
 - [Jelte Fennema](https://github.com/JelteF) Senior Developer at Microsoft, working on PostgreSQL and Citus, a PostgreSQL extension that transforms Postgres into a distributed database.
 - [Terin Stock](https://github.com/terinjokes), Site Reliability Engineer at [Cloudflare](https://www.cloudflare.com/). We discussed many subjects like old games, Speed-running records, the internet archive…
 - Someone from [System76](https://system76.com/), just to tell him they should offer alternative keyboard layouts on their laptops. I'm probably against the world here, but: QWERTY is not the only one!
+
+I also grabbed a few stickers along the way!
+![Stickers](fosdem-stickers.webp "Picture: stickers grabbed at FOSDEM'23.")
 
 ## Talks
 
