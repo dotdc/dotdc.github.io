@@ -10,7 +10,7 @@ categories = [
     "tech"
 ]
 
-canonicalUrl = "https://medium.com/@dotdc/a-set-of-modern-grafana-dashboards-for-kubernetes-4b989c72a4b2"
+canonicalUrl = "https://grafana.com/blog/2023/01/06/how-to-monitor-kubernetes-with-grafana-and-prometheus-inside-powders-observability-stack/"
 thumbnail = "/img/thumbs/grafana-dashboards-kubernetes.webp"
 featureImage = "grafana-dashboards-kubernetes-banner-no-title.webp"
 featureImageAlt = 'Banner of the grafana-dashboards-kubernetes project'
