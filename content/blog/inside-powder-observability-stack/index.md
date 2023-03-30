@@ -44,7 +44,7 @@ Our teams started using them, and based on their feedback, we contributed back a
 
 Despite the work that went into building the [dotdc/grafana-dashboards-kubernetes](https://github.com/dotdc/grafana-dashboards-kubernetes), it hadn’t gained much attention, in part, because I hadn’t done much to promote it. So last June I decided to write an article about it, titled “[A set of modern Grafana dashboards for Kubernetes](https://0xdc.me/blog/a-set-of-modern-grafana-dashboards-for-kubernetes/)”. I wanted to share my work with the community, and the blog post helped the project gain a lot more attention. People from all around the world started using the dashboards, and some of them came back with more fixes and enhancements for the project.
 
-![A screenshot of the global view from dotdc/grafana-dashboards-kubernetes.](powder-guest-blog-2.webp "This screenshot of a Grafana dashboard displays the pods view from dotdc/grafana-dashboards-kubernetes.")
+![A screenshot of the global view from dotdc/grafana-dashboards-kubernetes.](powder-guest-blog-3.webp "Screenshot of the global view from dotdc/grafana-dashboards-kubernetes.")
 
 Here’s the list of changes since the original article:
 
@@ -57,7 +57,7 @@ Here’s the list of changes since the original article:
 
 These were made possible thanks to the project contributors: [reefland](https://github.com/reefland), [mashun4ek](https://github.com/mashun4ek), [kongfei605](https://github.com/kongfei605), [vladimir-babichev](https://github.com/vladimir-babichev), [SuperQ](https://github.com/SuperQ), [miracle2k](https://github.com/miracle2k), [k1rk](https://github.com/k1rk), [William-LP](https://github.com/William-LP), [clementnuss](https://github.com/clementnuss), [germetist](https://github.com/germetist), and [geekofalltrades](https://github.com/geekofalltrades).
 
-![Screenshot of the pods view from dotdc/grafana-dashboards-kubernetes](powder-guest-blog-3.webp "This screenshot of a Grafana dashboard shows the global view from dotdc/grafana-dashboards-kubernetes.")
+![Screenshot of the pods view from dotdc/grafana-dashboards-kubernetes](powder-guest-blog-2.webp "Screenshot of the pods view from dotdc/grafana-dashboards-kubernetes.")
 
 ## Moving toward the Grafana LGTM Stack
 
