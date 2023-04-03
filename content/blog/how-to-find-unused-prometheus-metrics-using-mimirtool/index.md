@@ -18,7 +18,7 @@ featureImageAlt = 'Random numbers with the Prometheus logo in front.'
 
 ## Introduction
 
-I recently had the task to stabilize, track cardinality issues, and significantly reduce resource usage of a Prometheus setup. In order to do that, I first needed to analyze the system. In this article, I will explain how I used mimirtool to identify which metrics were used on the platform, and which wasn't.
+I recently had the task to stabilize, track cardinality issues, and significantly reduce resource usage of a Prometheus setup. In order to do that, I first needed to analyze the system. In this article, I will explain how I used `mimirtool` to identify which metrics were used on the platform, and which wasn't.
 
 ## Prerequisites
 
