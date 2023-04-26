@@ -25,18 +25,20 @@ code
 .highlight
   display: grid
   width: 100%
-  border-radius: 0 0.2rem 0.2rem 0
+  background: #343434 !important
+  border-radius: 0.5rem
+  position: relative
+  padding: 0 1rem
+  margin: 1.5rem auto 1rem auto
   overflow-x: auto
   // @media screen and (min-width: 1240px)
   //   overflow-x: hidden
   //   &:hover
   //     overflow-x: auto
-  position: relative
   &_wrap
-    background: var(--code-bg) !important
+    background: #343434 !important
     border-radius: 0.5rem
     position: relative
-    padding: 0 1rem
     margin: 1.5rem auto 1rem auto
     & + &
       margin-top: 2.25rem
@@ -61,10 +63,10 @@ code
     margin: 0
   pre
     color: var(--light) !important
+    background-color: #343434 !important
     border-radius: 4px
     font-family: 'Monaco', monospace
-    padding-top: 1.5rem
-    padding-bottom: 2rem
+    padding: 1.5rem 0.5rem
 
   table
     display: grid
