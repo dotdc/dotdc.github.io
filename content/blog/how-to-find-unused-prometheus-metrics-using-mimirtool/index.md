@@ -34,7 +34,7 @@ To reproduce the examples, you will need:
 - mimirtool
 - jq
 
-```
+```bash
 # Archlinux
 pacman -Sy kubectl mimir jq
 
@@ -44,7 +44,7 @@ brew install kubectl mimirtool jq
 
 If your Prometheus and Grafana instances are also running on Kubernetes, you can copy their pod names in the variables below if you want to be able to copy and paste the examples:
 
-```
+```bash
 # kubectl get po -n monitoring | grep -E 'prometheus|grafana'
 my_grafana_pod="kube-prometheus-stack-grafana-6b7fc54bd9-q2fdj"
 my_prometheus_pod="prometheus-kube-prometheus-stack-prometheus-0"
@@ -60,7 +60,7 @@ Before we can extract the list of metrics used in our Grafana instance, we first
 
 If not, you may need to expose it before:
 
-```
+```bash
 # Run this is a separate terminal
 kubectl port-forward ${my_grafana_pod} -n monitoring 3000:3000
 ```
@@ -71,16 +71,15 @@ From there, click the `New API key` button, give the key a name, the `Admin` rol
 
 ![Screenshot: Creation of a Grafana API Key](grafana-apikey.webp "Screenshot: Creation of a Grafana API Key.")
 
-
 Click `Add` and save the token to a variable in your terminal:
 
-```
+```bash
 GRAFANA_API_TOKEN="copy your token here"
 ```
 
 We can now use `mimirtool` to extract the list of metrics used in our Grafana instance:
 
-```
+```bash
 mimirtool analyze grafana --address=http://localhost:3000 --key="${GRAFANA_API_TOKEN}"
 ```
 
@@ -94,7 +93,7 @@ Because I use Prometheus Operator, my rules are coming from various places and f
 
 All the rules were located in `/etc/prometheus/rules/` in my Prometheus pod, check yours and adapt if needed:
 
-```
+```bash
 # Print your Prometheus rules files
 kubectl exec -it ${my_prometheus_pod} -n monitoring \
   -- sh -c 'for i in `find /etc/prometheus/rules/ -type f` ; do cat $i ; done'
@@ -102,7 +101,7 @@ kubectl exec -it ${my_prometheus_pod} -n monitoring \
 
 If you see your Prometheus rules on the output, export them to a local file:
 
-```
+```bash
 # Export your Prometheus rules files to a local file
 kubectl exec -it ${my_prometheus_pod} -n monitoring \
   -- sh -c 'for i in `find /etc/prometheus/rules/ -type f` ; do cat $i ; done' > my-prom-rules.yaml
@@ -110,14 +109,14 @@ kubectl exec -it ${my_prometheus_pod} -n monitoring \
 
 If you had several rule files, you may need to fix the YAML schema before going further:
 
-```
+```bash
 # Fix the combined rules YAML schema for mimirtool
 sed -i -e 's/groups://g' -e '1s/^/groups:/' my-prom-rules.yaml
 ```
 
 You can also do this in a single command:
 
-```
+```bash
 # One-liner
 kubectl exec -it ${my_prometheus_pod} -n monitoring \
   -- sh -c 'for i in `find /etc/prometheus/rules/ -type f` ; do cat $i ; done' \
@@ -126,7 +125,7 @@ kubectl exec -it ${my_prometheus_pod} -n monitoring \
 
 Now that we have our exported rules in `my-prom-rules.yaml`, we can now use `mimirtool` to extract the list of metrics :
 
-```
+```bash
 mimirtool analyze rule-file my-prom-rules.yaml
 ```
 
@@ -142,20 +141,20 @@ Once we have both `metrics-in-grafana.json` and `metrics-in-ruler.json`, which c
 
 To do so, we need to expose our Prometheus instance:
 
-```
+```bash
 # run this is a separate terminal
 kubectl port-forward ${my_prometheus_pod} -n monitoring 9090:9090
 ```
 
 Once again, we are going to use `mimirtool` that will automatically load the files we created previously and compare them with the metrics stored in our Prometheus instance:
 
-```
+```bash
 mimirtool analyze prometheus --address=http://localhost:9090
 ```
 
 Example output:
 
-```
+```bash
 $ mimirtool analyze prometheus --address=http://localhost:9090
 INFO[0000] Found 1377 metric names                      
 INFO[0000] 22451 active series are being used in dashboards 
@@ -168,13 +167,13 @@ You should end up with the file `prometheus-metrics.json`, containing the list o
 
 To save the list of used metrics in raw text:
 
-```
+```bash
 jq -r ".in_use_metric_counts[].metric" prometheus-metrics.json | sort > used_metrics.txt
 ```
 
 To save the list of unused metrics in raw text:
 
-```
+```bash
 jq -r ".additional_metric_counts[].metric" prometheus-metrics.json | sort > unused_metrics.txt
 ```
 

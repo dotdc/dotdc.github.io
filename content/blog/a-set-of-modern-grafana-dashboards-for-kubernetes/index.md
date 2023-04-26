@@ -58,7 +58,7 @@ From there, you will find several installation methods including:
 
 If you just want to have a quick look, you can clone the repository using:
 
-```
+```bash
 git clone https://github.com/dotdc/grafana-dashboards-kubernetes.git
 cd grafana-dashboards-kubernetes
 ```

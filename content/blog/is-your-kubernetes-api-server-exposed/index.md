@@ -46,7 +46,7 @@ This means that all clusters created using the default configuration expose the 
 
 In order to test your cluster configuration, you will need to get your Kubernetes cluster API Server(s) IP or FQDN. In most cases, you will find this information in your Kubernetes configuration file:
 
-```
+```bash
 $ grep server ~/.kube/config
 server:https://XXXXXXXXX.abc.us-west-1.eks.amazonaws.com
 server:https://XXXXXXXXX.abc.us-west-1.eks.amazonaws.com
@@ -55,7 +55,7 @@ server:https://XXXXXXXXX.abc.us-west-1.eks.amazonaws.com
 
 Once you have this, you can simply try to query the `/version` endpoint from your terminal or any web browser:
 
-```
+```bash
 $ curl -k https://XXXXXXXXX.abc.us-west-1.eks.amazonaws.com/version
 {
   "major": "1",
@@ -91,7 +91,7 @@ With this solution, your Kubernetes API server is still exposed publicly on inte
 
 To get your public IP, you can use a service like [whatismyip.com](https://www.whatismyip.com/) or use dig:
 
-```
+```bash
 $ dig +short myip.opendns.com@resolver1.opendns.com
 x.x.x.x
 ```
