@@ -70,17 +70,31 @@ prometheus-node-exporter:
     - --collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$
 ```
 
-As you can see, we disabled the `arp`, `ipvs`, `sockstat` and `softnet` collectors. In case you don’t want to drop the entire collector, a few of them have an exclude flag that you can use to exclude patterns instead of disabling them.
+As you can see, we disabled the `arp`, `ipvs`, `sockstat` and `softnet` collectors. In case you don't want to drop the entire collector, a few of them can be configured to include or exclude certain patterns using dedicated flags.
 
-List of collectors with exclude flags (at the time of writing):
+Here's the list at the time of writing:
 
 ```bash
+# Exclude flags
 --collector.arp.device-exclude
 --collector.diskstats.device-exclude
+--collector.ethtool.device-exclude
 --collector.filesystem.fs-types-exclude
 --collector.filesystem.mount-points-exclude
 --collector.netdev.device-exclude
+--collector.qdisk.device-exclude
 --collector.systemd.unit-exclude
+
+# Include flags
+--collector.arp.device-include
+--collector.cpu.info.bugs-include
+--collector.cpu.info.flags-include
+--collector.diskstats.device-include
+--collector.ethtool.metrics-include
+--collector.netdev.device-include
+--collector.qdisk.device-include
+--collector.sysctl.include
+--collector.systemd.unit-include
 ```
 
 ### Using relabeling rules
