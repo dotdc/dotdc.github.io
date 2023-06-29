@@ -2,7 +2,7 @@
 author = "David Calvert"
 title = "Service Level Objectives made easy with Sloth and Pyrra"
 date = "2023-06-29"
-description = "In this article, I will explain the main differences between Sloth and Pyrra, two projects that aims to help you create and manage Service Level Objectives."
+description = "In this article, I will explain the main differences between Sloth and Pyrra, two projects that aim to help you create and manage Service Level Objectives."
 tags = [
     "observability", "kubernetes", "sre", "monitoring"
 ]
@@ -11,7 +11,7 @@ categories = [
 ]
 thumbnail = "/img/thumbs/slo-with-sloth-and-pyrra.webp"
 featureImage = "sloth-and-pyrra-banner.webp"
-featureImageAlt = 'Random numbers with the Prometheus logo in front.'
+featureImageAlt = 'A person standing in the middle of a street by Jon Tyson on Unspash.'
 +++
 
 <!--more-->
@@ -98,7 +98,7 @@ spec:
             slack_channel: "#alerts-myteam"
 ```
 
-Sloth allows you to configure additional labels for both `pageAlert` and `ticketAlert`, which can become handy if you have multiple channels configured in your alerting stack. It also supports [SLI plugins](https://sloth.dev/usage/plugins/) and a has [common SLI plugins](https://github.com/slok/sloth-common-sli-plugins) library that can be used to extend its capabilities when you need to do custom or complex things.
+Sloth allows you to configure additional labels for both `pageAlert` and `ticketAlert`, which can become handy if you have multiple channels configured in your alerting stack. It also supports [SLI plugins](https://sloth.dev/usage/plugins/) and has a [common SLI plugins](https://github.com/slok/sloth-common-sli-plugins) library that can be used to extend its capabilities when you need to do custom or complex things.
 
 Because it doesn’t have an integrated UI, Sloth relies on Grafana for the visualisation of the generated SLOs, and you will find the two official dashboards on [grafana.com](https://grafana.com/grafana/dashboards/?search=sloth):
 
