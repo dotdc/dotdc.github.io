@@ -35,3 +35,10 @@ paginate = 5
   title = 'My projects'
   url = '/projects'
   weight = 10
+
+[[menu.main]]
+  identifier = 'resume'
+  name = 'resume'
+  title = 'My resume'
+  url = '/resume'
+  weight = 15
