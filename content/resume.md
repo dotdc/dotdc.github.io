@@ -12,9 +12,9 @@ sidebar = false
 
 ## WORK EXPERIENCE
 
-> **[Oqton](https://oqton.com) -- Senior Site Reliability Engineer** *(March 2023 - Today)*
+> **[3D Systems](https://www.3dsystems.com) -- Senior Site Reliability Engineer** *(March 2023 - Today)*
 >
-> I’m currently working at Oqton, a software company solving today’s manufacturing challenges by combining state-of-the-art AI, cloud, simulation, and the best in CAD/CAM technology for additive production, and 3D scanning.
+> I’m currently working at 3D Systems; in the software software division solving today’s manufacturing challenges by combining state-of-the-art AI, cloud, simulation, and the best in CAD/CAM technology for additive production, and 3D scanning.
 >
 > ---
 >

@@ -25,8 +25,6 @@ I recently entered the world of additive manufacturing, more commonly known as 3
 I have been interested in 3D printing for a long time, but never really got into the subject because I had no real need for it, and it was also quite expensive back then.
 Last year, when attending Powder’s Christmas party, I was staying at [Tom](https://github.com/wheybags)’s place, who owns a [Creality Ender-3](https://www.creality.com/products/ender-3-3d-printer), and was amazed when he told me that you can now get a 3D printer for less than $200!
 
-At that time, I also knew that I was going to start a new job at [Oqton](https://oqton.com/), a software company solving today’s manufacturing challenges by combining state-of-the-art AI, cloud, simulation, and the best in [CAD/CAM](https://en.wikipedia.org/wiki/CAD/CAM) technology for [additive production](https://oqton.com/additive/), and 3D scanning.
-
 As I’m currently renovating my home, I quickly identified a few use-cases where it could help, but let’s be honest, it was just looking for an excuse to grab a 3D printer and start hacking with it!
 
 ## Getting started
@@ -43,7 +41,7 @@ Before buying or doing anything, I like to invest time studying the market, and 
 
 My goal was pretty simple, getting started with 3D printing without spending too much time and money. I was looking for the cheapest printer that would be beginner-friendly, hassle-free, evolutive and known enough to get help if needed.
 
-With these criteria in mind, the [Creality Ender-3 V2](https://www.creality.com/products/ender-3-v2-3d-printer-csco) quickly seemed like the right fit for me. But after a few discussions with friends and colleagues at Oqton, I was told that it lacked automatic bed-leveling, which is a nice feature to have. You can of course upgrade any Ender printer with an automatic bed-leveling sensor, like the Creality BLTouch or the CRTouch, but I was looking for something simple.
+With these criteria in mind, the [Creality Ender-3 V2](https://www.creality.com/products/ender-3-v2-3d-printer-csco) quickly seemed like the right fit for me. But after a few discussions with friends and colleagues, I was told that it lacked automatic bed-leveling, which is a nice feature to have. You can of course upgrade any Ender printer with an automatic bed-leveling sensor, like the Creality BLTouch or the CRTouch, but I was looking for something simple.
 
 I looked for a printer that would have an automatic bed-leveling sensor out of the box, and narrowed down my choice between the [Anycubic Kobra 2](https://www.anycubic.com/products/kobra-2) and the [Creality Ender-3 S1 Pro](https://www.creality.com/products/creality-ender-3-s1-pro-fdm-3d-printer).
 
