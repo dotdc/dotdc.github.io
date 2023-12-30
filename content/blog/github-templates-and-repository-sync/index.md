@@ -4,7 +4,7 @@ title = "GitHub templates and repository sync"
 date = "2023-12-30"
 description = "In this article, I will explain how to create GitHub templates, and how to sync the generated repositories with their template using a GitHub action."
 tags = [
-    "git", "github"
+    "cicd", "git", "github"
 ]
 categories = [
     "tech"
@@ -105,11 +105,11 @@ This example is pretty close to the default configuration, I just changed the pu
 
 There are several other [parameters](https://github.com/AndreasAugustin/actions-template-sync#configuration-parameters) you can set, like specifying the list of reviewers using `pr_reviewers`, or adding custom labels with `pr_labels`. You can also ignore some files from the sync by creating a [.templatesyncignore](https://github.com/AndreasAugustin/actions-template-sync?tab=readme-ov-file#ignore-files) file, which works similarly to a `.gitignore` file.
 
-Once the workflow is triggered, it will compare the target repository with the source, and will open a Pull Request on the target repository if there's any differences. You can see how it looks like in the Pull Requests [#1](https://github.com/dotdc/terraform-module-example/pull/1) and [#2](https://github.com/dotdc/terraform-module-example/pull/2) from [dotdc/terraform-module-example](https://github.com/dotdc/terraform-module-example).
+Once the workflow is triggered, it will compare the target repository with the source, and will open a Pull Request on the target repository if there are any differences You can see how it looks like in the Pull Requests [#1](https://github.com/dotdc/terraform-module-example/pull/1) and [#2](https://github.com/dotdc/terraform-module-example/pull/2) from [dotdc/terraform-module-example](https://github.com/dotdc/terraform-module-example).
 
 ## Conclusion
 
-In this article, we've see how easy it is to sync Git repository using the [actions-template-sync](https://github.com/marketplace/actions/actions-template-sync) GitHub action. While this action was made to solve a missing feature in GitHub repository templates, it can be used as a generic repository sync solution for GitHub repositories.
+In this article, we've seen how easy it is to sync Git repository using the [actions-template-sync](https://github.com/marketplace/actions/actions-template-sync) GitHub action. While this action was made to solve a missing feature in GitHub repository templates, it can be used as a generic repository sync solution for GitHub repositories.
 
 If you want to learn more, check out the project's [documentation](https://github.com/AndreasAugustin/actions-template-sync?tab=readme-ov-file#actions-template-sync) or Andreas's initial [blog post](https://andreas-augustin.dev/blogs/git/git_action_sync/)!
 
