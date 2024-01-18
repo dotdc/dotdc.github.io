@@ -11,7 +11,7 @@ categories = [
 ]
 thumbnail = "/img/thumbs/2023-books.webp"
 featureImage = "shelf.webp"
-featureImageAlt = 'A picture of books in my shelf.'
+featureImageAlt = 'A picture of books on my shelf.'
 +++
 
 <!--more-->
@@ -106,7 +106,7 @@ Author : [Nick Bilton](https://twitter.com/nickbilton)
 
 "A true story of money, power, friendship, and betrayal"
 
-I decided it was a good time to read this book that has been sitting on my shelf for a while after the 2022 Twitter incident. The book begins with the background of the co-founders: [Evan Williams](https://twitter.com/ev), [Noah Glass](https://twitter.com/noah), [Jack Dorsey](https://twitter.com/jack) and [Biz Stone](https://twitter.com/biz), and how they met each others. Following that, you will learn more about the history of Twitter, which is definitely "A true story of money, power, friendship, and betrayal"!
+I decided it was a good time to read this book that has been sitting on my shelf for a while after the 2022 Twitter incident. The book begins with the background of the co-founders: [Evan Williams](https://twitter.com/ev), [Noah Glass](https://twitter.com/noah), [Jack Dorsey](https://twitter.com/jack) and [Biz Stone](https://twitter.com/biz), and how they met each others. Following that, you will learn more about the history of Twitter, which is undoubtedly "A true story of money, power, friendship, and betrayal"!
 
 I've particularly enjoyed the fun facts, like the origins of hashtags on Twitter, or when Noah Glass consider "Twitch" for Twitter's name, before thinking that it would never work. Of course, it's only funny because the name was later adopted by a famous live-streaming platform :) Some are totally crazy, like when Snoop Dog stops by Twitter's offices!
 
