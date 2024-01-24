@@ -37,6 +37,8 @@
     align-items: center
     font-size: 20px
     border-bottom: 1px solid transparent
+    position: relative
+    transition: color 0.3s
     &:hover, &:focus
       text-decoration: none
     &:hover
@@ -59,6 +61,9 @@
     display: flex
     align-items: center
     margin: -1px 0
+
+  &_parent:hover &item:hover
+    cursor: pointer
 
   &_open + &_sub &_child
     padding-top: 0.5rem
