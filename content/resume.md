@@ -67,7 +67,8 @@ sidebar = false
 > - Monitoring / Observability
 > - Kubernetes
 > - Cloud platforms (AWS / GCP)
-> - Bash / Go
+> - Bash
+> - Go
 
 ## SOFT SKILLS
 
