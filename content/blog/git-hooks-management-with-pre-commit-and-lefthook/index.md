@@ -125,7 +125,7 @@ pre-commit:
       run: sleep 1
 ```
 
-Exectution:
+Execution:
 
 ```console
 $ time lefthook run pre-commit
