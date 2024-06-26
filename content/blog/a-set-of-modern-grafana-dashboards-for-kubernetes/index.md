@@ -4,7 +4,7 @@ title = "A set of modern Grafana dashboards for Kubernetes"
 date = "2022-06-21"
 description = "A set of modern Grafana dashboards for Kubernetes"
 tags = [
-    "observability", "kubernetes", "monitoring"
+    "observability", "kubernetes", "monitoring", "grafana"
 ]
 categories = [
     "tech"
@@ -15,7 +15,8 @@ featureImage = "grafana-dashboards-kubernetes-banner.webp"
 featureImageAlt = 'Banner of the grafana-dashboards-kubernetes project'
 +++
 
-> This article was originally published on [Medium](https://medium.com/@dotdc/a-set-of-modern-grafana-dashboards-for-kubernetes-4b989c72a4b2).
+> This article was originally published on [Medium](https://medium.com/@dotdc/a-set-of-modern-grafana-dashboards-for-kubernetes-4b989c72a4b2).\
+> It also received an update in "[An updated set of Grafana dashboards for Kubernetes](https://0xdc.me/blog/an-updated-set-of-grafana-dashboards-for-kubernetes/)".
 
 In this article, I will present a set of modern Grafana dashboards I made for Kubernetes, explain why I decided to create them and how they work.
 
@@ -202,7 +203,7 @@ I hope that this article was useful and has given you new tools and ideas to mon
 
 You can contribute to this project:
 
-- Give a GitHub ⭐ if you like it
+- Give a [GitHub ⭐](https://github.com/dotdc/grafana-dashboards-kubernetes/stargazers) if you like it
 - Create an [Issue](https://github.com/dotdc/grafana-dashboards-kubernetes/issues) to make a feature request, report a bug or share an idea.
 - Create a [Pull Request](https://github.com/dotdc/grafana-dashboards-kubernetes/pulls) if you want to share code or anything useful to this project.
 
