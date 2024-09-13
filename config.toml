@@ -3,7 +3,9 @@ baseurl = "https://0xdc.me/"
 languageCode = "en-us"
 title = '0xDC.me'
 theme = "0xDC"
-paginate = 5
+
+[pagination]
+  pagerSize = 5
 
 [params]
   author = "David Calvert"
