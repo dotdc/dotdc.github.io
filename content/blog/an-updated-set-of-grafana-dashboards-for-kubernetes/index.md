@@ -34,6 +34,7 @@ Here are the current project statistics:
 - 337 forks
 - 26 contributors
 
+<!-- markdownlint-disable-next-line MD045 -->
 ![](star-history.webp)
 [Star History Chart](https://star-history.com/#dotdc/grafana-dashboards-kubernetes)
 

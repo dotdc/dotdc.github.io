@@ -1,0 +1,28 @@
+# Doc: https://pre-commit.com
+
+repos:
+  # Default pre-commit hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+    - id: check-yaml
+    - id: check-added-large-files
+    - id: check-merge-conflict
+    - id: mixed-line-ending
+    - id: trailing-whitespace
+
+  # Typos
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.26.8
+    hooks:
+      - id: typos
+        exclude: "themes/"
+
+  # Markdown linter
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.42.0
+    hooks:
+    - id: markdownlint
+      args:
+      - "--disable=MD013"
+      exclude: "content/projects.md"

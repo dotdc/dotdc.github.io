@@ -156,10 +156,10 @@ Example output:
 
 ```bash
 $ mimirtool analyze prometheus --address=http://localhost:9090
-INFO[0000] Found 1377 metric names                      
-INFO[0000] 22451 active series are being used in dashboards 
-INFO[0000] 28440 active series are NOT being used in dashboards 
-INFO[0000] 270 in use active series metric count        
+INFO[0000] Found 1377 metric names
+INFO[0000] 22451 active series are being used in dashboards
+INFO[0000] 28440 active series are NOT being used in dashboards
+INFO[0000] 270 in use active series metric count
 INFO[0000] 1105 not in use active series metric count
 ```
 

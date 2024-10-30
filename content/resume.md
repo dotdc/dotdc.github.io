@@ -80,7 +80,8 @@ sidebar = false
 
 ## CERTIFICATIONS
 
-> - Kubernetes (CKA)
+> - Certified Kubernetes Security Specialist (CKS)
+> - Certified Kubernetes Administrator (CKA)
 > - Linux Professional Institute (LPIC-1)
 > - Professional Scrum Master (PSM I)
 > - ITIL V3-2011 Foundation (ITILF)
@@ -88,6 +89,12 @@ sidebar = false
 ## EDUCATION
 
 > CNAM -- Bachelor’s Degree in Computer Science (BAC +3)
+
+## VOLUNTEERING
+
+> - [Grafana Champion](https://grafana.com/community/champions/)
+> - [Open Source Contributor](https://github.com/dotdc)
+> - [Sophia Hack Lab - Board Member](https://shl.contact)
 
 ## LANGUAGES
 

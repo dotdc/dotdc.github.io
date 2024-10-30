@@ -63,7 +63,7 @@ I was a bit disappointed, but I immediately started looking for a solution using
 
 From there, I was finally able to do my very first print!
 
-![A 3D printed rabbit](rabbit.webp "Picture: My first print, a small rabbit for my daugther")
+![A 3D printed rabbit](rabbit.webp "Picture: My first print, a small rabbit for my daughter")
 
 ## Finding, Slicing, and Printing
 

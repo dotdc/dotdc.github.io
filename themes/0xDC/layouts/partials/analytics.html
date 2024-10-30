@@ -13,14 +13,14 @@
   (function() {
     var hm = document.createElement("script");
     hm.src = "https://hm.baidu.com/hm.js?{{ . }}";
-    var s = document.getElementsByTagName("script")[0]; 
+    var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
   })();
 </script>
 {{- end }}
 
 {{- if (site.Params.plausible_analytics.enable) }}
-<script async defer data-domain="{{ site.Params.plausible_analytics.websiteDomain }}" 
+<script async defer data-domain="{{ site.Params.plausible_analytics.websiteDomain }}"
 src='https://{{ default "plausible.io" site.Params.plausible_analytics.plausibleDomain }}/js/{{ default "plausible" site.Params.plausible_analytics.scritpName }}.js'>
 </script>
 {{- end }}
