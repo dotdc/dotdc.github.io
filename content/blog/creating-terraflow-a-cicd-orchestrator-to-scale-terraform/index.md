@@ -253,8 +253,9 @@ I hope this article has been helpful and offers insights into tackling similar c
 You can also follow me on:
 
 - GitHub : [https://github.com/dotdc](https://github.com/dotdc)
-- Mastodon : [https://hachyderm.io/@0xDC](https://hachyderm.io/@0xDC)
-- Twitter : [https://twitter.com/0xDC_](https://twitter.com/0xDC_)
 - LinkedIn : [https://www.linkedin.com/in/0xDC](https://www.linkedin.com/in/0xDC)
+- Bluesky : [https://bsky.app/profile/0xdc.me](https://bsky.app/profile/0xdc.me)
+- Twitter : [https://twitter.com/0xDC_](https://twitter.com/0xDC_)
+- Mastodon : [https://hachyderm.io/@0xDC](https://hachyderm.io/@0xDC)
 
 👋
