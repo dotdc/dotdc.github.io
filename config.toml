@@ -44,3 +44,6 @@ theme = "0xDC"
   title = 'My resume'
   url = '/resume'
   weight = 15
+
+[markup.goldmark.renderer]
+  unsafe = true

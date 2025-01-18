@@ -22,6 +22,3 @@ I'm currently focused on Observability, Reliability and Security aspects of Kube
 🧗‍♂️ Rock climber \
 🍺 IPA & Wine \
 🤓 Fun fact: started typing before 2yo!
-<!-- markdownlint-disable-next-line MD033 -->
-<br>
-</div>

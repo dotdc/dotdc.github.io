@@ -108,7 +108,7 @@
           <div class="tags_list">
             {{- range $value.Alphabetical }}
             {{ $tagsInfo.Add "tagsInfo" (slice .Name .Count)}}
-            <a href='{{ absLangURL $key }}/{{ (replace .Name "#" "%23") | urlize }}/' class=" post_tag button button_translucent" data-position={{ .Count }} title="{{ .Name }}">
+            <a href='{{ absLangURL $key }}/{{ (replace .Name "#" "%23") | urlize }}/' class="post_tag button button_translucent" data-position={{ .Count }} title="{{ .Name }}">
               {{- upper .Name -}}
               <!-- <span class="button_tally">{{ .Count }}</span> -->
             </a>

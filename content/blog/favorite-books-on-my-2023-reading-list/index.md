@@ -9,7 +9,7 @@ tags = [
 categories = [
     "books"
 ]
-thumbnail = "/img/thumbs/2023-books.webp"
+thumbnail = "/img/thumbs/books.webp"
 featureImage = "shelf.webp"
 featureImageAlt = 'A picture of books on my shelf.'
 +++

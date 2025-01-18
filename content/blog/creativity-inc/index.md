@@ -45,14 +45,15 @@ The book ends with an unusual description of Steve Jobs, Ed Catmull's thoughts f
 
 ## Favorite quotes
 
-<!-- Fear of failure, p.113 -->
-> "Experiments are fact-finding missions that, over time, inch scientists toward greater understanding."
+<!-- markdownlint-disable MD028 -->
+> "Experiments are fact-finding missions that, over time, inch scientists toward greater understanding." \
+> *Fear of failure, p.113*
 
-<!-- Change and randomness, p.165 -->
-> "Everyone says they want to hire excellent people, but in truth we don't really know, at first, who will rise up to make a difference."
+> "Everyone says they want to hire excellent people, but in truth we don't really know, at first, who will rise up to make a difference." \
+> *Change and randomness, p.165*
 
-<!-- The unmade future, p.224 -->
-> "The best way to predict the future is to invent it."
+> "The best way to predict the future is to invent it." \
+> *The unmade future, p.224*
 
 ## Final words
 
