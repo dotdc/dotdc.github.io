@@ -41,7 +41,7 @@ jobs:
 
       # Doc: https://github.com/marketplace/actions/checkout
       - name: Checkout ${{ github.repository }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           submodules: recursive
 
@@ -61,7 +61,7 @@ jobs:
 
       # Doc: https://github.com/marketplace/actions/upload-github-pages-artifact
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./public
 
