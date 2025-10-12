@@ -15,7 +15,7 @@ repos:
 
   # Typos
   - repo: https://github.com/crate-ci/typos
-    rev: v1.37.1
+    rev: v1.38.1
     hooks:
       - id: typos
         exclude: "themes/"
@@ -27,4 +27,8 @@ repos:
     - id: markdownlint
       args:
       - "--disable=MD013"
-      exclude: "content/projects.md"
+      exclude: |
+        (?x)^(
+            content/projects.md|
+            content/resume.md
+        )$
