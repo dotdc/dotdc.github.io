@@ -16,6 +16,10 @@ Here's a few projects where I'm involved on GitHub:
 >
 > A set of modern Grafana dashboards for Kubernetes.
 
+> [dotdc/cursor-workshop](https://github.com/dotdc/cursor-workshop)
+>
+> Learn Cursor skills through fun quests on a cute bookshop application.
+
 > [prometheus-community/helm-charts](https://github.com/prometheus-community/helm-charts)
 >
 > Prometheus community Helm charts.
