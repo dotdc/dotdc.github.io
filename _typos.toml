@@ -1,0 +1,7 @@
+# Doc: https://github.com/crate-ci/typos?tab=readme-ov-file#false-positives
+
+[default]
+extend-ignore-identifiers-re = []
+
+[default.extend-identifiers]
+HashiCorp = "HashiCorp"
