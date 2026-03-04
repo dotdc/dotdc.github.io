@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Doc: https://github.com/gohugoio/hugo/releases
-      HUGO_VERSION: 0.152.2
+      HUGO_VERSION: 0.157.0
     steps:
       - name: Install Hugo CLI
         run: |
@@ -41,7 +41,7 @@ jobs:
 
       # Doc: https://github.com/marketplace/actions/checkout
       - name: Checkout ${{ github.repository }}
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           submodules: recursive
 
