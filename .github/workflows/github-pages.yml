@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Doc: https://github.com/gohugoio/hugo/releases
-      HUGO_VERSION: 0.155.3
+      HUGO_VERSION: 0.157.0
     steps:
       # Doc: https://github.com/marketplace/actions/checkout
       - name: Checkout ${{ github.repository }}
@@ -44,6 +44,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      # Doc: https://github.com/marketplace/actions/hugo-setup
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
