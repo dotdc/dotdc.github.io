@@ -1,17 +1,9 @@
 {{- $base := absURL "" }}
-{{- $items := hugo.Data.social }}
-{{- $social := .Site.Menus.social }}
-{{- with $social }}
-  {{- $items = . }}
-{{- end }}
+{{- $items := .Site.Menus.social }}
 <div class='follow'>
   {{- range $items }}
   {{- $url := .URL }}
   {{- $label := lower .Name }}
-  {{- if eq $social nil }}
-    {{ $url = .url }}
-    {{ $label = lower .item }}
-  {{- end }}
   {{- if and (eq (hasPrefix $url $base) false) (eq (hasPrefix $url "http") false) }}
     {{ $url = absLangURL $url }}
   {{- end }}

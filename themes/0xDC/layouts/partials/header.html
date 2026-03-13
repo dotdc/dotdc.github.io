@@ -9,13 +9,7 @@
       {{- partialCached "logo" (dict "logo" $logo) }}
     {{- end }}
     <div class='nav_body nav_body_{{ default "left" $params.mobileNavigation }}'>
-      {{ $context := . }}
-      {{ $menuData := hugo.Data.menu }}
-      {{ with $menuData }}
-        {{ partial "nav" (dict "context" $context "menu" $menuData) }}
-      {{- else }}
-        {{ partial "nav" (dict "context" . "menu" .Site.Menus.main) }}
-      {{- end }}
+      {{ partial "nav" (dict "context" . "menu" .Site.Menus.main) }}
       {{- if $centerLogo }}
         {{- partial "logo" (dict "logo" $logo "class" "nav_center") }}
       {{- end }}

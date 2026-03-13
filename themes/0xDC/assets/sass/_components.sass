@@ -185,7 +185,7 @@
   text-transform: uppercase
   border: 1px solid $green
   border-radius: 2px
-  background-color: rgba($green, 0.15)
+  background-color: rgba($green, 0.08)
   font-size: 0.9rem
   align-items: center
   user-select: none
@@ -206,7 +206,7 @@
     text-decoration: none
 
   &_translucent
-    background-color: rgba($green, 0.15)
+    background-color: rgba($green, 0.08)
     color: $green
     border: 1px solid $green
   &_tally
@@ -253,8 +253,9 @@
       padding-top: 0
   &_item
     // box-shadow: 0  2.25rem 1.25rem -1.25rem var(--shadow)
-    margin-bottom: 3rem
-    border: 1px solid #282828
+    margin-bottom: 2rem
+    border: 1px solid #3a3a3a
+    background: #232323
   &_tag
     padding: 0.2rem 0.8rem
     font-size: 0.8rem
@@ -476,34 +477,82 @@
 
 .excerpt
   width: 100%
-  display: inline-grid
-  border: 1px solid #424242
+  display: block
+  border: 0
+  background: #232323
   &_left
-    display: inline-grid
-    min-height: 152px
+    display: flex
+    flex-direction: column
+    flex: 1 1 auto
+    min-width: 0
   &_header
-    marging: 0
-    padding: 0
-    background: #272727
-    padding: 1rem
-  &_footer
-    padding: 0 1rem 2.25rem 1rem
+    margin: 0
+    background: transparent
+    padding: 1.15rem
+    display: flex
+    align-items: stretch
+    gap: 1rem
+  &_meta
+    display: grid
+    gap: 0.65rem
+    margin-top: 0.2rem
   &_thumbnail
+    display: block
+    width: 120px
+    aspect-ratio: 1 / 1
+    overflow: hidden
+    border: 1px solid #383838
+    background: #1a1a1a
+    figure, picture
+      display: block
+      width: 100%
+      height: 100%
+      margin: 0
+    img
+      display: block
+      width: 100%
+      height: 100%
+      object-fit: cover
+  &_thumb
     display: none
-    border: 1px solid #272727
+    margin-left: auto
+    width: 120px
+    flex: 0 0 120px
+    align-self: flex-start
     @media screen and (min-width: $mobile-menu-breakpoint)
       display: block
-  &_thumb
-    display: inline-grid
-    float: right
-    margin-left: 15px
-    width: 180px
-    &.partition
-      display: grid
-      padding: 0
-      @media screen and (min-width: $mobile-menu-breakpoint)
-        //grid-template-columns: 2fr 7fr
-        //grid-gap: 1rem
+  .post_link
+    display: flex
+    align-items: flex-start
+    gap: 0.6rem
+    line-height: 1.3
+    > a
+      margin: 0
+  .post-title-prefix
+    position: static
+    margin-top: 0.1rem
+    line-height: 1
+    flex: 0 0 auto
+  .post_meta
+    margin: 0
+    display: flex
+    align-items: center
+    gap: 0.6rem
+    color: #9a9a9a
+  .excerpt_meta .post_meta,
+  .excerpt_meta .post_meta_extra
+    margin-left: 32px
+  .post_date
+    margin: 0
+  .post_time
+    margin: 0
+    color: #7f7f7f
+  .post_meta_extra, .post_meta_tags
+    display: flex
+    flex-wrap: wrap
+    gap: 0.6rem
+  .post_tag
+    margin: 0
 .sidebar
   &_inner
     position: relative
@@ -522,10 +571,6 @@
   font-family: 'Major Mono Display'
 
 .author
-  &_header
-    display: grid
-    grid-template-columns: 3rem 1fr
-    grid-gap: 1rem
   &_bio
     a
       color: $theme
@@ -537,10 +582,10 @@
   &-item
     padding: 0.2rem
     &.disabled a
-      background-color: rgba($green, 0.15)
+      background-color: rgba($green, 0.08)
     &.disabled a:hover
       color: $green
-      background-color: rgba($green, 0.15)
+      background-color: rgba($green, 0.08)
     &:first-child, &:last-child
       display: none
     &.active a
@@ -549,7 +594,7 @@
   &-link
     padding: 0.25rem 0.60rem
     border-radius: 2px
-    background-color: rgba($green, 0.15)
+    background-color: rgba($green, 0.08)
     color: $green
     border: 1px solid $green
     &:hover
@@ -596,7 +641,7 @@ figcaption
 
 .to
   &_top
-    background-color: rgba($green, 0.15)
+    background-color: rgba($green, 0.08)
     color: $green
     width: 2.6rem
     height: 2.6rem
@@ -842,13 +887,6 @@ figcaption
 .social:hover
   color: $green
   text-decoration: none
-
-.author
-  margin: 10px 6px 10px 0
-  width: 50px
-  height: 50px
-  border: 1px solid #272727
-  border-radius: 50px
 
 .post-title-prefix
   position: absolute

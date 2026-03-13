@@ -8,22 +8,6 @@
       {{- $introDescription = . }}
     {{- end }}
     {{- if $introDescription }}
-      {{- $author := $s.Author  }}
-      {{- $showAuthorPhoto := false }}
-      {{- $fullAuthor := reflect.IsMap $author }}
-      {{- if $fullAuthor }}
-        {{-  if $author.photo }}
-          {{- $showAuthorPhoto = true }}
-        {{- end }}
-      {{- end }}
-      {{- if $showAuthorPhoto }}
-        <div class="author_header">
-          <img src="{{ absURL $author.photo }}" alt="{{ $author.name }} photo">
-          <h2>{{  $author.name }}</h2>
-        </div>
-      {{- else }}
-        <h2>{{  if $fullAuthor }}{{ $author.name }}{{ else }}{{ $author }}{{ end }}</h2>
-      {{- end }}
       <div class="author_bio">
         {{ markdownify $introDescription }}
       </div>
@@ -56,9 +40,6 @@
         {{ end }}
       </ul>
     {{ end }}
-  <div>
-
-  </div>
 
   <!--
     {{- $posts := where .Site.RegularPages "Type" "in" $s.mainSections }}
@@ -92,10 +73,9 @@
     <div>
       <h2 class="mt-4" id="{{ $key }}-section">{{ T $key }}</h2>
       <nav class="tags_nav">
-        {{- $onPageTags := $.Page.Params.tags }}
         {{- $slicedTags := ($value.ByCount | first $tagsLimit) }}
         {{- range $slicedTags }}
-        <a href='{{ absLangURL $key }}/{{ (replace .Name "#" "%23") | urlize }}/' class="post_tag button button_translucent" title="{{ .Name }}">
+        <a href='{{ absLangURL $key }}/{{ (replace .Name "#" "%23") | urlize }}/' class="post_tag button button_translucent tag-color--{{ .Name | urlize }}" title="{{ .Name }}">
           # {{ upper .Name }}
           <!-- <span class="button_tally">{{ .Count }}</span> -->
         </a>
@@ -108,7 +88,7 @@
           <div class="tags_list">
             {{- range $value.Alphabetical }}
             {{ $tagsInfo.Add "tagsInfo" (slice .Name .Count)}}
-            <a href='{{ absLangURL $key }}/{{ (replace .Name "#" "%23") | urlize }}/' class="post_tag button button_translucent" data-position={{ .Count }} title="{{ .Name }}">
+            <a href='{{ absLangURL $key }}/{{ (replace .Name "#" "%23") | urlize }}/' class="post_tag button button_translucent tag-color--{{ .Name | urlize }}" data-position={{ .Count }} title="{{ .Name }}">
               {{- upper .Name -}}
               <!-- <span class="button_tally">{{ .Count }}</span> -->
             </a>
