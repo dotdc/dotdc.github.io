@@ -1,0 +1,34 @@
+{{- $authorbox := .Param "authorbox" }}
+{{- if ne $authorbox.enabled false }}
+{{- $pageAuthor := .Params.author | default "" }}
+{{- $authorKey := replaceRE "[^[:alnum:]]+" "" (lower $pageAuthor) }}
+{{- $authors := .Site.Data.authors }}
+{{- $author := index $authors $pageAuthor }}
+{{- if not $author }}
+  {{- $author = index $authors $authorKey }}
+{{- end }}
+{{- if not $author }}
+  {{- $author = index $authors "default" }}
+{{- end }}
+{{- if not $author }}
+  {{- $author = .Site.Params.authorbox }}
+{{- end }}
+{{- with $author }}
+<blockquote>
+    <div class="authorbox">
+        <img alt="{{ .name }} picture" src="{{ .picture | relURL }}" class="authorbox_picture" title=" " height="200" width="200">
+        <div class="authorbox_block">
+            <div class="authorbox_name">
+                {{ .name }}
+            </div>
+            <div class="authorbox_title">
+                {{ .title }}
+            </div>
+            <div class="authorbox_bio">
+                {{ .bio }}
+            </div>
+        </div>
+    </div>
+</blockquote>
+{{- end }}
+{{- end }}

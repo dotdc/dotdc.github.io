@@ -29,6 +29,7 @@
       {{- .Content }}
     </div>
 
+    {{- partial "authorbox" . }}
     {{- $showRelatedInArticle := true }}
     {{- if eq $s.showRelatedInArticle false }}
       {{- $showRelatedInArticle = false }}

@@ -9,7 +9,7 @@
   <div class="post_meta">
     {{- if $showDate }}
     <div class="post_date">
-      <span class="grey">{{ .Date.Format (default "January 2, 2006" $.Site.Params.dateFormat) -}}</span>
+      <span class="grey">{{ .Date.Format (default "January 2, 2006" $.Site.Params.dateFormat) -}}</span> <span class="grey">by David Calvert</span>
     </div>
     {{- $scratch.Set "writeSeparator" true }}
     {{- end }}

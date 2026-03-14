@@ -9,9 +9,9 @@ tags = [
 categories = [
     "tech"
 ]
-thumbnail = "/img/thumbs/grafana-annotations.webp"
+thumbnail = "/img/thumbs/grafana.webp"
 featureImage = "grafana-annotations-banner.webp"
-featureImageAlt = 'A Grafana graph panel with Grafana annotations.'
+featureImageAlt = "A Grafana graph panel with Grafana annotations."
 +++
 
 ## Introduction

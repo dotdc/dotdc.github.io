@@ -1,0 +1,53 @@
+# Hugo configuration file
+
+baseurl: "https://0xdc.me/"
+# baseurl: "http://localhost:1313/"
+languageCode: "en-us"
+title: "0xDC.me"
+theme: "0xDC"
+
+pagination:
+  pagerSize: 5
+
+params:
+  author: "David Calvert"
+  twitter: "0xDC_"
+  largeTwitterCard: true
+  description: "My Blog"
+  enforceDarkMode: true
+  enableSearch: false
+  showReadTime: false
+  authorbox:
+    enabled: false
+    name: "David Calvert"
+    title: "Staff Site Reliability & Platform Engineer"
+    bio: "David is a Staff Site Reliability & Platform Engineer working remotely from the south of France. He builds reliable, observable platforms and internal tooling that improve scalability, resilience and engineering productivity. Outside of work, he enjoys rock climbing, music and classic adventure games."
+    picture: "/img/authors/davidcalvert.webp"
+
+menu:
+  main:
+    - identifier: "about"
+      name: "About"
+      title: "A few bits about me"
+      url: "/about"
+      weight: 1
+    - identifier: "blog"
+      name: "blog"
+      title: "My blog"
+      url: "/blog"
+      weight: 5
+    - identifier: "projects"
+      name: "projects"
+      title: "My projects"
+      url: "/projects"
+      weight: 10
+    - identifier: "resume"
+      name: "resume"
+      title: "My resume"
+      url: "/resume"
+      weight: 15
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true

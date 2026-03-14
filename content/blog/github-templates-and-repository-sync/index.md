@@ -9,9 +9,10 @@ tags = [
 categories = [
     "tech"
 ]
-thumbnail = "/img/thumbs/github-mat.webp"
+thumbnail = "/img/thumbs/octocat.webp"
 featureImage = "banner.webp"
-featureImageAlt = 'A picture of my GitHub mat!'
+featureImageAlt = 'Octocat in space.'
+#featureImageCap = 'Picture by 0x604 Link: https://wallhaven.cc/w/p8qk1p'
 +++
 
 <!--more-->
