@@ -193,11 +193,11 @@ sidebar = false
 
 ## SOFT SKILLS
 
+> - Leadership
 > - Teamwork
 > - Analytical Thinking
 > - Problem Solving
 > - Effective Communication
-> - Versatility
 
 ## CERTIFICATIONS
 
