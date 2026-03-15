@@ -45,7 +45,7 @@ sidebar = false
 >
 > - Redefined cross-team incident management workflows to improve runbook and postmortem quality and enhance production support and on-call experience.
 > - Migrated the Istio Operator to Helm-based Istio deployments to eliminate downtime, simplify upgrades and reduce tech debt.
-> - Created an agentic Slack Incident Response Bot to automate Datadog monitors and vendor status updates while integrating with Claude Code and MCP servers to retrieve related incidents, recovery steps and documentation.
+> - Created an agentic Slack Incident Response Bot to automate Datadog monitors and vendor status updates while integrating with Claude Code and MCP servers to retrieve related incidents, recovery steps and documentation. ([article](https://0xdc.me/blog/building-an-agentic-slackbot-with-claude-code/))
 > - Led observability platform comparison across Datadog, Grafana Cloud, Coralogix, Signoz and self-hosted with OSS.
 >
 > #### Performance & Optimization
