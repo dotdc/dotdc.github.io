@@ -10,8 +10,8 @@ categories = [
     "tech"
 ]
 canonicalUrl = "https://medium.com/@dotdc/is-your-kubernetes-api-server-exposed-learn-how-to-check-and-fix-609ab9638fae"
-thumbnail = "/img/thumbs/k8s-security.webp"
-featureImage = "k8s-security-banner.webp"
+thumbnail = "/img/thumbs/kubernetes.webp"
+featureImage = "banner.webp"
 featureImageAlt = "Picture from Tumisu on pixabay"
 +++
 
