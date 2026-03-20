@@ -1,70 +1,97 @@
 //    ______________________________
 //  / \                             \.
-//  |   |  Dear visitor,             |.
+//  |   |  Hey, you found this!      |.
 //   \_ |                            |.
-//      |  If you're there, I guess  |.
-//      |  you like the effects! <3  |.
+//      |  Keep looking closely,     |.
+//      |  curious eyes tend to find |.
+//      |  more than they expect.    |.
 //      |                            |.
 //      |                   David    |.
 //      |   _________________________|___
 //      |  /                            /.
 //      \_/dc__________________________/.
 
-// Event listener for mouseover
+const SPECIAL_CHARS = ['A', 'V', '&', '<', '#', '²', '>', '~', '§', '%', '£', '€'];
+
+// WeakMap keyed by nav element; value is the active timeouts array (used as identity token)
+const effectState = new WeakMap();
+
 document.addEventListener('mouseover', function(event) {
-  // Find the nearest ancestor element with class 'nav_parent'
   const navParent = event.target.closest('.nav_parent');
-  if (navParent) hoverEffect(navParent); // Apply hover effect
+  if (navParent) startEffect(navParent);
 });
 
-// Event listener for mouseout
 document.addEventListener('mouseout', function(event) {
-  // Find the nearest ancestor element with class 'nav_parent'
   const navParent = event.target.closest('.nav_parent');
-  if (navParent) resetEffect(navParent); // Reset effect
+  if (!navParent) return;
+  // Ignore mouseout when moving between children within the same nav_parent
+  if (event.relatedTarget && navParent.contains(event.relatedTarget)) return;
+  stopEffect(navParent);
 });
 
-// Function to apply the hover effect
-function hoverEffect(element) {
+function startEffect(element) {
+  // Skip if an effect is already running on this element
+  if (effectState.has(element)) return;
+
   const navItem = element.querySelector('.nav_item');
-  const originalText = navItem.innerText;
-  const specialCharacters = ['A', 'V', '&', '<', '#', '²', '>', '~', '§', '%', '£', '€'];
-  let timeout;
+  if (!navItem) return;
+
+  // Snapshot the original text once; reuse it on subsequent hovers
+  if (!navItem.dataset.originalText) {
+    navItem.dataset.originalText = navItem.innerText;
+  }
+  const originalText = navItem.dataset.originalText;
   const numChanges = Math.max(Math.floor(originalText.length / 2), 1);
+  const timeouts = [];
 
-  // Loop through the selected number of changes
+  effectState.set(element, timeouts);
+
+  // Accumulate delays sequentially so set always fires before its matching revert
+  let cumulativeDelay = 0;
+
   for (let i = 0; i < numChanges; i++) {
-    const randomIndex = Math.floor(Math.random() * originalText.length);
-    const randomCharacter = specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
+    const idx = Math.floor(Math.random() * originalText.length);
+    const ch = SPECIAL_CHARS[Math.floor(Math.random() * SPECIAL_CHARS.length)];
 
-    // Set a timeout to replace the character with a special character
-    setTimeout(() => {
-      navItem.innerText = originalText.substring(0, randomIndex) + randomCharacter + originalText.substring(randomIndex + 1);
-    }, i * getRandomDelay());
+    cumulativeDelay += getRandomDelay();
+    const setAt = cumulativeDelay;
+    cumulativeDelay += getRandomDelay();
+    const revertAt = cumulativeDelay;
 
-    // Set a timeout to revert the character to its original value
-    setTimeout(() => {
-      navItem.innerText = originalText.substring(0, randomIndex) + originalText[randomIndex] + originalText.substring(randomIndex + 1);
-    }, i * getRandomDelay() + getRandomDelay());
+    timeouts.push(
+      setTimeout(() => {
+        // Bail out if this effect was cancelled and replaced
+        if (effectState.get(element) !== timeouts) return;
+        navItem.innerText = originalText.slice(0, idx) + ch + originalText.slice(idx + 1);
+      }, setAt),
+      setTimeout(() => {
+        if (effectState.get(element) !== timeouts) return;
+        navItem.innerText = originalText;
+      }, revertAt)
+    );
   }
 
-  // Set a timeout to reset the effect after a certain duration
-  timeout = setTimeout(() => {
-    resetEffect(element);
-  }, numChanges * getRandomDelay() + 800);
-  element.setAttribute('data-timeout', timeout);
+  // Final cleanup after all changes have played out
+  timeouts.push(
+    setTimeout(() => {
+      if (effectState.get(element) !== timeouts) return;
+      stopEffect(element);
+    }, cumulativeDelay + 200)
+  );
 }
 
-// Function to reset the effect
-function resetEffect(element) {
+function stopEffect(element) {
+  const timeouts = effectState.get(element);
+  if (timeouts) {
+    timeouts.forEach(clearTimeout);
+    effectState.delete(element);
+  }
   const navItem = element.querySelector('.nav_item');
-  // Reset the text content to the initial title attribute
-  navItem.innerText = navItem.getAttribute("title");
-  // Clear the timeout to prevent further changes
-  clearTimeout(parseInt(element.getAttribute('data-timeout')));
+  if (navItem && navItem.dataset.originalText) {
+    navItem.innerText = navItem.dataset.originalText;
+  }
 }
 
-// Function to generate a random delay (between 150ms and 500ms)
 function getRandomDelay() {
-  return Math.floor(Math.random() * 350) + 150;
+  return Math.floor(Math.random() * 250) + 88;
 }
