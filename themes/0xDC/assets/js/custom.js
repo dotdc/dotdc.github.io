@@ -13,6 +13,10 @@
 
 const SPECIAL_CHARS = ['A', 'V', '&', '<', '#', '²', '>', '~', '§', '%', '£', '€'];
 
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 // WeakMap keyed by nav element; value is the active timeouts array (used as identity token)
 const effectState = new WeakMap();
 
@@ -62,11 +66,11 @@ function startEffect(element) {
       setTimeout(() => {
         // Bail out if this effect was cancelled and replaced
         if (effectState.get(element) !== timeouts) return;
-        navItem.innerText = originalText.slice(0, idx) + ch + originalText.slice(idx + 1);
+        navItem.innerHTML = escapeHtml(originalText.slice(0, idx)) + '<span style="color:#30c992">' + escapeHtml(ch) + '</span>' + escapeHtml(originalText.slice(idx + 1));
       }, setAt),
       setTimeout(() => {
         if (effectState.get(element) !== timeouts) return;
-        navItem.innerText = originalText;
+        navItem.textContent = originalText;
       }, revertAt)
     );
   }
@@ -88,7 +92,7 @@ function stopEffect(element) {
   }
   const navItem = element.querySelector('.nav_item');
   if (navItem && navItem.dataset.originalText) {
-    navItem.innerText = navItem.dataset.originalText;
+    navItem.textContent = navItem.dataset.originalText;
   }
 }
 

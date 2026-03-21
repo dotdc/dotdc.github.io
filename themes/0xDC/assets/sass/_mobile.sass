@@ -1,7 +1,7 @@
 @media screen and (max-width: $mobile-menu-breakpoint)
   .nav
     // padding-bottom: 2rem
-    &, &_body
+    &_body
       flex-direction: column
     &_body
       position: fixed
@@ -11,6 +11,7 @@
       bottom: 0
       background-color: $bg
       transition: transform 0.3s var(--easing)
+      overflow-y: auto
       &_right
         transform: translateX(100vw)
         right: 0
@@ -19,21 +20,24 @@
         left: 0
 
     &_close
-      width: 3rem
-      position: absolute
-      right: -4rem
-      top: 0
-      bottom: 0
-      height: 100%
-      cursor: pointer
-      z-index: 1000
       display: flex
-      justify-content: center
       align-items: center
+      justify-content: center
+      width: 2.5rem
+      height: 2.5rem
+      margin-top: 10px
+      margin-left: auto
+      position: static
+      z-index: 100
+      span
+        display: flex
+        align-items: center
+        justify-content: center
+        width: 1.5rem
+        height: 1.5rem
       svg
-        width: 1.25rem
-        fill: var(--light)
-        height: 1.25rem
+        width: 1.5rem
+        height: 1.5rem
         display: none
         &:first-child
           display: initial
@@ -68,6 +72,7 @@
     .nav
       &_body
         transform: translateX(0)
+        z-index: 98
         padding-left: 1.5rem
         padding-right: 1.5rem
       &_parent
@@ -78,3 +83,6 @@
         justify-content: flex-start
         flex: initial
         margin-top: 0.75rem
+
+  .to_top
+    margin-left: -15px
