@@ -1,8 +1,5 @@
 {{- $s := .Site.Params }}
 {{ $t := .Site.Title }}
-{{- if or .Params.enableMathNotation $s.enableMathNotation }}
-  {{ partialCached "math" . }}
-{{- end }}
 {{- $iconsDir := default "icons/" .Site.Params.iconsDir }}
 {{- $defaultFooterLogo := printf "%s%s" $iconsDir "apple-touch-icon.png"}}
 <footer class="footer">

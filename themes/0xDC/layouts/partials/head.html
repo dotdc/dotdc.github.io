@@ -15,9 +15,6 @@
 {{- end }}
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-{{- if (ne hugo.Environment "development") }}
-  {{- partialCached "analytics" . }}
-{{- end }}
 {{- partial "opengraph" . }}
 {{- partialCached "favicon" . }}
 {{ if .Params.canonicalUrl }}
