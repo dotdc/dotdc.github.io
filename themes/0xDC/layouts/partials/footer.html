@@ -7,10 +7,12 @@
 {{- $defaultFooterLogo := printf "%s%s" $iconsDir "apple-touch-icon.png"}}
 <footer class="footer">
   <div class="footer_inner">
-    &nbsp;copyright <span class="green">0x</span>DC<span class="green small">.me</span> <span class="year"></span>&nbsp;&nbsp;&nbsp;
-    <a class="social-links" href="https://github.com/dotdc"><span class="social-icons github"></span></a>
-    <a class="social-links" href="https://www.linkedin.com/in/0xdc/"><span class="social-icons linkedin"></span></a>
-    <a class="social-links" href="https://bsky.app/profile/0xdc.me"><span class="social-icons bluesky"></span></a>
+    <div class="footer_copy">copyright <span class="green">0x</span>DC<span class="green small">.me</span> <span class="year"></span></div>
+    <div class="footer_social">
+      <a class="social-links" href="https://github.com/dotdc"><span class="social-icons github"></span></a>
+      <a class="social-links" href="https://www.linkedin.com/in/0xdc/"><span class="social-icons linkedin"></span></a>
+      <a class="social-links" href="https://bsky.app/profile/0xdc.me"><span class="social-icons bluesky"></span></a>
+    </div>
     {{- partialCached "top" .}}
   </div>
 </footer>

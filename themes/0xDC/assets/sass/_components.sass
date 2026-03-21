@@ -171,12 +171,25 @@
   padding: 15px 0
   &_inner
     @include content
-    display: block
+    display: flex
+    flex-direction: column
     align-items: center
+    text-align: center
     position: relative
-    padding: 13px 0
+    padding: 13px 1.5rem
+    gap: 0.5rem
     font-family: 'Major Mono Display'
     font-size: 24px
+    @media screen and (min-width: $mobile-menu-breakpoint)
+      flex-direction: row
+      text-align: left
+  &_social
+    display: flex
+    flex-direction: row
+    align-items: center
+    gap: 1rem
+    @media screen and (min-width: $mobile-menu-breakpoint)
+      margin-left: 4rem
 
 .button
   color: $green
