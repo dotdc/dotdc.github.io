@@ -255,7 +255,7 @@ Depending on your use-case and scale, and if it’s not already the case, you mi
 
 ## Conclusion
 
-The results you will get by doing this will highly depend on your starting point, environment, and the choices you make regarding metrics. To give you a real-world example, I did this at work and was able to reduce average CPU usage by up to 119% and average memory usage by up to 139% while increasing overall performance and stability.
+The results you will get by doing this will highly depend on your starting point, environment, and the choices you make regarding metrics. To give you a real-world example, I did this at work and was able to cut average CPU usage by 46% and average memory usage by 58% while increasing overall performance and stability.
 
 ![Screenshot: Evolution of resource usage while doing optimizations.](grafana-screenshot.webp "Screenshot: Evolution of resource usage while doing optimizations.")
 

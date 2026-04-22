@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Doc: https://github.com/gohugoio/hugo/releases
-      HUGO_VERSION: 0.157.0
+      HUGO_VERSION: 0.160.1
     steps:
       # Doc: https://github.com/marketplace/actions/checkout
       - name: Checkout ${{ github.repository }}
@@ -42,7 +42,7 @@ jobs:
 
       # Doc: https://github.com/marketplace/actions/configure-github-pages
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       # Doc: https://github.com/marketplace/actions/hugo-setup
       - name: Setup Hugo
@@ -77,4 +77,4 @@ jobs:
     steps:
       # Doc: https://github.com/marketplace/actions/deploy-github-pages-site
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
