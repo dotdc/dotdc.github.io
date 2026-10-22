@@ -8,6 +8,7 @@ showDate = false
 showReadTime = false
 showShare = false
 sidebar = false
+authorbox = false
 +++
 
 Here's a few projects where I'm involved on GitHub:

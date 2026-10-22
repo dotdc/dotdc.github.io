@@ -1,8 +1,8 @@
 {{- $authorbox := .Param "authorbox" }}
-{{- if ne $authorbox.enabled false }}
+{{- if and (ne $authorbox false) (ne $authorbox.enabled false) }}
 {{- $pageAuthor := .Params.author | default "" }}
 {{- $authorKey := replaceRE "[^[:alnum:]]+" "" (lower $pageAuthor) }}
-{{- $authors := .Site.Data.authors }}
+{{- $authors := hugo.Data.authors }}
 {{- $author := index $authors $pageAuthor }}
 {{- if not $author }}
   {{- $author = index $authors $authorKey }}

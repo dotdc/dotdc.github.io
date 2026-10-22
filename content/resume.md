@@ -8,6 +8,7 @@ showDate = false
 showReadTime = false
 showShare = false
 sidebar = false
+authorbox = false
 +++
 
 > {{< details summary="Table of content" open=false >}}

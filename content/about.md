@@ -8,6 +8,7 @@ showDate = false
 showReadTime = false
 showShare = false
 sidebar = false
+authorbox = false
 +++
 
 My name is David Calvert, I'm a Site Reliability & Platform Engineer working remotely from the south of France.\
