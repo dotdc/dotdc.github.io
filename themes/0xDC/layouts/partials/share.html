@@ -1,12 +1,15 @@
   <div class="post_share">
     <div class="share">Share&nbsp;<span class="blink">></span></div>
-    &nbsp;&nbsp;<a href="https://twitter.com/intent/tweet?text={{ .Title }}&url={{ .Permalink }}&tw_p=tweetbutton" title="Share on Twitter" target="_blank" rel="nofollow">
-      <span class="social-icons twitter" style="width:18px;height:18px;margin-top:-3px">
-    </a>
     &nbsp;&nbsp;<a href="#linkedinshare" id="linkedinshare" title="Share on LinkedIn" rel="nofollow">
-      <span class="social-icons linkedin" style="width:16px;height:19px;margin-top:-3px">
+      <span class="social-icons linkedin" style="width:16px;height:19px;margin-top:-3px"></span>
+    </a>
+    &nbsp;&nbsp;<a href="https://bsky.app/intent/compose?text={{ .Title }}%20{{ .Permalink }}" title="Share on Bluesky" target="_blank" rel="nofollow noopener">
+      <span class="social-icons bluesky" style="width:20px;height:18px;margin-top:-3px"></span>
+    </a>
+    &nbsp;&nbsp;<a href="https://x.com/intent/post?text={{ .Title }}&url={{ .Permalink }}" title="Share on X" target="_blank" rel="nofollow noopener">
+      <span class="social-icons x-logo" style="width:17px;height:17px;margin-top:-3px"></span>
     </a>
     &nbsp;&nbsp;<a href="{{ .Permalink }}" title="Copy Link" class="link link_yank social">
-      <span class="social-icons link2" style="width:22px;height:18px;margin-top:-3px">
+      <span class="social-icons link2" style="width:22px;height:18px;margin-top:-3px"></span>
     </a>
   </div>

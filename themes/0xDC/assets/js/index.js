@@ -482,7 +482,7 @@ function fileClosure(){
 
   (function shareViaLinkedin() {
     doc.addEventListener('click', function(event){
-      const linkedin = '.linkedin';
+      const linkedin = '#linkedinshare';
       const target = event.target;
       if(target.matches(linkedin) || target.closest(linkedin)) {
         window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(window.location.href), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
