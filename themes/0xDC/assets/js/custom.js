@@ -119,7 +119,7 @@ function getRandomDelay() {
 
   // blocks only show up in empty space, never over these
   const CONTENT = 'header, footer, nav, article, li, p, h1, h2, h3, h4, h5, h6, a, button, ' +
-    'img, svg, figure, pre, table, blockquote, form, input, iframe, video';
+    'img, svg, figure, pre, table, blockquote, form, input, iframe, video, .authorbox_bio';
 
   // X is a byte, . an empty slot
   const SHAPES = [
@@ -245,10 +245,10 @@ function getRandomDelay() {
 
   layer.style.fontSize = FONT_SIZE + 'px';
   layer.style.setProperty('--hex-fade', FADE + 'ms');
-  // stagger the first blocks so they don't all show up together
+  // stagger the first blocks so they don't all show up together, the first one right away
   const now = performance.now();
   for (let i = 0; i < BLOCK_COUNT; i++) {
-    blocks.push(idle(now, Math.random() * BLOCK_DURATION));
+    blocks.push(idle(now, i * 150 + Math.random() * 150));
   }
   requestAnimationFrame(frame);
 })();

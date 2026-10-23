@@ -19,10 +19,20 @@ params:
   showReadTime: false
   authorbox:
     enabled: true
-    name: "David Calvert"
-    title: "Senior Staff Engineer - Technical Lead"
-    bio: "I work remotely from the south of France, leading a team of engineers while staying hands-on. On this blog, I write about engineering leadership, infrastructure, observability, security and more. Away from the keyboard, I enjoy rock climbing, listening to music and replaying old adventure games."
-    picture: "/img/authors/davidcalvert.webp"
+    bio: "I'm David, an engineer working remotely from the south of France, leading a team of engineers while staying hands-on. On this blog, I write about engineering leadership, infrastructure, observability, security and more. Away from the keyboard, I enjoy rock climbing, reading, listening to music and replaying old adventure games."
+    social:
+      - name: "GitHub"
+        icon: "github"
+        url: "https://github.com/dotdc"
+      - name: "LinkedIn"
+        icon: "linkedin"
+        url: "https://www.linkedin.com/in/0xDC"
+      - name: "Bluesky"
+        icon: "bluesky"
+        url: "https://bsky.app/profile/0xdc.me"
+      - name: "X"
+        icon: "x-logo"
+        url: "https://x.com/0xDC_"
 
 menu:
   main:

@@ -3,6 +3,7 @@
   <section class="sidebar_inner">
     <br>
     {{ partial "search/widget" . }}
+    {{- partial "authorbox" . }}
     {{- $introDescription := $s.introDescription }}
     {{- with .Params.introDescription }}
       {{- $introDescription = . }}

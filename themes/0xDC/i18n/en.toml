@@ -28,6 +28,9 @@ other = "Go Back"
 [translations]
 other = "Translations"
 
+[author]
+other = "aUthor"
+
 [categories]
 other = "cAtegories"
 

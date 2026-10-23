@@ -28,6 +28,9 @@ other = "Revenir en arrière…"
 [translations]
 other = "Traductions"
 
+[author]
+other = "Auteur"
+
 [categories]
 other = "Catégories"
 

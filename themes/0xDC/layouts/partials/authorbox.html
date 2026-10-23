@@ -14,21 +14,21 @@
   {{- $author = .Site.Params.authorbox }}
 {{- end }}
 {{- with $author }}
-<blockquote>
-    <div class="authorbox">
-        <img alt="{{ .name }} picture" src="{{ .picture | relURL }}" class="authorbox_picture" title=" " height="200" width="200">
-        <div class="authorbox_block">
-            <div class="authorbox_name">
-                {{ .name }}
-            </div>
-            <div class="authorbox_title">
-                {{ .title }}
-            </div>
-            <div class="authorbox_bio">
-                {{ .bio }}
-            </div>
+<div class="authorbox">
+    <h2 class="mt-4" id="author-section">About me
+    </h2>
+    <div class="authorbox_bio">
+        {{ .bio }}
+    </div>
+    {{- with .social }}
+    <div class="authorbox_social">
+        <div class="authorbox_links">
+            {{- range . }}
+            <a href="{{ .url }}" title="{{ .name }}" target="_blank" rel="noopener"><span class="social-icons {{ .icon }}"></span></a>
+            {{- end }}
         </div>
     </div>
-</blockquote>
+    {{- end }}
+</div>
 {{- end }}
 {{- end }}

@@ -148,6 +148,8 @@ function actionPanel() {
 }
 
 function toggleLineNumbers(elems) {
+  // elems() returns false when the block has no .line spans
+  if (!elems) return;
   elems.forEach(function (elem, index) {
     // mark the code element when there are no lines
     modifyClass(elem, 'pre_nolines')
