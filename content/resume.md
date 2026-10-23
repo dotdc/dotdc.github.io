@@ -2,7 +2,6 @@
 title = "Resume"
 description = "My resume"
 date = "2023-08-30"
-aliases = ["projects"]
 author = "David Calvert"
 showDate = false
 showReadTime = false
