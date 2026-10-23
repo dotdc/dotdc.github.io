@@ -142,12 +142,3 @@ Once all the Gateway API and Envoy Gateway resources were running alongside the 
 ## Final thoughts
 
 The complexity of migrating from ingress-nginx to Envoy Gateway depends heavily on your platform requirements. It also requires some attention, especially if you are new to the Gateway API. I hope this article gives you a useful starting point if you need to make the switch.
-
-You can also follow me on:
-
-- GitHub : [https://github.com/dotdc](https://github.com/dotdc)
-- LinkedIn : [https://www.linkedin.com/in/0xDC](https://www.linkedin.com/in/0xDC)
-- Bluesky : [https://bsky.app/profile/0xdc.me](https://bsky.app/profile/0xdc.me)
-- Twitter : [https://twitter.com/0xDC_](https://twitter.com/0xDC_)
-
-👋

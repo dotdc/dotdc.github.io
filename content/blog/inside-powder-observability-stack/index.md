@@ -70,13 +70,3 @@ Going further, we are migrating from OpenTracing to OpenTelemetry, and we’re s
 ## Final words
 
 Thanks the Grafana Customer and Community Marketing team for the opportunity to share this story on the Grafana blog.
-
-Feel free to follow me on:
-
-- GitHub : [https://github.com/dotdc](https://github.com/dotdc)
-- LinkedIn : [https://www.linkedin.com/in/0xDC](https://www.linkedin.com/in/0xDC)
-- Bluesky : [https://bsky.app/profile/0xdc.me](https://bsky.app/profile/0xdc.me)
-- Twitter : [https://twitter.com/0xDC_](https://twitter.com/0xDC_)
-- Mastodon : [https://hachyderm.io/@0xDC](https://hachyderm.io/@0xDC)
-
-👋

@@ -88,13 +88,3 @@ Here are a few objects that I printed to make some tests :
 Being able to print objects at home is something that I find amazing! It will definitely help me do prototypes, and solve a few problems that I will encounter during my house renovation. It’s a great tool to have!
 
 I now feel comfortable with the basics, but there are so many things left to discover, like object duplication using [LiDAR](https://en.wikipedia.org/wiki/Lidar) scanning, getting started with 3D modelling using CAD, try [OctoPrint](https://octoprint.org/) and much more!
-
-Feel free to follow me on:
-
-- GitHub : [https://github.com/dotdc](https://github.com/dotdc)
-- LinkedIn : [https://www.linkedin.com/in/0xDC](https://www.linkedin.com/in/0xDC)
-- Bluesky : [https://bsky.app/profile/0xdc.me](https://bsky.app/profile/0xdc.me)
-- Twitter : [https://twitter.com/0xDC_](https://twitter.com/0xDC_)
-- Mastodon : [https://hachyderm.io/@0xDC](https://hachyderm.io/@0xDC)
-
-👋

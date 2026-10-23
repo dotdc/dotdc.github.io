@@ -196,13 +196,3 @@ While we had a slight preference for Pyrra, the fact that Sloth didn’t have an
 In this article, we highlighted the main differences between Sloth and Pyrra, two projects that aim to help you create and manage SLOs. They can both be used as a Kubernetes operator or as a CLI to generate Prometheus rules for your SLOs.
 
 I hope you found this article useful!
-
-Feel free to follow me on:
-
-- GitHub : [https://github.com/dotdc](https://github.com/dotdc)
-- LinkedIn : [https://www.linkedin.com/in/0xDC](https://www.linkedin.com/in/0xDC)
-- Bluesky : [https://bsky.app/profile/0xdc.me](https://bsky.app/profile/0xdc.me)
-- Twitter : [https://twitter.com/0xDC_](https://twitter.com/0xDC_)
-- Mastodon : [https://hachyderm.io/@0xDC](https://hachyderm.io/@0xDC)
-
-👋

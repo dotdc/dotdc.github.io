@@ -115,13 +115,3 @@ In this article, we've seen how easy it is to sync Git repository using the [act
 If you want to learn more, check out the project's [documentation](https://github.com/AndreasAugustin/actions-template-sync?tab=readme-ov-file#actions-template-sync) or Andreas's initial [blog post](https://andreas-augustin.dev/blogs/git/git_action_sync/)!
 
 I hope you found this article useful, happy New Year's Eve!
-
-Feel free to follow me on:
-
-- GitHub : [https://github.com/dotdc](https://github.com/dotdc)
-- LinkedIn : [https://www.linkedin.com/in/0xDC](https://www.linkedin.com/in/0xDC)
-- Bluesky : [https://bsky.app/profile/0xdc.me](https://bsky.app/profile/0xdc.me)
-- Twitter : [https://twitter.com/0xDC_](https://twitter.com/0xDC_)
-- Mastodon : [https://hachyderm.io/@0xDC](https://hachyderm.io/@0xDC)
-
-👋

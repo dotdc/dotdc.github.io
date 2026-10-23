@@ -206,13 +206,3 @@ sys     0m0.051s
 ## Final Words
 
 In this article, we've compared pre-commit and lefthook, two tools designed to streamline git hooks management. Lefthook has better performance due to concurrent execution support, whereas pre-commit offers a smoother start due to its extensive collection of community hooks. Testing both will allow you to find the one that suits your project best, and either choice will be a good one.
-
-Feel free to follow me on:
-
-- GitHub : [https://github.com/dotdc](https://github.com/dotdc)
-- LinkedIn : [https://www.linkedin.com/in/0xDC](https://www.linkedin.com/in/0xDC)
-- Bluesky : [https://bsky.app/profile/0xdc.me](https://bsky.app/profile/0xdc.me)
-- Twitter : [https://twitter.com/0xDC_](https://twitter.com/0xDC_)
-- Mastodon : [https://hachyderm.io/@0xDC](https://hachyderm.io/@0xDC)
-
-👋

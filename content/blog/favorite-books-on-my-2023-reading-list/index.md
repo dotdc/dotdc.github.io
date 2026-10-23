@@ -135,13 +135,3 @@ Favorite quote :
 ![Book: A people's history of computing in the United States](a-people-s-history-of-computing-in-the-united-states.webp "Book: A people's history of computing in the United States")
 
 That's it, I hope you found this article useful!
-
-Feel free to follow me on:
-
-- GitHub : [https://github.com/dotdc](https://github.com/dotdc)
-- LinkedIn : [https://www.linkedin.com/in/0xDC](https://www.linkedin.com/in/0xDC)
-- Bluesky : [https://bsky.app/profile/0xdc.me](https://bsky.app/profile/0xdc.me)
-- Twitter : [https://twitter.com/0xDC_](https://twitter.com/0xDC_)
-- Mastodon : [https://hachyderm.io/@0xDC](https://hachyderm.io/@0xDC)
-
-👋

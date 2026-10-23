@@ -184,13 +184,3 @@ The unused list is probably the most interesting one. With it, we can identify u
 ## Final words
 
 In this article, we were able to extract the list of used and unused metrics from our Prometheus instance. While this is useful to understand our setup, keep in mind that disabling and dropping unused metrics may have a limited impact on Prometheus performance. In a further article, I will explain how I dealt with cardinality issues and significantly reduce Prometheus resource usage.
-
-Feel free to follow me on:
-
-- GitHub : [https://github.com/dotdc](https://github.com/dotdc)
-- LinkedIn : [https://www.linkedin.com/in/0xDC](https://www.linkedin.com/in/0xDC)
-- Bluesky : [https://bsky.app/profile/0xdc.me](https://bsky.app/profile/0xdc.me)
-- Twitter : [https://twitter.com/0xDC_](https://twitter.com/0xDC_)
-- Mastodon : [https://hachyderm.io/@0xDC](https://hachyderm.io/@0xDC)
-
-👋

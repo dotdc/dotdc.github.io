@@ -249,13 +249,3 @@ On the technical side, we’re considering switching to [apply using saved plans
 ## Final words
 
 I hope this article has been helpful and offers insights into tackling similar challenges in your own IaC workflows! If you need something similar, I recommend checking out [Digger](https://digger.dev)! I had a great discussion with their team, they have a great open-source product and their paid offerings are more affordable than the competition!
-
-You can also follow me on:
-
-- GitHub : [https://github.com/dotdc](https://github.com/dotdc)
-- LinkedIn : [https://www.linkedin.com/in/0xDC](https://www.linkedin.com/in/0xDC)
-- Bluesky : [https://bsky.app/profile/0xdc.me](https://bsky.app/profile/0xdc.me)
-- Twitter : [https://twitter.com/0xDC_](https://twitter.com/0xDC_)
-- Mastodon : [https://hachyderm.io/@0xDC](https://hachyderm.io/@0xDC)
-
-👋

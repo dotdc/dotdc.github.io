@@ -125,12 +125,3 @@ Building Hive Ix was a great way to experiment with [Claude Code](https://claude
 Special thanks to Cyril for the crash course in agentic application design!
 
 I hope this article gave you useful insights into applying AI to a real-world use case like incident management!
-
-You can also follow me on:
-
-- GitHub : [https://github.com/dotdc](https://github.com/dotdc)
-- LinkedIn : [https://www.linkedin.com/in/0xDC](https://www.linkedin.com/in/0xDC)
-- Bluesky : [https://bsky.app/profile/0xdc.me](https://bsky.app/profile/0xdc.me)
-- Twitter : [https://twitter.com/0xDC_](https://twitter.com/0xDC_)
-
-👋
