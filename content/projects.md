@@ -1,6 +1,6 @@
 +++
 title = "Projects"
-description = "A list of my projects and contributions"
+description = "My open source projects and contributions."
 date = "2022-08-24"
 author = "David Calvert"
 showDate = false

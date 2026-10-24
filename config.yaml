@@ -1,8 +1,8 @@
 # Hugo configuration file
 
 baseurl: "https://0xdc.me/"
-# baseurl: "http://localhost:1313/"
 languageCode: "en-us"
+enableRobotsTXT: true
 title: "0xDC.me"
 theme: "0xDC"
 
@@ -13,7 +13,13 @@ params:
   author: "David Calvert"
   twitter: "0xDC_"
   largeTwitterCard: true
-  description: "My Blog"
+  description: "David Calvert's blog on engineering leadership, platform engineering, infrastructure, observability, security and books."
+  tagline: "David Calvert's engineering blog"
+  jobTitle: "Senior Staff Engineer"
+  alternateNames: ["0xDC", "David Calvert's blog"]
+  authorImage: "img/authors/davidcalvert.webp"
+  fallBackOgImage: "img/authors/davidcalvert.webp"
+  blogDir: "blog"
   enforceDarkMode: true
   enableSearch: false
   showReadTime: false

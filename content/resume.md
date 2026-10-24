@@ -1,6 +1,6 @@
 +++
 title = "Resume"
-description = "My resume"
+description = "My resume: work experience, skills, certifications and education."
 date = "2023-08-30"
 author = "David Calvert"
 showDate = false

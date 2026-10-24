@@ -8,7 +8,11 @@
     {{- $title = .Title }}
   {{- end }}
 {{- end }}
+{{- if and .IsHome $params.tagline }}
+<title>{{ .Site.Title }} – {{ $params.tagline }}</title>
+{{- else }}
 <title>{{ with $title }}{{ . }} {{ $separator }} {{ end }}{{ .Site.Title }}</title>
+{{- end }}
 <meta charset="utf-8">
 {{- with $params.ga_verify }}
   <meta name="google-site-verification" content="{{ . }}">

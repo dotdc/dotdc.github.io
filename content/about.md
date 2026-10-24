@@ -1,6 +1,6 @@
 +++
 title = "A few bits about me"
-description = "Just a few bits about me"
+description = "David Calvert is an engineer based in the south of France, leading a platform team while staying hands-on with infrastructure, observability and security."
 date = "2022-08-24"
 aliases = ["about-me"]
 author = "David Calvert"

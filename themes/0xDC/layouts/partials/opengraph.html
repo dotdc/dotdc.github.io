@@ -1,105 +1,166 @@
-{{- $summary := truncate 160 .Summary }}
 {{- $s := .Site.Params }}
 {{- $p := .Params }}
+
+{{- /* Description: front matter > page summary > site description */}}
+{{- $summary := "" }}
+{{- with $p.description }}
+  {{- $summary = . }}
+{{- else }}
+  {{- if .IsPage }}
+    {{- $summary = .Summary | plainify | htmlUnescape }}
+  {{- end }}
+{{- end }}
+{{- if not $summary }}
+  {{- $summary = $s.description }}
+{{- end }}
+{{- $summary = truncate 160 (trim $summary " \n") | htmlUnescape }}
 
 {{- $relpath := "" -}}
 {{- if or $s.usePageBundles $p.usePageBundles }}
   {{- $relpath = .Page.RelPermalink -}}
 {{- end }}
-
-{{ if eq $p.usePageBundles false }}
+{{- if eq $p.usePageBundles false }}
   {{- $relpath = "" }}
-{{ end }}
+{{- end }}
 
-{{- with $p.description }}
-  {{- $summary = truncate 160 . }}
-{{- end }}
-{{- if .IsHome }}
-  {{- $summary = $s.description }}
-  {{- with $p.description }}
-    {{- $summary = . }}
-  {{- end }}
-{{- end }}
 {{- $site := .Site.Title }}
 {{- $title := .Title }}
+{{- if or .IsHome (not $title) }}
+  {{- $title = $site }}
+  {{- with $s.tagline }}
+    {{- $title = printf "%s – %s" $site . }}
+  {{- end }}
+{{- end }}
 {{- $permalink := .Permalink }}
-{{- $logo := absURL $s.logo }}
+{{- with $p.canonicalUrl }}
+  {{- $permalink = . }}
+{{- end }}
 {{- $author := $s.author }}
 {{- with $p.author }}
-  {{ $author := . }}
+  {{- $author = . }}
 {{- end }}
+{{- $authorImage := absURL $s.authorImage }}
+{{- $twitter := "" }}
+{{- with $s.twitter }}
+  {{- $twitter = printf "@%s" (strings.TrimPrefix "@" .) }}
+{{- end }}
+
 {{- $image := absURL $s.fallBackOgImage }}
 {{- with $p.featureImage }}
-  {{- $fullpath := ( add $relpath . ) -}}
-  {{- $image = absURL $fullpath  }}
+  {{- $image = absURL (add $relpath .) }}
 {{- end }}
 {{- with $p.thumbnail }}
-  {{- $fullpath := ( add $relpath . ) -}}
-  {{- $image = absURL $fullpath  }}
+  {{- $image = absURL (add $relpath .) }}
 {{- end }}
 {{- with $p.shareImage }}
-  {{- $fullpath := ( add $relpath . ) -}}
-  {{- $image = absURL $fullpath  }}
+  {{- $image = absURL (add $relpath .) }}
 {{- end }}
-<meta property="og:locale" content="{{ .Lang }}" />
-{{ range .Translations }}
-<meta property="og:locale:alternate" content="{{ .Lang }}" />
-{{ end }}
-{{- if .IsHome }}
-<meta property="og:type" content="website">
-{{- else }}
-<meta property="og:type" content="article">
-{{- end }}
-<meta name="description" content="{{ $summary }}" />
-<meta name="twitter:card" content="{{ if $s.largeTwitterCard }}summary_large_image{{ else }}summary{{ end }}" />
-<meta name="twitter:creator" content="{{ $s.twitter }}">
-<meta name="twitter:title" content="{{ .Title }}" />
-<meta name="twitter:image" content="{{ $image }}"/>
-<meta property="og:url" content="{{ $permalink }}" />
-<meta property="og:title" content="{{ $title }}" />
-<meta property="og:description" content="{{ $summary }}" />
-<meta property="og:image" content="{{ $image }}" />
-{{- $keywords := "" }}
+
+{{- $isPost := and .IsPage (eq .Section $s.blogDir) }}
+
+<meta name="description" content="{{ $summary }}">
+<meta name="author" content="{{ $author }}">
 {{- with $s.keywords }}
-  {{- $keywords = delimit $s.keywords "," }}
-{{- end }}
+{{- $keywords := delimit . ", " }}
+{{- with $p.keywords }}{{ $keywords = delimit . ", " }}{{ end }}
+<meta name="keywords" content="{{ $keywords }}">
+{{- else }}
 {{- with $p.keywords }}
-  {{- $keywords = delimit . "," }}
+<meta name="keywords" content="{{ delimit . ", " }}">
 {{- end }}
-{{- with $keywords }}
-  <meta name="keywords" content="{{ $keywords }}" />
 {{- end }}
-{{- if eq .Section $s.blogDir -}}
-  {{- $date := ( .Date.Format "2006-02-01") -}}
-  {{- $date := (time .Date) }}
-  {{- $lastMod := (time .Lastmod) }}
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "BlogPosting",
-      "mainEntityOfPage":"{{ $permalink }}",
-      "name": "{{ $site }}",
-      "headline": {{ $title }},
-      "description": {{ $summary }},
-      "url": "{{ $permalink }}",
-      "datePublished": {{ $date  }},
-      "dateModified": {{ $lastMod }},
-      "author": {
-        "@type": "Person",
-        "name": "{{ $author }}"
-      },
-      "image":{
-        "@type":"ImageObject",
-        "url": "{{ $image }}"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "logo": {
-          "@type":"ImageObject",
-          "url": "{{ $logo }}"
-        },
-        "name": "{{ $site }}"
-      }
-    }
-  </script>
+
+<meta property="og:site_name" content="{{ $site }}">
+{{- $locale := split .Site.LanguageCode "-" }}
+<meta property="og:locale" content="{{ index $locale 0 }}{{ with index $locale 1 }}_{{ upper . }}{{ end }}">
+<meta property="og:type" content="{{ if $isPost }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ $permalink }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $summary }}">
+<meta property="og:image" content="{{ $image }}">
+{{- with $p.featureImageAlt }}
+<meta property="og:image:alt" content="{{ . }}">
+{{- end }}
+{{- if $isPost }}
+<meta property="article:author" content="{{ $author }}">
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+{{- range $p.categories }}
+<meta property="article:section" content="{{ . }}">
+{{- end }}
+{{- range $p.tags }}
+<meta property="article:tag" content="{{ . }}">
+{{- end }}
+{{- end }}
+
+<meta name="twitter:card" content="{{ if $s.largeTwitterCard }}summary_large_image{{ else }}summary{{ end }}">
+{{- with $twitter }}
+<meta name="twitter:site" content="{{ . }}">
+<meta name="twitter:creator" content="{{ . }}">
+{{- end }}
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $summary }}">
+<meta name="twitter:image" content="{{ $image }}">
+
+{{- /* Structured data (https://developers.google.com/search/docs/appearance/structured-data) */}}
+{{- $person := dict
+  "@type" "Person"
+  "name" $author
+  "url" (absURL "/about/")
+}}
+{{- with $s.authorImage }}
+  {{- $person = merge $person (dict "image" $authorImage) }}
+{{- end }}
+{{- with $s.jobTitle }}
+  {{- $person = merge $person (dict "jobTitle" .) }}
+{{- end }}
+{{- with $s.authorbox.social }}
+  {{- $sameAs := slice }}
+  {{- range . }}{{ $sameAs = $sameAs | append .url }}{{ end }}
+  {{- $person = merge $person (dict "sameAs" $sameAs) }}
+{{- end }}
+
+{{- if .IsHome }}
+{{- $alternateName := slice }}
+{{- range $s.alternateNames }}{{ $alternateName = $alternateName | append . }}{{ end }}
+{{- $website := dict
+  "@context" "https://schema.org"
+  "@type" "WebSite"
+  "name" $site
+  "alternateName" $alternateName
+  "url" .Site.BaseURL
+  "description" $summary
+  "inLanguage" .Site.LanguageCode
+  "author" $person
+}}
+<script type="application/ld+json">{{ $website | jsonify | safeJS }}</script>
+{{- else if $isPost }}
+{{- $post := dict
+  "@context" "https://schema.org"
+  "@type" "BlogPosting"
+  "mainEntityOfPage" (dict "@type" "WebPage" "@id" $permalink)
+  "headline" $title
+  "description" $summary
+  "url" $permalink
+  "image" (slice $image)
+  "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+  "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+  "inLanguage" .Site.LanguageCode
+  "author" $person
+  "publisher" $person
+  "isPartOf" (dict "@type" "Blog" "name" $site "url" .Site.BaseURL)
+}}
+{{- with $p.tags }}
+  {{- $post = merge $post (dict "keywords" (delimit . ", ")) }}
+{{- end }}
+<script type="application/ld+json">{{ $post | jsonify | safeJS }}</script>
+{{- else if eq .RelPermalink "/about/" }}
+{{- $profile := dict
+  "@context" "https://schema.org"
+  "@type" "ProfilePage"
+  "url" $permalink
+  "name" $title
+  "mainEntity" $person
+}}
+<script type="application/ld+json">{{ $profile | jsonify | safeJS }}</script>
 {{- end }}
