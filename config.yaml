@@ -1,7 +1,7 @@
 # Hugo configuration file
 
 baseurl: "https://0xdc.me/"
-languageCode: "en-us"
+locale: "en-us"
 enableRobotsTXT: true
 title: "0xDC.me"
 theme: "0xDC"
