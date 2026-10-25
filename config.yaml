@@ -20,6 +20,7 @@ params:
   authorImage: "img/authors/davidcalvert.webp"
   fallBackOgImage: "img/authors/davidcalvert.webp"
   blogDir: "blog"
+  mainSections: ["blog"]
   enforceDarkMode: true
   enableSearch: false
   showReadTime: false
@@ -39,6 +40,9 @@ params:
       - name: "X"
         icon: "x-logo"
         url: "https://x.com/0xDC_"
+      - name: "RSS"
+        icon: "rss"
+        url: "/index.xml"
 
 menu:
   main:

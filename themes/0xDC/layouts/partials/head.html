@@ -26,9 +26,12 @@
 {{ else }}
 <link rel='canonical' href='{{ .Permalink }}'>
 {{ end }}
-{{ range .AlternativeOutputFormats -}}
-  {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+{{ with site.Home.OutputFormats.Get "rss" -}}
+  {{ printf `<link rel="alternate" type="%s" href="%s" title="%s" />` .MediaType.Type .Permalink site.Title | safeHTML }}
 {{ end -}}
+{{ if not .IsHome }}{{ range .AlternativeOutputFormats -}}
+  {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+{{ end -}}{{ end -}}
 
 <!-- preload assets declaration -->
 <!-- preload main css file -->

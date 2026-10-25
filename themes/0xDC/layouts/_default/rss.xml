@@ -11,7 +11,7 @@
 {{- $pages = $pages | first $limit -}}
 {{- end -}}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} on {{ end }}{{ .Site.Title }}{{ end }}</title>
     <link>{{ .Permalink }}</link>
@@ -29,12 +29,20 @@
       <link>{{ .Permalink }}</link>
       <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
       <guid>{{ .Permalink }}</guid>
+      {{- range .Params.tags }}
+      <category>{{ . }}</category>
+      {{- end }}
+      {{- with .Params.thumbnail }}
+      <media:content url="{{ . | absURL }}" medium="image" />
+      {{- end }}
       <description>
         {{ if ne site.Params.rss_summary false }}
           {{ if .Params.summary }}
             {{ .Params.summary | html }}
           {{ else if .Params.abstract }}
             {{ .Params.abstract | html }}
+          {{ else if .Description }}
+            {{ .Description | html }}
           {{ else if .Summary }}
             {{ .Summary | html }}
           {{ end }}
