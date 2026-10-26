@@ -3,7 +3,7 @@
 repos:
   # Default pre-commit hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v6.0.0
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c # v6.0.0
     hooks:
     - id: check-yaml
     - id: check-added-large-files
@@ -15,14 +15,14 @@ repos:
 
   # Typos
   - repo: https://github.com/crate-ci/typos
-    rev: v1.45.1
+    rev: 7f9d0819ca1c008ade73f4b41fa9d258d48f605b # v1.51.1
     hooks:
       - id: typos
         exclude: "themes/"
 
   # Markdown linter
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.48.0
+    rev: cbcdc463be5464e25e3e955a511599a67b9b987f # v0.50.0
     hooks:
     - id: markdownlint
       args:
@@ -32,3 +32,10 @@ repos:
             content/projects.md|
             content/resume.md
         )$
+
+  # Zizmor
+  - repo: https://github.com/zizmorcore/zizmor-pre-commit
+    rev: c92afdf2c6ca336aaa8f39e2bd8d48f62dbd8e1f # v1.31.1
+    hooks:
+      - id: zizmor
+        args: [--no-progress, --fix=all]

@@ -1,0 +1,26 @@
+---
+name: renovate
+
+# Doc: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+
+on:
+  # Run every day at 04:00 UTC
+  schedule:
+    - cron: "0 4 * * *"
+  # Allow this workflow to be manually triggered
+  workflow_dispatch:
+
+# No permissions by default
+permissions: {}
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      # Doc: https://github.com/renovatebot/github-action
+      - name: Self-hosted Renovate
+        uses: renovatebot/github-action@2804199d260ad00c1fae0e9e842888369391c776 # v46.3.10
+        with:
+          token: ${{ secrets.RENOVATE_TOKEN }}
+        env:
+          RENOVATE_REPOSITORIES: ${{ github.repository }}

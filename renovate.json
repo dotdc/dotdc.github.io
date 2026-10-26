@@ -1,0 +1,21 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "customManagers:githubActionsVersions",
+    "helpers:pinGitHubActionDigestsToSemver"
+  ],
+  "minimumReleaseAge": "3 days",
+  "internalChecksFilter": "strict",
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update pre-commit hooks pinned as `rev: <sha>  # vX.Y.Z`",
+      "managerFilePatterns": ["/(^|/)\\.pre-commit-config\\.ya?ml$/"],
+      "matchStrings": [
+        "repo:\\s*https://github\\.com/(?<depName>[^\\s]+?)(?:\\.git)?\\s+rev:\\s*(?<currentDigest>[a-f0-9]{40})\\s+#\\s*(?:frozen:\\s*)?(?<currentValue>\\S+)"
+      ],
+      "datasourceTemplate": "github-tags"
+    }
+  ]
+}

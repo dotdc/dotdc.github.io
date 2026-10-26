@@ -1,3 +1,4 @@
+---
 name: pre-commit-checks
 
 # Doc: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
@@ -12,17 +13,24 @@ on:
   # Allow this workflow to be manually triggered
   workflow_dispatch:
 
+# No permissions by default
+permissions: {}
+
 jobs:
   pre-commit-checks:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       # Doc: https://github.com/marketplace/actions/checkout
       - name: Checkout ${{ github.repository }}
-        uses: actions/checkout@v5
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       # Doc: https://github.com/marketplace/actions/setup-python
       - name: Setup Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
 
       # Install pre-commit
       - name: Install pre-commit
