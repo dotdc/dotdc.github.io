@@ -1,5 +1,5 @@
 ---
-name: pre-commit-checks
+name: prek-checks
 
 # Doc: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
 
@@ -17,25 +17,15 @@ on:
 permissions: {}
 
 jobs:
-  pre-commit-checks:
+  prek-checks:
     runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
-      # Doc: https://github.com/marketplace/actions/checkout
       - name: Checkout ${{ github.repository }}
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
-      # Doc: https://github.com/marketplace/actions/setup-python
-      - name: Setup Python
-        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
-
-      # Install pre-commit
-      - name: Install pre-commit
-        run: pip install pre-commit
-
-      # Run pre-commit checks
-      - name: Run pre-commit checks
-        run: pre-commit run --all-files
+      - name: Run prek checks
+        uses: j178/prek-action@44924fe9ef4a6f88253c4b6b1bf11c689d3ce53d # v3.1.0
