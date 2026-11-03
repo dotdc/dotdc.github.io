@@ -1,5 +1,5 @@
 ---
-name: prek-checks
+name: prek-hooks
 
 # Doc: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
 
@@ -17,7 +17,7 @@ on:
 permissions: {}
 
 jobs:
-  prek-checks:
+  prek-hooks:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -27,5 +27,5 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Run prek checks
+      - name: Run prek hooks
         uses: j178/prek-action@44924fe9ef4a6f88253c4b6b1bf11c689d3ce53d # v3.1.0
