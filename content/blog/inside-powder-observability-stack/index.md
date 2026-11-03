@@ -70,3 +70,14 @@ Going further, we are migrating from OpenTracing to OpenTelemetry, and we’re s
 ## Final words
 
 Thanks the Grafana Customer and Community Marketing team for the opportunity to share this story on the Grafana blog.
+
+## References
+
+- [How to monitor Kubernetes with Grafana and Prometheus: Inside Powder's observability stack](https://grafana.com/blog/2023/01/06/how-to-monitor-kubernetes-with-grafana-and-prometheus-inside-powders-observability-stack/)
+- [dotdc/grafana-dashboards-kubernetes](https://github.com/dotdc/grafana-dashboards-kubernetes)
+- [A set of modern Grafana dashboards for Kubernetes](https://0xdc.me/blog/a-set-of-modern-grafana-dashboards-for-kubernetes/)
+- [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack)
+- [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/)
+- [Grafana Loki](https://grafana.com/oss/loki/)
+- [Grafana Tempo](https://grafana.com/oss/tempo/)
+- [Getting started with Grafana dashboard design](https://grafana.com/go/webinar/guide-to-dashboard-design/)

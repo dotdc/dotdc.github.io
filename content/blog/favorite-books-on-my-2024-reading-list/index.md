@@ -122,3 +122,16 @@ Favorite Quote #2:
 ![Book: Hackers: Heroes of the Computer Revolution](hackers.webp "Book: Hackers: Heroes of the Computer Revolution")
 
 Does any of these books resonate with you?
+
+## References
+
+- [Microsoft is about to restart Three Mile Island](https://www.technologyreview.com/2024/09/26/1104516/three-mile-island-microsoft/)
+- [Google is betting on small modular reactors](https://blog.google/outreach-initiatives/sustainability/google-kairos-power-nuclear-energy-agreement/)
+- [Amazon's nuclear deal with X-energy](https://heatmap.news/technology/amazon-x-energy-nuclear-deal)
+- [Minitel](https://en.wikipedia.org/wiki/Minitel)
+- [Texplained](https://www.texplained.com)
+- [World-NET](https://en.wikipedia.org/wiki/World-NET)
+- [2600: The Hacker Quarterly](https://www.2600.com)
+- [Kevin Mitnick](https://en.wikipedia.org/wiki/Kevin_Mitnick)
+- [Sierra Entertainment](https://en.wikipedia.org/wiki/Sierra_Entertainment)
+- [Not All Fairy Tales Have Happy Endings](https://kensbook.com)

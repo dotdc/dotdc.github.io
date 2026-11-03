@@ -88,3 +88,16 @@ Here are a few objects that I printed to make some tests :
 Being able to print objects at home is something that I find amazing! It will definitely help me do prototypes, and solve a few problems that I will encounter during my house renovation. It’s a great tool to have!
 
 I now feel comfortable with the basics, but there are so many things left to discover, like object duplication using [LiDAR](https://en.wikipedia.org/wiki/Lidar) scanning, getting started with 3D modelling using CAD, try [OctoPrint](https://octoprint.org/) and much more!
+
+## References
+
+- [The 3D Printing Handbook](https://www.hubs.com/3d-printing-handbook/)
+- [Creality Ender-3 S1 Pro](https://www.creality.com/products/creality-ender-3-s1-pro-fdm-3d-printer)
+- [Creality Ender-3 V2](https://www.creality.com/products/ender-3-v2-3d-printer-csco)
+- [Anycubic Kobra 2](https://www.anycubic.com/products/kobra-2)
+- [Thingiverse](https://www.thingiverse.com)
+- [Printables](https://www.printables.com/)
+- [Pinshape](https://pinshape.com/)
+- [STL file format](https://en.wikipedia.org/wiki/STL_(file_format))
+- [Ultimaker Cura](https://ultimaker.com/software/ultimaker-cura/)
+- [OctoPrint](https://octoprint.org/)

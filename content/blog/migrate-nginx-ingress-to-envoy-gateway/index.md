@@ -142,3 +142,12 @@ Once all the Gateway API and Envoy Gateway resources were running alongside the 
 ## Final thoughts
 
 The complexity of migrating from ingress-nginx to Envoy Gateway depends heavily on your platform requirements. It also requires some attention, especially if you are new to the Gateway API. I hope this article gives you a useful starting point if you need to make the switch.
+
+## References
+
+- [Ingress NGINX retirement](https://www.kubernetes.dev/blog/2025/11/12/ingress-nginx-retirement/)
+- [ingress-nginx](https://github.com/kubernetes/ingress-nginx)
+- [Gateway API](https://gateway-api.sigs.k8s.io/)
+- [Envoy Gateway](https://github.com/envoyproxy/gateway)
+- [ingress2gateway](https://github.com/kubernetes-sigs/ingress2gateway)
+- [ingress2eg](https://github.com/kkk777-7/ingress2eg)

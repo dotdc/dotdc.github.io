@@ -196,3 +196,13 @@ While we had a slight preference for Pyrra, the fact that Sloth didn’t have an
 In this article, we highlighted the main differences between Sloth and Pyrra, two projects that aim to help you create and manage SLOs. They can both be used as a Kubernetes operator or as a CLI to generate Prometheus rules for your SLOs.
 
 I hope you found this article useful!
+
+## References
+
+- [Site Reliability Engineering book](https://sre.google/sre-book/table-of-contents/)
+- [Multiwindow, Multi-Burn-Rate Alerts](https://landing.google.com/sre/workbook/chapters/alerting-on-slos/#6-multiwindow-multi-burn-rate-alerts)
+- [Sloth](https://github.com/slok/sloth)
+- [Pyrra](https://github.com/pyrra-dev/pyrra)
+- [OpenSLO](https://github.com/OpenSLO/OpenSLO)
+- [Google SLO Generator](https://github.com/google/slo-generator)
+- [Prometheus native histograms](https://github.com/prometheus/prometheus/pull/11447)

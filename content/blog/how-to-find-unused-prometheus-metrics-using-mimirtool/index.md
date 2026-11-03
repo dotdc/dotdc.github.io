@@ -184,3 +184,9 @@ The unused list is probably the most interesting one. With it, we can identify u
 ## Final words
 
 In this article, we were able to extract the list of used and unused metrics from our Prometheus instance. While this is useful to understand our setup, keep in mind that disabling and dropping unused metrics may have a limited impact on Prometheus performance. In a further article, I will explain how I dealt with cardinality issues and significantly reduce Prometheus resource usage.
+
+## References
+
+- [Mimirtool](https://grafana.com/docs/mimir/latest/operators-guide/tools/mimirtool/)
+- [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack)
+- [How relabeling in Prometheus works](https://grafana.com/blog/2022/03/21/how-relabeling-in-prometheus-works/)

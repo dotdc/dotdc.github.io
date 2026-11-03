@@ -125,3 +125,13 @@ Building Hive Ix was a great way to experiment with [Claude Code](https://claude
 Special thanks to Cyril for the crash course in agentic application design!
 
 I hope this article gave you useful insights into applying AI to a real-world use case like incident management!
+
+## References
+
+- [Claude Code](https://claude.com/product/claude-code)
+- [Model Context Protocol](https://modelcontextprotocol.io/docs/getting-started/intro)
+- [Use XML tags to structure your prompts](https://anthropic.mintlify.app/en/docs/build-with-claude/prompt-engineering/use-xml-tags)
+- [Atlassian MCP Server](https://github.com/atlassian/atlassian-mcp-server)
+- [Datadog MCP Server](https://docs.datadoghq.com/bits_ai/mcp_server/)
+- [Vibe engineering by Simon Willison](https://simonwillison.net/2025/Oct/7/vibe-engineering/)
+- [Vertex AI](https://cloud.google.com/vertex-ai/)

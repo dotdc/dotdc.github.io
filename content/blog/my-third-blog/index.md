@@ -58,3 +58,11 @@ For now, I planned to focus on technical articles and book reviews that are some
 ## Final words
 
 I hope that you will like my content, feel free to get in touch!
+
+## References
+
+- [Hugo](https://gohugo.io)
+- [Cloudflare](https://www.cloudflare.com)
+- [Hashnode](https://hashnode.com)
+- [GitHub Pages repository](https://github.com/dotdc/dotdc.github.io)
+- [About the Medium metered paywall](https://help.medium.com/hc/en-us/articles/360017581433-About-the-metered-paywall)

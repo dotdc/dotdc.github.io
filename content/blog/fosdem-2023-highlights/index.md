@@ -64,3 +64,12 @@ Here’s my bookmarked talks for this 2023 edition :
 Would like to thank Tailscale for their happy hour event and the free beers at the Brewdog bar Saturday night!
 
 See you next year at FOSDEM’24 !
+
+## References
+
+- [Oxide Computer Company](https://oxide.computer/)
+- [Aurae](https://github.com/aurae-runtime/aurae)
+- [Hachyderm](http://hachyderm.io/)
+- [Hacking Capitalism](https://hackingcapitalism.io/)
+- [Efficient Go](https://www.oreilly.com/library/view/efficient-go/9781098105709/)
+- [Tailscale](https://tailscale.com/)

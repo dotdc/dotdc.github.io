@@ -115,3 +115,15 @@ In this article, we've seen how easy it is to sync Git repository using the [act
 If you want to learn more, check out the project's [documentation](https://github.com/AndreasAugustin/actions-template-sync?tab=readme-ov-file#actions-template-sync) or Andreas's initial [blog post](https://andreas-augustin.dev/blogs/git/git_action_sync/)!
 
 I hope you found this article useful, happy New Year's Eve!
+
+## References
+
+- [Creating a template repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-template-repository)
+- [Creating a default community health file](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file)
+- [actions-template-sync](https://github.com/AndreasAugustin/actions-template-sync)
+- [actions-template-sync on GitHub Marketplace](https://github.com/marketplace/actions/actions-template-sync)
+- [Andreas Augustin's blog post on actions-template-sync](https://andreas-augustin.dev/blogs/git/git_action_sync/)
+- [dotdc/template-repository](https://github.com/dotdc/template-repository)
+- [dotdc/template-terraform-module](https://github.com/dotdc/template-terraform-module)
+- [dotdc/terraform-module-example](https://github.com/dotdc/terraform-module-example)
+- [dotdc/.github](https://github.com/dotdc/.github)

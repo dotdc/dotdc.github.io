@@ -117,3 +117,16 @@ While this article used the AWS cloud provider, you should be able to reproduce 
 ## Final words
 
 I hope that this article has been useful to you! If it’s the case, you should check out my other articles. Feel free to send me some feedback, especially if you find any errors, if you think of any enhancements or if you find something outstanding!
+
+## References
+
+- [Over 380 000 open Kubernetes API servers](https://www.shadowserver.org/news/over-380-000-open-kubernetes-api-servers/)
+- [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/)
+- [k9s](https://github.com/derailed/k9s)
+- [Lens](https://github.com/lensapp/lens)
+- [Octant](https://github.com/vmware-tanzu/octant)
+- [Bastion host](https://en.wikipedia.org/wiki/Bastion_host)
+- [Virtual private network](https://en.wikipedia.org/wiki/Virtual_private_network)
+- [Amazon Elastic Kubernetes Service](https://aws.amazon.com/eks/)
+- [Amazon Virtual Private Cloud](https://aws.amazon.com/vpc/)
+- [AWS Security Groups](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)

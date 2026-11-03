@@ -278,3 +278,10 @@ You should now see the annotation from your Loki logs on your dashboard:
 
 Whether you're tracking deployments, incidents or other important events, Grafana annotations provide an efficient way to correlate events with dashboard data.
 You can customize and automate annotations for events that matter to you, such as: pull request merges, Terraform apply operations or email campaign launches. Leveraging Grafana annotations will make troubleshooting on Grafana easier and faster!
+
+## References
+
+- [Grafana documentation: Annotate visualizations](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/#add-an-annotation)
+- [Grafana documentation: Built-in query](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/#built-in-query)
+- [Grafana documentation: Dashboard JSON model](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/view-dashboard-json-model/)
+- [Grafana Loki](https://github.com/grafana/loki)

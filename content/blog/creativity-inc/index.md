@@ -58,3 +58,8 @@ The book ends with an unusual description of Steve Jobs, Ed Catmull's thoughts f
 ## Final words
 
 To sum it up, it's a really good read! I'm pretty sure that most people can get something from this book, to name a few: learn how to build a company's culture, leadership advice, Pixar's history, a good tale from the Silicon Valley...
+
+## References
+
+- [Creativity, Inc. on Goodreads](https://www.goodreads.com/book/show/18077903-creativity-inc)
+- [Powder: How we defined our company values](https://powderapp.medium.com/powder-how-we-defines-our-company-values-d5f28e20407e)

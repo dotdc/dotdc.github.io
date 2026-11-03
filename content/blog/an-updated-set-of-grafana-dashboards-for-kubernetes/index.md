@@ -113,3 +113,11 @@ Your feedback and suggestions are always welcome, so feel free to contribute to 
 - Give a [GitHub ⭐](https://github.com/dotdc/grafana-dashboards-kubernetes/stargazers) if you like it
 - Create an [Issue](https://github.com/dotdc/grafana-dashboards-kubernetes/issues) to make a feature request, report a bug or share an idea.
 - Create a [Pull Request](https://github.com/dotdc/grafana-dashboards-kubernetes/pulls) if you want to share code or anything useful to this project.
+
+## References
+
+- [dotdc/grafana-dashboards-kubernetes](https://github.com/dotdc/grafana-dashboards-kubernetes)
+- [Thanos](https://github.com/thanos-io/thanos)
+- [Grafana Mimir](https://github.com/grafana/mimir)
+- [Grafana Champions](https://grafana.com/community/champions/)
+- [A set of modern Grafana dashboards for Kubernetes](https://0xdc.me/blog/a-set-of-modern-grafana-dashboards-for-kubernetes/)

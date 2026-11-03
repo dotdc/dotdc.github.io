@@ -72,3 +72,16 @@ In all cases, you can still:
 ## Final words
 
 Best wishes for 2023, I hope that, like me, you will start the year with better password hygiene!
+
+## References
+
+- [LastPass: Notice of recent security incident](https://blog.lastpass.com/2022/12/notice-of-recent-security-incident/)
+- [Wired article on the LastPass breach](https://www.wired.com/story/lastpass-breach-vaults-password-managers/)
+- [1Password: Not in a million years](https://blog.1password.com/not-in-a-million-years/)
+- [Jeremi M Gosney on the LastPass breach (part 1)](https://infosec.exchange/@epixoip/109570449317277575)
+- [Jeremi M Gosney on the LastPass breach (part 2)](https://infosec.exchange/@epixoip/109585049354200263)
+- [1Password](https://1password.com)
+- [Bitwarden](https://bitwarden.com)
+- [Nitrokey](https://www.nitrokey.com)
+- [YubiKey](https://www.yubico.com)
+- [Have I Been Pwned](https://haveibeenpwned.com/)

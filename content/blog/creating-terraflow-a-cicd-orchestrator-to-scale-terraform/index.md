@@ -249,3 +249,14 @@ On the technical side, we’re considering switching to [apply using saved plans
 ## Final words
 
 I hope this article has been helpful and offers insights into tackling similar challenges in your own IaC workflows! If you need something similar, I recommend checking out [Digger](https://digger.dev)! I had a great discussion with their team, they have a great open-source product and their paid offerings are more affordable than the competition!
+
+## References
+
+- [Pains in Terraform collaboration](https://itnext.io/pains-in-terraform-collaboration-249a56b4534e)
+- [Spice up your Infrastructure as Code with TACOS](https://itnext.io/spice-up-your-infrastructure-as-code-with-tacos-1a9c179e0783)
+- [Why you shouldn't manage Terraform with generic CI/CD tools](https://medium.com/spacelift/why-you-shouldnt-manage-terraform-with-generic-ci-cd-tools-4dd874ca7096)
+- [Atlantis](https://github.com/runatlantis/atlantis)
+- [Digger](https://github.com/diggerhq/digger)
+- [Spacelift](https://spacelift.io/)
+- [Terrateam](https://terrateam.io/)
+- [Terramate](https://terramate.io)

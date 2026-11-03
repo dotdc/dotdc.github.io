@@ -135,3 +135,11 @@ Favorite quote :
 ![Book: A people's history of computing in the United States](a-people-s-history-of-computing-in-the-united-states.webp "Book: A people's history of computing in the United States")
 
 That's it, I hope you found this article useful!
+
+## References
+
+- [Code: The Hidden Language of Computer Hardware and Software companion website](https://codehiddenlanguage.com/)
+- [Dartmouth Time-Sharing System](https://en.wikipedia.org/wiki/Dartmouth_Time_Sharing_System)
+- [BASIC](https://en.wikipedia.org/wiki/BASIC)
+- [PLATO](https://en.wikipedia.org/wiki/PLATO_(computer_system))
+- [Entering the world of additive manufacturing](https://0xdc.me/blog/entering-the-world-of-additive-manufacturing/)

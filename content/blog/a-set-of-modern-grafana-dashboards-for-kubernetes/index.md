@@ -208,3 +208,11 @@ You can contribute to this project:
 - Create a [Pull Request](https://github.com/dotdc/grafana-dashboards-kubernetes/pulls) if you want to share code or anything useful to this project.
 
 PS: Thanks to my friend [Donia Chaiehloudj](https://twitter.com/doniacld), who inspired me to write this article 😉
+
+## References
+
+- [dotdc/grafana-dashboards-kubernetes](https://github.com/dotdc/grafana-dashboards-kubernetes)
+- [The USE Method](https://www.brendangregg.com/usemethod.html)
+- [The RED Method](https://www.weave.works/blog/the-red-method-key-metrics-for-microservices-architecture/)
+- [The Four Golden Signals](https://sre.google/sre-book/monitoring-distributed-systems/#xref_monitoring_golden-signals)
+- [An updated set of Grafana dashboards for Kubernetes](https://0xdc.me/blog/an-updated-set-of-grafana-dashboards-for-kubernetes/)

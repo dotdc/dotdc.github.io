@@ -85,3 +85,11 @@ The event went really well. Everyone already had Cursor installed and was able t
 ## Final words
 
 It was fun to prepare this workshop, and I'm glad people enjoyed it! Thanks to the other organizers from [JSSophia](https://www.linkedin.com/company/jssophia/) and [GDG Sophia-Antipolis](https://www.linkedin.com/company/gdg-sophia-antipolis/) for their initiative, [Ben](https://www.linkedin.com/in/benmlang/) from Cursor for providing vouchers and swag, and Datadog for hosting the event. See you next time for another one, maybe on [MCP](https://modelcontextprotocol.io) servers!
+
+## References
+
+- [dotdc/cursor-workshop](https://github.com/dotdc/cursor-workshop)
+- [Cursor workshop slides](https://docs.google.com/presentation/d/1rjCuA0mfH_Csq4sM7IhhGjgNEGduKKvCKOyYUSZi8Uc)
+- [Cursor](https://cursor.com)
+- [Cursor pricing](https://cursor.com/pricing)
+- [Model Context Protocol](https://modelcontextprotocol.io)

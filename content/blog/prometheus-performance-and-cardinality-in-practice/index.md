@@ -275,3 +275,21 @@ If you plan to do this on your setup, you should focus your efforts towards high
 ## Final words
 
 In this article, we learned how to significantly reduce resource usage and solve cardinality issues in our Prometheus setup. At scale, this can have a huge impact on performance and reduce the overall cost of your platform. I hope you found this article useful!
+
+## References
+
+- [How to find unused Prometheus metrics using mimirtool](https://0xdc.me/blog/how-to-find-unused-prometheus-metrics-using-mimirtool/)
+- [dotdc/prometheus-cardinality](https://github.com/dotdc/prometheus-cardinality)
+- [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack)
+- [node_exporter collectors](https://github.com/prometheus/node_exporter#collectors)
+- [Prometheus Operator RelabelConfig](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig)
+- [How relabeling in Prometheus works](https://grafana.com/blog/2022/03/21/how-relabeling-in-prometheus-works/)
+- [PromLabs Relabeler](https://relabeler.promlabs.com/)
+- [Cardinality Explorer dashboard](https://grafana.com/grafana/dashboards/11304-cardinality-explorer/)
+- [pprof](https://github.com/google/pprof)
+- [Graphviz](https://www.graphviz.org/download/)
+- [Grafana Cloud: Usage reduction](https://grafana.com/docs/grafana-cloud/billing-and-usage/control-prometheus-metrics-usage/usage-reduction/)
+- [Understanding duplicate samples and out-of-order timestamp errors in Prometheus](https://promlabs.com/blog/2022/12/15/understanding-duplicate-samples-and-out-of-order-timestamp-errors-in-prometheus/)
+- [Thanos](https://github.com/thanos-io/thanos)
+- [Grafana Mimir](https://github.com/grafana/mimir)
+- [VictoriaMetrics](https://github.com/VictoriaMetrics/VictoriaMetrics)
