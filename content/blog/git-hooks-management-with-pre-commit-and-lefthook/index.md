@@ -15,6 +15,9 @@ featureImageAlt = 'A person standing in the middle of a street by Jon Tyson on U
 +++
 <!-- https://unsplash.com/photos/a-person-standing-in-the-middle-of-a-street-PXB7yEM5LVs -->
 
+> **Update:** I now recommend [prek](https://github.com/j178/prek), a faster drop-in replacement for pre-commit.\
+> See "[Replacing pre-commit with prek](https://0xdc.me/blog/replacing-pre-commit-with-prek/)" for more details.
+
 <!--more-->
 
 ## Introduction
