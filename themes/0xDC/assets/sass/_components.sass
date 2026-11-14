@@ -201,6 +201,50 @@
     @media screen and (min-width: $mobile-menu-breakpoint)
       margin-left: 4rem
 
+// roll hover: the label rolls up while a green fill rolls in from below with a
+// dark copy of it. Both copies are text-shadows of the transparent label, so any
+// .button gets it without extra markup (tags, print, generated project tags)
+$roll-offset: 2em
+$roll-ink: #1e1e1e
+$roll-speed: 0.4s
+
+=roll-fill
+  &::after
+    content: ''
+    position: absolute
+    inset: 0
+    z-index: -1
+    background: $green
+    transform: translateY(101%)
+    transition: transform $roll-speed var(--easing)
+    pointer-events: none
+  &:hover, &:focus-visible
+    &::after
+      transform: none
+  @media (prefers-reduced-motion: reduce)
+    &, &::after, *
+      transition: none !important
+
+=roll
+  position: relative
+  isolation: isolate
+  overflow: hidden
+  color: transparent
+  text-shadow: 0 0 0 $green, 0 $roll-offset 0 $roll-ink
+  transition: text-shadow $roll-speed var(--easing)
+  +roll-fill
+  &:hover, &:focus-visible
+    color: transparent
+    text-decoration: none
+    text-shadow: 0 (-$roll-offset) 0 $green, 0 0 0 $roll-ink
+  // printers and high contrast modes drop text-shadows, show the plain label
+  @media print, (forced-colors: active)
+    &, &:hover, &:focus-visible
+      color: $green
+      text-shadow: none
+      &::after
+        display: none
+
 .button
   color: $green
   display: inline-flex
@@ -223,15 +267,8 @@
     padding: 0.5rem 1rem
     margin-bottom: 1.33rem
     border-radius: 1.5rem
-  &:hover, &:focus
-    background-color: $green
-    color: #1e1e1e
-    text-decoration: none
+  +roll
 
-  &_translucent
-    background-color: rgba($green, 0.08)
-    color: $green
-    border: 1px solid $green
   &_tally
     padding: 0 0.3rem
     border-radius: 2px
@@ -675,16 +712,19 @@ figcaption
       position: absolute
       bottom: 0.75rem
       right: 0
-    &:hover
-      color: #1e1e1e
-      background-color: $green
-      text-decoration: none
+    // roll hover, the dark arrow is a drop-shadow waiting below the button
+    overflow: hidden
+    isolation: isolate
+    +roll-fill
     svg
       fill: $green
       width: 14px
-    &:hover svg
-      fill: #272727
-      opacity: 1
+      filter: drop-shadow(0 2.6rem 0 $roll-ink)
+      transition: transform $roll-speed var(--easing)
+    &:hover, &:focus-visible
+      text-decoration: none
+      svg
+        transform: translateY(-2.6rem)
 
 .color
   &_mode

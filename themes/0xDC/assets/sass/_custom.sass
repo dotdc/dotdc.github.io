@@ -42,3 +42,127 @@ header, main, footer
   &::before
     content: '# '
     @extend .grey
+
+// projects page, cards are rendered by layouts/projects/_markup/render-blockquote.html
+.post_body:has(> .project)
+  display: grid
+  grid-template-columns: 1fr
+  gap: 1.25rem
+  margin-top: 1rem
+  > :not(.project)
+    grid-column: 1 / -1
+  @media screen and (min-width: $single-column-breakpoint)
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+
+.project
+  +card
+  display: flex
+  flex-direction: column
+  gap: 0.75rem
+  padding: 1.25rem 1.5rem 1.1rem
+  @media (prefers-reduced-motion: no-preference)
+    animation: project-in 0.6s var(--easing) both
+    animation-delay: calc(var(--i) * 90ms)
+  > *
+    margin: 0
+
+@keyframes project-in
+  from
+    opacity: 0
+    transform: translateY(0.75rem)
+
+.project_name
+  font-family: 'Monaco', monospace
+  font-size: 1.15rem
+  font-weight: 400
+  line-height: 1.35
+  overflow-wrap: anywhere
+  // white rather than the green .post_content links
+  .post_content & a
+    color: var(--header-text)
+    text-decoration: none
+  a
+    // the whole card is clickable, tags stay on top of it
+    &::after
+      content: ''
+      position: absolute
+      inset: 0
+      z-index: 0
+
+// hovering a card shows the heading link icon after the repository name
+.project_repo::after
+  content: ''
+  display: inline-block
+  width: 1.1rem
+  height: 1.1rem
+  margin-left: 0.5rem
+  vertical-align: middle
+  background: url('#{$iconsPath}link.svg') center / 100% no-repeat
+  opacity: 0
+  transition: opacity 0.3s ease
+  .project:hover &, .project:has(:focus-visible) &
+    opacity: 1
+    transition-duration: 0.15s
+
+.project_owner
+  display: block
+  font-size: 0.8em
+  color: #7f7f7f
+
+.project_desc
+  flex: 1
+  p
+    padding: 0
+    margin: 0
+
+.project_tags
+  position: relative
+  z-index: 1
+  display: flex
+  flex-wrap: wrap
+  gap: 0.5rem
+  &:empty
+    display: none
+
+.post_content .project_tag
+  margin: 0
+  padding: 0.15rem 0.6rem
+  font-size: 0.75rem
+
+.post_content .project_stats
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  gap: 0.4rem 1.25rem
+  // reserves the row while stats load so the cards don't jump
+  min-height: 1.5rem
+  margin: 0
+  padding: 0.75rem 0 0
+  border-top: 1px dashed var(--card-border)
+  list-style: none
+  font-family: 'Monaco', monospace
+  font-size: 0.75rem
+  color: #9a9a9a
+  li
+    display: inline-flex
+    align-items: center
+    gap: 0.4rem
+    margin: 0
+    padding: 0
+    @media (prefers-reduced-motion: no-preference)
+      animation: project-stat-in 0.4s ease both
+  svg
+    fill: currentColor
+
+@keyframes project-stat-in
+  from
+    opacity: 0
+
+.project_lang
+  width: 0.65rem
+  height: 0.65rem
+  border-radius: 50%
+  background: var(--lang, #7f7f7f)
+
+.project_archived
+  color: #f0b37e

@@ -1,0 +1,45 @@
+{{- /*
+  Renders a parsed resume entry (a role or one of its client engagements).
+  Context: dict "entry" (head.html + body.html results) "level" (3 for a role, 4 for a client).
+*/ -}}
+{{- $e := .entry }}
+{{- $tag := printf "h%d" .level }}
+<p class="job_period">
+  <span>{{ $e.start }}</span><span class="job_arrow" aria-label="to">&gt;</span><span>{{ $e.end }}</span>
+  {{- with $e.duration }}<span class="job_duration">{{ . }}</span>{{ end }}
+</p>
+{{ printf "<%s id=%q class=%q>" $tag $e.id "job_title" | safeHTML }}
+  {{- if $e.url }}
+  <a class="job_company" href="{{ $e.url }}" rel="noopener">{{ $e.company | safeHTML }}</a>
+  {{- else }}
+  <span class="job_company">{{ $e.company | safeHTML }}</span>
+  {{- end }}
+  {{- with $e.role }}
+  <span class="job_role">{{ . | safeHTML }}</span>
+  {{- end }}
+{{ printf "</%s>" $tag | safeHTML }}
+{{- with $e.summary }}
+<p class="job_summary">{{ . | safeHTML }}</p>
+{{- end }}
+{{- with $e.details }}
+<div class="job_details">{{ . | safeHTML }}</div>
+{{- end }}
+{{- with $e.clients }}
+<ol class="job_clients">
+  {{- range . }}
+  <li class="job_client">
+    {{- partial "resume/entry.html" (dict "entry" . "level" 4) }}
+  </li>
+  {{- end }}
+</ol>
+{{- end }}
+{{- range $e.groups }}
+<div class="job_stack">
+  <span class="job_stack_label">{{ .label }}</span>
+  <ul class="chips">
+    {{- range .items }}
+    <li class="chip">{{ .name }}</li>
+    {{- end }}
+  </ul>
+</div>
+{{- end }}

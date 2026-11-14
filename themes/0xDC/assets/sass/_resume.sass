@@ -1,0 +1,547 @@
+// resume page, see layouts/_default/resume.html
+
+// holds the icon backdrop filter, takes no room
+.resume_defs
+  position: absolute
+  width: 0
+  height: 0
+  overflow: hidden
+
+.resume_halo_color
+  flood-color: $green
+  flood-opacity: 0.18
+
+$resume-aside-breakpoint: 1024px
+$resume-line: rgba(255, 255, 255, 0.08)
+$resume-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', 'Liberation Mono', monospace
+
+.resume
+  --resume-border: var(--card-border)
+
+  // timeline / grid / chips own their list styles
+  ol, ul
+    list-style: none
+    padding: 0
+
+  &_header
+    margin-bottom: 2rem
+
+  // grafana flavored stat panels
+  &_stats
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr))
+    gap: 1px
+    margin-top: 1rem
+    background: var(--resume-border)
+    border: 1px solid var(--resume-border)
+    border-radius: 2px
+    overflow: hidden
+
+  &_stat
+    display: flex
+    flex-direction: column-reverse
+    justify-content: flex-end
+    padding: 1rem 1.25rem
+    background: $bg
+    dd
+      font-family: 'Major Mono Display', monospace
+      font-size: 2.25rem
+      line-height: 1.1
+      color: $green
+      font-variant-numeric: tabular-nums
+    dt
+      font-size: 0.8rem
+      text-transform: uppercase
+      letter-spacing: 0.08em
+      color: #838383
+
+  &_layout
+    display: grid
+    grid-template-columns: minmax(0, 1fr)
+    gap: 2rem
+    @media screen and (min-width: $resume-aside-breakpoint)
+      grid-template-columns: minmax(0, 1fr) 16rem
+      gap: 3rem
+
+  &_main
+    min-width: 0
+
+  // side panel
+  &_aside
+    @media screen and (min-width: $resume-aside-breakpoint)
+      grid-column: 2
+      grid-row: 1
+      position: sticky
+      top: 5.5rem
+      align-self: start
+      max-height: calc(100vh - 6.5rem)
+      overflow-y: auto
+      scrollbar-width: thin
+
+  &_panel
+    & + &
+      margin-top: 1.75rem
+    &_title
+      padding: 0 0 0.5rem
+      margin-bottom: 0.5rem
+      font-family: 'Major Mono Display', monospace
+      font-size: 1.1rem
+      color: $green
+      border-bottom: 1px solid #424242
+
+  &_toc
+    a
+      display: block
+      padding: 0.3rem 0 0.3rem 1rem
+      font-size: 1rem
+      color: var(--text) !important
+      opacity: 0.6
+      border-left: 2px solid transparent
+      transition: opacity 0.2s, border-color 0.2s, color 0.2s
+      &:hover
+        opacity: 1
+        text-decoration: none
+      &.is-active
+        opacity: 1
+        color: $green !important
+        border-left-color: $green
+    @media screen and (max-width: $resume-aside-breakpoint - 1px)
+      & + .resume_toc
+        margin-top: 0.5rem
+      .resume_panel_title
+        display: none
+      // a scrollable row of chips
+      ol
+        display: flex
+        gap: 0.5rem
+        overflow-x: auto
+        scrollbar-width: none
+        padding-bottom: 0.25rem
+      a
+        white-space: nowrap
+        padding: 0.35rem 0.8rem
+        border: 1px solid var(--resume-border)
+        border-radius: 2px
+        &.is-active
+          border-color: $green
+
+  // the roles as a vertical timeline: rail, one dot per role and a fill
+  // that follows the scroll (--fill is set by resume.js)
+  &_track
+    --dot-y: 1rem
+    position: relative
+    @media screen and (min-width: $resume-aside-breakpoint)
+      padding-left: 1.25rem !important
+      &::before, &::after
+        content: ''
+        position: absolute
+        top: var(--dot-y)
+        left: 4px
+        width: 2px
+      &::before
+        bottom: var(--dot-y)
+        background: $resume-line
+      &::after
+        height: var(--fill, 0px)
+        background: linear-gradient(to bottom, rgba($green, 0.2), $green)
+      a
+        position: relative
+        padding: 0.3rem 0 0.3rem 0.5rem
+        line-height: 1.4
+        border-left: none
+        &::before
+          content: ''
+          position: absolute
+          top: 50%
+          left: -1.25rem
+          box-sizing: border-box
+          width: 10px
+          height: 10px
+          margin-top: -5px
+          border: 2px solid #555
+          border-radius: 50%
+          background: $bg
+          z-index: 1
+          transition: border-color 0.2s, background 0.2s, box-shadow 0.2s
+        &:hover::before
+          border-color: $green
+        &.is-passed
+          opacity: 0.8
+          &::before
+            border-color: $green
+        &.is-active::before
+          border-color: $green
+          background: $green
+          box-shadow: 0 0 0 3px rgba($green, 0.2)
+        // ongoing role
+        &.is-current::after
+          content: ''
+          position: absolute
+          top: 50%
+          left: -1.25rem
+          box-sizing: border-box
+          width: 10px
+          height: 10px
+          margin: -5px 0 0
+          border-radius: 50%
+          border: 1px solid $green
+          animation: resume-pulse 2.4s ease-out infinite
+
+  &_actions
+    display: flex
+    gap: 0.5rem
+    margin-top: 1.75rem
+    @media screen and (max-width: $resume-aside-breakpoint - 1px)
+      display: none
+
+  &_action
+    flex: 1
+    @extend .button
+    justify-content: center
+    padding: 0.4rem 0.5rem
+    font-family: inherit
+    font-size: 0.75rem
+    cursor: pointer
+    gap: 0.4rem
+    // the roll paints text via text-shadow on transparent color, so the
+    // currentColor stroke would vanish; color the icon explicitly
+    .svg-icon
+      width: 0.95rem
+      height: 0.95rem
+      color: $green
+      transition: color $roll-speed var(--easing)
+    &:hover, &:focus-visible
+      .svg-icon
+        color: $roll-ink
+
+  // section headings, the "# " prefix comes from .post_body h2
+  &_section
+    & + &
+      margin-top: 2.5rem
+    h2
+      margin-top: 0
+
+  // work experience, one card per role (the timeline lives in the side menu)
+  .jobs
+    margin-top: 1.5rem
+
+  .job
+    position: relative
+    padding: 0
+    & + .job
+      margin-top: 1.25rem
+
+    &_card
+      +card
+      padding: 1.25rem 1.5rem
+      transition: border-color 0.6s ease, opacity 0.3s, filter 0.3s, transform 0.3s var(--easing)
+      @media screen and (max-width: $mobile-menu-breakpoint)
+        padding: 1rem 1.1rem
+      // fallback when a role couldn't be parsed
+      blockquote
+        margin: 0
+        padding: 0
+        background: none
+        border: none
+
+    &_period
+      display: flex
+      flex-wrap: wrap
+      align-items: baseline
+      gap: 0 0.5rem
+      padding: 0
+      font-family: $resume-mono
+      font-size: 0.78rem
+      text-transform: uppercase
+      letter-spacing: 0.04em
+      color: #838383
+    &_arrow
+      color: $green
+    &_duration
+      margin-left: auto
+      padding: 0 0.45rem
+      border: 1px solid #424242
+      border-radius: 2px
+      text-transform: none
+    &--current &_duration
+      color: $green
+      border-color: rgba($green, 0.5)
+
+    // company and anchor icon on the first row, role below
+    &_title
+      display: grid
+      grid-template-columns: auto 1fr
+      align-items: center
+      margin: 0.4rem 0 0
+      padding: 0
+      font-size: 1.45rem
+      line-height: 1.25
+    &_company
+      font-weight: 400
+      color: $green
+      text-underline-offset: 0.2em
+    &_title > .link
+      grid-row: 1
+      grid-column: 2
+    &_role
+      grid-column: 1 / -1
+      margin-top: 0.15rem
+      font-size: 1.05rem
+      color: #9a9a9a
+
+    // client engagements, as a nested timeline
+    &_clients
+      margin-top: 1.1rem
+      padding-left: 1.25rem
+      border-left: 1px dashed #424242
+    &_client
+      position: relative
+      padding: 0
+      & + .job_client
+        margin-top: 1.5rem
+      &::before
+        content: ''
+        position: absolute
+        top: 0.4rem
+        left: calc(-1.25rem - 4px)
+        width: 7px
+        height: 7px
+        border: 1px solid $green
+        border-radius: 50%
+        background: $bg
+      .job_title
+        font-size: 1.2rem
+        margin-top: 0.25rem
+      .job_role
+        font-size: 0.95rem
+      .job_stack_label
+        flex-basis: 4.5rem
+
+    &_summary
+      padding: 0.75rem 0 0
+
+    // highlights
+    &_details
+      margin-top: 0.9rem
+      border-top: 1px dashed #424242
+      padding-top: 0.2rem
+      h4
+        margin: 1rem 0 0.25rem
+        padding: 0
+        font-size: 0.8rem
+        font-weight: 600
+        text-transform: uppercase
+        letter-spacing: 0.08em
+        color: #9a9a9a
+      ul
+        padding: 0
+      li
+        position: relative
+        padding: 0.2rem 0 0.2rem 1.2rem
+        &::before
+          content: '›'
+          position: absolute
+          left: 0.2rem
+          color: $green
+      li li
+        padding-left: 1rem
+        &::before
+          content: '–'
+          left: 0
+
+    &_stack
+      display: flex
+      align-items: baseline
+      gap: 0.75rem
+      margin-top: 0.9rem
+      & + &
+        margin-top: 0.5rem
+      @media screen and (max-width: $mobile-menu-breakpoint)
+        flex-direction: column
+        gap: 0.35rem
+      &_label
+        flex: 0 0 5.5rem
+        font-family: $resume-mono
+        font-size: 0.72rem
+        text-transform: uppercase
+        letter-spacing: 0.08em
+        color: $green
+
+  .chips
+    display: flex
+    flex-wrap: wrap
+    gap: 0.35rem
+    padding: 0
+    li
+      padding: 0
+
+  .chips li.chip
+    padding: 0.1rem 0.55rem
+    font-size: 0.78rem
+    line-height: 1.6
+    color: var(--text)
+    background: rgba($green, 0.05)
+    border: 1px solid rgba($green, 0.25)
+    border-radius: 2px
+
+  // the other sections: one card per group, a labelled row per subsection
+  &_group
+    padding: 0.5rem 1.5rem
+    @media screen and (max-width: $mobile-menu-breakpoint)
+      padding: 0.25rem 1.1rem
+    p
+      padding: 0
+    &_intro
+      padding: 0.75rem 0
+
+  &_row
+    padding: 1rem 0
+    & + &
+      border-top: 1px dashed #424242
+
+    // the label sits on top, the body takes the full width
+    &_label
+      margin: 0 0 0.9rem
+      padding: 0
+      font-family: $resume-mono
+      font-size: 0.75rem
+      font-weight: 400
+      line-height: 1.6
+      text-transform: uppercase
+      letter-spacing: 0.08em
+      color: $green
+
+    &_body
+      min-width: 0
+      ul, ol
+        padding: 0
+      li
+        padding: 0
+      .chips
+        gap: 0.5rem
+      .chips li.chip
+        padding: 0.2rem 0.7rem
+        font-size: 0.9rem
+
+  // shared by the tiles and the cards
+  &_tiles li, &_cards li
+    display: flex
+    align-items: center
+    gap: 0.9rem
+    min-width: 0
+    padding: 0.85rem 1rem !important
+    border: 1px solid var(--resume-border)
+    border-radius: 2px
+    background: rgba($green, 0.03)
+    transition: border-color 0.2s, background 0.2s
+    &:hover
+      border-color: rgba($green, 0.5)
+      background: rgba($green, 0.07)
+  // no box: the backdrop follows the icon shape (see #resume-icon-halo),
+  // the padding keeps room for its 2px
+  &_icon
+    flex: none
+    display: flex
+    align-items: center
+    justify-content: center
+    padding: 2px
+    color: $green
+    filter: url(#resume-icon-halo)
+    .svg-icon
+      width: 2.1rem
+      height: 2.1rem
+
+  // key skills, 3 per line
+  &_tiles
+    display: grid
+    grid-template-columns: repeat(3, minmax(0, 1fr))
+    gap: 0.75rem
+    @media screen and (max-width: 600px)
+      grid-template-columns: repeat(2, minmax(0, 1fr))
+    @media screen and (max-width: 420px)
+      grid-template-columns: minmax(0, 1fr)
+  &_tile_label
+    font-size: 0.95rem
+    line-height: 1.35
+
+  // certifications, 2 per line, all the same size
+  &_cards
+    display: grid
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+    gap: 0.75rem
+    @media screen and (max-width: 480px)
+      grid-template-columns: minmax(0, 1fr)
+  &_card_text
+    display: flex
+    flex-direction: column
+    gap: 0.2rem
+    min-width: 0
+  &_card_kicker
+    font-family: $resume-mono
+    font-size: 0.75rem
+    letter-spacing: 0.08em
+    color: $green
+  &_card_name
+    font-size: 0.95rem
+    line-height: 1.3
+
+  // scroll reveal, only when the script is running
+  &.can-reveal
+    .job .job_card, .resume_group
+      opacity: 0
+      transform: translateY(14px)
+    .job.is-visible .job_card, .resume_group.is-visible
+      opacity: 1
+      transform: none
+
+@keyframes resume-pulse
+  0%
+    transform: scale(0.6)
+    opacity: 1
+  100%
+    transform: scale(1.8)
+    opacity: 0
+
+@media (prefers-reduced-motion: reduce)
+  .resume_track a.is-current::after
+    animation: none
+
+@media print
+  #hex-bg, .nav_header, .footer, .to-top, .resume_aside, .link
+    display: none !important
+  body
+    background: #fff
+    color: #222
+  .content
+    padding-top: 0
+  .resume
+    --text: #222
+    --header-text: #000
+    --post-bg: transparent
+    --resume-border: #ddd
+    color: #222
+    &_layout
+      display: block
+    &_stat
+      background: #fff
+    &.can-reveal .job .job_card, &.can-reveal .resume_group
+      opacity: 1
+      transform: none
+    .job, .resume_row
+      break-inside: avoid
+    .job_card
+      border-color: #ddd
+    .chip
+      color: #222
+      border-color: #bbb
+      background: none
+    .resume_tiles li, .resume_cards li
+      background: none
+      border-color: #ddd
+    .resume_icon
+      color: #222
+  .resume_halo_color
+    flood-color: #000
+    flood-opacity: 0.08
+    .resume_card_kicker
+      color: #555

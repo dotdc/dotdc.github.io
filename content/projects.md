@@ -7,6 +7,7 @@ showDate = false
 showReadTime = false
 showShare = false
 sidebar = false
+singleColumn = true
 authorbox = false
 +++
 
@@ -27,7 +28,3 @@ Here's a few projects where I'm involved on GitHub:
 > [dotdc/dotdc.github.io](https://github.com/dotdc/dotdc.github.io)
 >
 > Files for 0xDC.me.
-
-> [dotdc/dotfiles](https://github.com/dotdc/dotfiles)
->
-> My dotfiles.

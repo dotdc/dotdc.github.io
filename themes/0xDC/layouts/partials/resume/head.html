@@ -1,0 +1,45 @@
+{{- /*
+  Parses a resume entry heading: "[Company](url) – Role <span class="grey">(Month Year - Month Year|Today)</span>",
+  the link and the role being optional. Returns an empty dict when it doesn't match.
+  Context: dict "html" (heading inner HTML) "now" (current month index).
+*/ -}}
+{{- $months := dict "january" 0 "february" 1 "march" 2 "april" 3 "may" 4 "june" 5 "july" 6 "august" 7 "september" 8 "october" 9 "november" 10 "december" 11 }}
+{{- $r := dict }}
+{{- with findRESubmatch `^(?:<a href="([^"]+)"[^>]*>(.*?)</a>|([^<]*?))\s*(?:(?:&ndash;|&mdash;|–|—|--?)\s*(.*?))?\s*<span class="grey">\((.*?)\)</span>\s*$` .html 1 }}
+  {{- $m := index . 0 }}
+  {{- $bounds := split (index $m 5) " - " }}
+  {{- $end := trim (index $bounds (sub (len $bounds) 1)) " " }}
+
+  {{- /* month indexes, so durations can be computed */ -}}
+  {{- $idx := slice }}
+  {{- range $bounds }}
+    {{- $f := split (trim . " ") " " }}
+    {{- if and (eq (len $f) 2) (isset $months (lower (index $f 0))) }}
+      {{- $idx = $idx | append (add (mul (int (index $f 1)) 12) (index $months (lower (index $f 0)))) }}
+    {{- else }}
+      {{- $idx = $idx | append $.now }}
+    {{- end }}
+  {{- end }}
+  {{- $duration := "" }}
+  {{- if eq (len $idx) 2 }}
+    {{- $total := sub (index $idx 1) (index $idx 0) }}
+    {{- $y := div $total 12 }}
+    {{- $mo := mod $total 12 }}
+    {{- $d := slice }}
+    {{- if $y }}{{ $d = $d | append (printf "%d %s" $y (cond (eq $y 1) "yr" "yrs")) }}{{ end }}
+    {{- if $mo }}{{ $d = $d | append (printf "%d %s" $mo (cond (eq $mo 1) "mo" "mos")) }}{{ end }}
+    {{- $duration = delimit $d " " }}
+  {{- end }}
+
+  {{- $r = dict
+    "url" (index $m 1)
+    "company" (trim (or (index $m 2) (index $m 3)) " ")
+    "role" (index $m 4)
+    "start" (trim (index $bounds 0) " ")
+    "end" $end
+    "current" (eq (lower $end) "today")
+    "duration" $duration
+    "startidx" (index $idx 0)
+  }}
+{{- end }}
+{{- return $r }}

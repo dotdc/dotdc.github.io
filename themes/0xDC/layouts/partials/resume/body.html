@@ -1,0 +1,38 @@
+{{- /*
+  Parses a resume entry body: the first paragraph is the summary, the
+  "Stack : a, b" / "Languages : c, d" paragraph becomes chip groups and
+  everything else is kept as the highlights.
+  Context: the body HTML.
+*/ -}}
+{{- $rest := trim . " \n\t" }}
+{{- $summary := "" }}
+{{- with findRESubmatch `(?s)^<p>(.*?)</p>\s*(.*)$` $rest 1 }}
+  {{- $summary = index (index . 0) 1 }}
+  {{- $rest = index (index . 0) 2 }}
+{{- end }}
+
+{{- $groups := slice }}
+{{- $names := dict }}
+{{- with findRE `(?s)<p><strong><span[^>]*>(?:Stack|Languages)</span></strong>.*?</p>` $rest 1 }}
+  {{- $rest = replace $rest (index . 0) "" }}
+  {{- range findRESubmatch `<strong><span[^>]*>([^<]+)</span></strong>\s*:\s*([^<]+)` (index . 0) -1 }}
+    {{- $label := trim (index . 1) " " }}
+    {{- $items := slice }}
+    {{- range split (index . 2) "," }}
+      {{- $name := trim . " \n\t" }}
+      {{- if not $name }}{{ continue }}{{ end }}
+      {{- $slug := anchorize $name }}
+      {{- $items = $items | append (dict "name" $name "slug" $slug) }}
+      {{- $names = merge $names (dict $slug $name) }}
+    {{- end }}
+    {{- $groups = $groups | append (dict "label" $label "items" $items) }}
+  {{- end }}
+{{- end }}
+
+{{- $details := trim $rest " \n\t" }}
+{{- return (dict
+  "summary" $summary
+  "details" $details
+  "groups" $groups
+  "names" $names)
+}}

@@ -8,19 +8,35 @@ showReadTime = false
 showShare = false
 sidebar = false
 authorbox = false
+layout = "resume"
+
+# Icons keyed by key skill (lowercase, the "(...)" details can be left out)
+# or by certification code: a Simple Icons slug
+# (https://simpleicons.org) or "mdi:<name>" for Material Design Icons
+# (https://pictogrammers.com/library/mdi/). Run scripts/icons.sh after changing them.
+[params.icons]
+"unix & linux systems" = "linux"
+"ci/cd automation" = "githubactions"
+"kubernetes & cncf ecosystem" = "kubernetes"
+"infrastructure as code" = "terraform"
+"automation & scripting" = "gnubash"
+"monitoring / observability" = "grafana"
+"cloud platforms" = "googlecloud"
+"devops & platform engineering" = "docker"
+"ai tooling" = "claude"
+"cks" = "kubernetes"
+"cka" = "kubernetes"
+"lpic-1" = "linuxprofessionalinstitute"
+"psm i" = "conventionalcommits"
+"itilf" = "conventionalcommits"
 +++
 
 > {{< details summary="Table of content" open=false >}}
 <!-- no toc -->
 - [Work Experience](#work-experience)
-- [Key Skills](#key-skills)
-- [Programming Skills](#programming-skills)
-- [Soft Skills](#soft-skills)
+- [Skills](#skills)
 - [Certifications](#certifications)
-- [Education](#education)
-- [Volunteering](#volunteering)
-- [Languages](#languages)
-- [Interests](#interests)
+- [Beyond Work](#beyond-work)
 {{< /details >}}
 
 ## WORK EXPERIENCE
@@ -39,7 +55,6 @@ authorbox = false
 > - Added automated security and quality checks using pre-commit hooks across all repositories.
 > - Integrated Temporal for workflow orchestration and Qdrant as the vector database for the content-recommendation service.
 > - Leading AI tooling transition within the team, training, Cursor rules creation and AI pull request review tool comparison (Cursor Bugbot vs Claude Code vs Graphite Diamond)
-> - Led AI tooling transition within the team and participated in AI PR review comparison (Cursor Bugbot vs Claude Code vs Graphite Diamond).
 >
 > #### Reliability & Observability
 >
@@ -88,7 +103,6 @@ authorbox = false
 > - Authored documentation, comparative studies and internal training sessions.
 > - Led community initiatives around observability and monitoring practices:
 >   - Speaker at PromCON EU 2023: [Finding useless and resource-hungry Prometheus metrics](https://www.youtube.com/watch?v=NRXAB_Ug8zo)
->   - Speaker at Geekle DevOps Global Summit 2023 : [Modern Grafana dashboard design](https://www.youtube.com/live/SBhNR5ZoKb4?si=kcyF66vffY-kVO9e&t=20279)
 >   - Joined the [Grafana Champion](https://grafana.com/community/champions/) program, engaging further with the Grafana community.
 >
 > **<span style="color:#30c992">Stack</span>** : GCP, GKE, Kubernetes, Terraform, Helm, Keda, Grafana, Prometheus, Thanos, Polar Signals, ELK, Redis, Harbor, GitHub, Copilot, CI/CD<br>
@@ -122,18 +136,18 @@ authorbox = false
 > **<span style="color:#30c992">Stack</span>** : AWS, EKS, Kubernetes, Linux, Ubuntu, Ansible, Terraform, ArgoCD, Helm, Keda, Grafana, Prometheus, Grafana Loki, Grafana Tempo, GitHub, PostgreSQL<br>
 > **<span style="color:#30c992">Languages</span>** : Bash, Golang
 
-> ### [Acoss](https://www.urssaf.org) -- DevOps Engineer <span class="grey">(May 2020 - December 2021)</span>
+> ### Auxilium -- DevOps Engineer <span class="grey">(June 2018 - December 2021)</span>
 >
 > ---
+>
+> #### [Acoss](https://www.urssaf.org) -- Consultant <span class="grey">(May 2020 - December 2021)</span>
 >
 > Worked on an on-premises Java application platform built upon OpenStack and Kubernetes. Using Prometheus, Grafana, and the EFK stack, I was responsible for the platform's observability, reliability and performance.
 >
 > **<span style="color:#30c992">Stack</span>** : OpenStack, Kubernetes, Cilium, Terraform, Flatcar Linux, ArgoCD, Prometheus, Grafana, Elastic Stack (ELK), Fluent Bit, Gitlab, CI/CD<br>
 > **<span style="color:#30c992">Languages</span>** : Bash, Python
-
-> ### [Airbus](https://www.airbus.com) -- DevOps Engineer <span class="grey">(June 2018 - April 2020)</span>
 >
-> ---
+> #### [Airbus](https://www.airbus.com) -- Consultant <span class="grey">(June 2018 - April 2020)</span>
 >
 > Contributed to the [Airbus OneAtlas](https://www.youtube.com/watch?v=cLWRsYA9RJU) program, a military-grade satellite image processing solution built on Kubernetes, within a SAFe/Scrum framework. In a highly secure environment, I was responsible for the solution's architecture, provisioning, performance and quality assurance on Google Cloud Platform.
 >
@@ -167,63 +181,59 @@ authorbox = false
 > **<span style="color:#30c992">Stack</span>** : OVH, Linux, Debian, LAMP, Postfix, Plesk, SVN<br>
 > **<span style="color:#30c992">Languages</span>** : HTML5, CSS3, JS, jQuery, PHP, Bash
 
-> ### [Computacenter](https://www.computacenter.com) -- System Administrator <span class="grey">(October 2010 - December 2010)</span>
->
-> ---
->
-> Updated the [FAED](https://www.cnil.fr/fr/faed-fichier-automatise-des-empreintes-digitales) system across PACA for the National Forensic Police Service (SNPS).
+## SKILLS
 
-## KEY SKILLS
-
+> ### Key Skills
+>
 > - Unix & Linux Systems
-> - Scripting & CI/CD Automation
+> - CI/CD Automation
 > - Kubernetes & CNCF Ecosystem
 > - Infrastructure as Code
 > - Automation & Scripting
 > - Monitoring / Observability
 > - Cloud platforms (AWS / GCP)
 > - DevOps & Platform Engineering
-> - AI Tooling (Cursor, Dust, MCP)
-
-## PROGRAMMING SKILLS
-
-> - Bash / Shell scripting
-> - Go (Golang)
-> - Python
-
-## SOFT SKILLS
-
+> - AI Tooling (Claude, Codex, Dust)
+>
+> ### Soft Skills
+>
 > - Leadership
 > - Teamwork
 > - Analytical Thinking
 > - Problem Solving
 > - Effective Communication
+>
+> ### Programming
+>
+> - Bash / Shell scripting
+> - Go (Golang)
+> - Python
+>
+> ### Languages
+>
+> - French - Native speaker
+> - English - Native speaker
 
 ## CERTIFICATIONS
 
+> ### Certifications
+>
 > - Certified Kubernetes Security Specialist (CKS)
 > - Certified Kubernetes Administrator (CKA)
 > - Linux Professional Institute (LPIC-1)
 > - Professional Scrum Master (PSM I)
 > - ITIL V3-2011 Foundation (ITILF)
 
-## EDUCATION
+## BEYOND WORK
 
-> CNAM -- Bachelor's Degree in Computer Science (BAC +3)
-
-## VOLUNTEERING
-
+> ### Volunteering
+>
 > - [Grafana Champion](https://grafana.com/community/champions/)
 > - [Open Source Contributor](https://github.com/dotdc)
 > - [Sophia Hack Lab - Board Member](https://shl.contact)
-
-## LANGUAGES
-
-> - French - Native speaker
-> - English - Native speaker
-
-## INTERESTS
-
+>
+> ### Interests
+>
 > - Rock climbing
 > - Old adventure games
 > - Books

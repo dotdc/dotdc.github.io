@@ -1,0 +1,232 @@
+{{- define "main" }}
+{{- /*
+  Resume layout: content/resume.md stays plain markdown, this template reshapes
+  its rendered HTML. Each "## SECTION" becomes a section, each blockquote under
+  "WORK EXPERIENCE" becomes a role card, anything it can't parse is
+  rendered as-is. The other "## SECTION"s are groups: one card each, every
+  "### Subsection" inside becomes a labelled row on the rail.
+*/ -}}
+{{- $nowIdx := add (mul now.Year 12) (sub (int (now.Format "1")) 1) }}
+{{- $firstIdx := $nowIdx }}
+{{- $s := newScratch }}
+{{- $s.Set "name" dict }}{{/* display name of every technology, by slug */}}
+{{- $icons := .Params.icons | default dict }}{{/* icon ref ("slug" or "set:name"), by key skill or certification code */}}
+
+{{- $parts := split (string .Content) "<h2 " }}
+{{- /* the markdown table of content is replaced by the side navigation */ -}}
+{{- $intro := trim (replaceRE `(?s)<blockquote>\s*<details>.*?</details>\s*</blockquote>` "" (index $parts 0)) " \n\t" }}
+
+{{- $sections := slice }}
+{{- range after 1 $parts }}
+  {{- $chunk := print "<h2 " . }}
+  {{- with findRESubmatch `^<h2 id="([^"]+)">(.*?)</h2>` $chunk 1 }}
+    {{- $m := index . 0 }}
+    {{- $sections = $sections | append (dict "id" (index $m 1) "title" (index $m 2) "body" (trim (replace $chunk (index $m 0) "") " \n\t")) }}
+  {{- end }}
+{{- end }}
+
+{{- $jobs := slice }}
+{{- range $sections }}
+  {{- if ne .id "work-experience" }}{{ continue }}{{ end }}
+  {{- range findRESubmatch `(?s)<blockquote>\s*(.*?)\s*</blockquote>` .body -1 }}
+    {{- $inner := index . 1 }}
+    {{- $job := dict "raw" $inner }}
+    {{- with findRESubmatch `(?s)^<h3 id="([^"]*)">(.*?)</h3>\s*(?:<hr>\s*)?(.*)$` $inner 1 }}
+      {{- $h := index . 0 }}
+      {{- $head := partial "resume/head.html" (dict "html" (index $h 2) "now" $nowIdx) }}
+      {{- with $head.company }}
+
+      {{- /* "#### [Client](url) – Role <span class="grey">(period)</span>" headings split the role into client engagements */ -}}
+      {{- $chunks := split (replaceRE `(<h4 id="[^"]*">[^\n]*?<span class="grey">\([^)]*\)</span></h4>)` "<!--resume-client-->${1}" (index $h 3)) "<!--resume-client-->" }}
+      {{- $body := partial "resume/body.html" (index $chunks 0) }}
+      {{- $names := $body.names }}
+      {{- $clients := slice }}
+      {{- range after 1 $chunks }}
+        {{- with findRESubmatch `(?s)^<h4 id="([^"]*)">(.*?)</h4>\s*(.*)$` . 1 }}
+          {{- $c := index . 0 }}
+          {{- $ch := partial "resume/head.html" (dict "html" (index $c 2) "now" $nowIdx) }}
+          {{- $cb := partial "resume/body.html" (index $c 3) }}
+          {{- $clients = $clients | append (merge $ch $cb (dict "id" (index $c 1))) }}
+          {{- $names = merge $names $cb.names }}
+        {{- end }}
+      {{- end }}
+
+      {{- range $slug, $name := $names }}
+        {{- $s.SetInMap "name" $slug $name }}
+      {{- end }}
+      {{- if lt $head.startidx $firstIdx }}{{ $firstIdx = $head.startidx }}{{ end }}
+      {{- $job = merge $head $body (dict "id" (index $h 1) "clients" $clients) }}
+      {{- end }}
+    {{- end }}
+    {{- $jobs = $jobs | append $job }}
+  {{- end }}
+{{- end }}
+
+{{- $groups := slice }}
+{{- $certs := 0 }}
+{{- range $sections }}
+  {{- if eq .id "work-experience" }}{{ continue }}{{ end }}
+  {{- $chunks := split (replace (replaceRE `</?blockquote>` "" .body) "<h3 " "<!--resume-row--><h3 ") "<!--resume-row-->" }}
+  {{- $rows := slice }}
+  {{- range after 1 $chunks }}
+    {{- $row := dict "html" . }}
+    {{- with findRESubmatch `(?s)^<h3 id="([^"]*)">(.*?)</h3>\s*(.*)$` . 1 }}
+      {{- $m := index . 0 }}
+      {{- $id := index $m 1 }}
+      {{- /* a row named like its section gets a "-1" id suffix, match on the bare name */ -}}
+      {{- $kind := replaceRE `-\d+$` "" $id }}
+      {{- $html := trim (index $m 3) " \n\t" }}
+      {{- if eq $kind "key-skills" }}
+        {{- /* one tile per item, its icon next to it */ -}}
+        {{- with findRESubmatch `<li>(.*?)</li>` $html -1 }}
+          {{- $out := "" }}
+          {{- range $li := . }}
+            {{- /* icon by skill name, with or without its "(...)" details */ -}}
+            {{- $name := index $li 1 | plainify | htmlUnescape | lower | strings.TrimSpace }}
+            {{- $ref := or (index $icons $name) (index $icons (replaceRE `\s*\(.*?\)\s*$` "" $name)) }}
+            {{- $icon := "" }}
+            {{- with $ref }}
+              {{- $icon = partialCached "svg-icon.html" . . }}
+            {{- end }}
+            {{- $out = print $out (printf `<li><span class="resume_icon">%s</span><span class="resume_tile_label">%s</span></li>` $icon (index $li 1)) }}
+          {{- end }}
+          {{- $html = print `<ol class="resume_tiles">` $out `</ol>` }}
+        {{- end }}
+      {{- else if eq $kind "certifications" }}
+        {{- /* "Name (CODE)" items become cards, 2 per line */ -}}
+        {{- $certs = add $certs (len (findRE `<li>` $html)) }}
+        {{- range findRESubmatch `<li>(.*?)\s*\(([A-Z0-9 -]+)\)</li>` $html -1 }}
+          {{- $icon := "" }}
+          {{- with index $icons (lower (index . 2)) }}
+            {{- $icon = partialCached "svg-icon.html" . . }}
+          {{- end }}
+          {{- $html = replace $html (index . 0) (printf `<li><span class="resume_icon">%s</span><span class="resume_card_text"><span class="resume_card_kicker">%s</span><span class="resume_card_name">%s</span></span></li>` $icon (index . 2) (index . 1)) }}
+        {{- end }}
+        {{- $html = replace $html "<ul>" `<ul class="resume_cards">` }}
+      {{- else }}
+        {{- /* plain short lists read best as chips */ -}}
+        {{- $html = replace (replace $html "<ul>" `<ul class="chips">`) "<li>" `<li class="chip">` }}
+      {{- end }}
+      {{- $row = dict "id" $id "kind" $kind "title" (index $m 2) "html" $html }}
+    {{- end }}
+    {{- $rows = $rows | append $row }}
+  {{- end }}
+  {{- $groups = $groups | append (dict "id" .id "title" .title "intro" (trim (index $chunks 0) " \n\t") "rows" $rows) }}
+{{- end }}
+
+{{- $stats := slice
+  (dict "value" (div (sub $nowIdx $firstIdx) 12) "label" "years of experience")
+  (dict "value" (len $jobs) "label" "companies")
+  (dict "value" (len ($s.Get "name")) "label" "technologies")
+  (dict "value" $certs "label" "certifications")
+}}
+
+<div class="wrap content">
+  {{- /* the skill and certification icon backdrop: the icon silhouette grown by 2px */}}
+  <svg class="resume_defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <filter id="resume-icon-halo" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="2" result="grown"/>
+      <feGaussianBlur in="grown" stdDeviation="0.4" result="soft"/>
+      <feFlood class="resume_halo_color"/>
+      <feComposite in2="soft" operator="in" result="halo"/>
+      <feMerge>
+        <feMergeNode in="halo"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </svg>
+  <article class="post_content resume">
+    <header class="resume_header">
+      <h1 class="post_title">{{ .Title | markdownify }}</h1>
+      <dl class="resume_stats">
+        {{- range $stats }}
+        {{- if .value }}
+        <div class="resume_stat">
+          <dt>{{ .label }}</dt>
+          <dd data-count="{{ .value }}">{{ .value }}</dd>
+        </div>
+        {{- end }}
+        {{- end }}
+      </dl>
+    </header>
+
+    <div class="resume_layout">
+      <aside class="resume_aside" aria-label="Resume navigation">
+        <nav class="resume_panel resume_toc" aria-label="Work experience">
+          <p class="resume_panel_title">work experience</p>
+          {{- /* a timeline of its own: one dot per role, filled as the page scrolls */}}
+          <ol class="resume_track">
+            {{- range $jobs }}
+            {{- if .id }}
+            <li><a href="#{{ .id }}"{{ if .current }} class="is-current"{{ end }}>{{ .company | plainify }}</a></li>
+            {{- end }}
+            {{- end }}
+          </ol>
+        </nav>
+        {{- with $groups }}
+        <nav class="resume_panel resume_toc" aria-label="Profile">
+          <p class="resume_panel_title">profile</p>
+          <ol>
+            {{- range . }}
+            <li><a href="#{{ .id }}">{{ .title | plainify | lower | title }}</a></li>
+            {{- end }}
+          </ol>
+        </nav>
+        {{- end }}
+        <div class="resume_actions" data-js hidden>
+          <button type="button" class="resume_action" data-action="print">{{ partialCached "svg-icon.html" "lucide:printer" "lucide:printer" | safeHTML }}<span>print</span></button>
+        </div>
+      </aside>
+
+      <div class="post_body resume_main">
+        {{- with $intro }}
+        <div class="resume_intro">{{ . | safeHTML }}</div>
+        {{- end }}
+
+        {{- range $sections }}
+        {{- if eq .id "work-experience" }}
+        <section class="resume_section" data-section="{{ .id }}" data-spy="{{ .id }}">
+          <h2 id="{{ .id }}"><span class="resume_h">{{ .title | safeHTML }}</span></h2>
+          <ol class="jobs">
+            {{- range $job := $jobs }}
+            {{- if not .id }}
+            <li class="job"><div class="job_card"><blockquote>{{ .raw | safeHTML }}</blockquote></div></li>
+            {{- continue }}
+            {{- end }}
+            <li class="job{{ if .current }} job--current{{ end }}" data-spy="{{ .id }}">
+              <div class="job_card">
+                {{- partial "resume/entry.html" (dict "entry" $job "level" 3) }}
+              </div>
+            </li>
+            {{- end }}
+          </ol>
+        </section>
+        {{- end }}
+        {{- end }}
+
+        {{- range $groups }}
+        <section class="resume_section" data-section="{{ .id }}" data-spy="{{ .id }}">
+          <h2 id="{{ .id }}"><span class="resume_h">{{ .title | safeHTML }}</span></h2>
+          <div class="job_card resume_group">
+            {{- with .intro }}
+            <div class="resume_group_intro">{{ . | safeHTML }}</div>
+            {{- end }}
+            {{- range $row := .rows }}
+            <div class="resume_row{{ with .kind }} resume_row--{{ . }}{{ end }}">
+              {{- with .title }}
+              <h3 id="{{ $row.id }}" class="resume_row_label">{{ . | safeHTML }}</h3>
+              {{- end }}
+              <div class="resume_row_body">{{ .html | safeHTML }}</div>
+            </div>
+            {{- end }}
+          </div>
+        </section>
+        {{- end }}
+      </div>
+    </div>
+
+  </article>
+</div>
+{{- $js := resources.Get "js/resume.js" | minify | fingerprint "sha512" }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{- end }}

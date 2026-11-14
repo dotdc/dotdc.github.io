@@ -1,0 +1,27 @@
+{{- /* renders each "> [owner/repo](https://github.com/owner/repo)" quote of the projects page as a repository card, stats are filled in by custom.js */ -}}
+{{- $m := findRESubmatch `^\s*<p><a href="https://github\.com/([\w.-]+)/([\w.-]+?)/?">[^<]*</a></p>` .Text 1 }}
+{{- if not $m }}
+<blockquote>
+{{ .Text }}</blockquote>
+{{- else }}
+{{- $owner := index $m 0 1 }}
+{{- $repo := index $m 0 2 }}
+{{- $desc := strings.TrimPrefix (index $m 0 0) (string .Text) }}
+{{- if eq .Ordinal 0 }}
+{{- /* topics matching a blog tag are linked to it */ -}}
+{{- $tags := dict }}
+{{- range $name, $_ := site.Taxonomies.tags }}
+  {{- $tag := urlize $name }}
+  {{- $tags = merge $tags (dict $tag (absLangURL (printf "tags/%s/" $tag))) }}
+{{- end }}
+<script type="application/json" id="project-tags">{{ $tags | jsonify | safeJS }}</script>
+{{- end }}
+<article class="project" data-repo="{{ $owner }}/{{ $repo }}" style="--i: {{ .Ordinal }}">
+  <h3 class="project_name">
+    <a href="https://github.com/{{ $owner }}/{{ $repo }}"><span class="project_owner">{{ $owner }}/</span><span class="project_repo">{{ $repo }}</span></a>
+  </h3>
+  <div class="project_desc">{{ $desc | safeHTML }}</div>
+  <div class="project_tags"></div>
+  <ul class="project_stats" aria-label="GitHub stats"></ul>
+</article>
+{{- end }}

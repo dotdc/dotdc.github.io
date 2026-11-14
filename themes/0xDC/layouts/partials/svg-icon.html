@@ -1,0 +1,21 @@
+{{- /*
+  Inline a vendored SVG icon (see scripts/icons.sh), decorative only.
+  Context: an icon ref, "<set>:<name>" or a bare Simple Icons slug.
+    partialCached "svg-icon.html" "linux" "linux"
+    partialCached "svg-icon.html" "mdi:rugby" "mdi:rugby"
+  Returns "" when the icon is missing, so callers can render without it.
+*/ -}}
+{{- $set := "simple-icons" }}
+{{- $name := . }}
+{{- with findRESubmatch `^([a-z-]+):(.+)$` . 1 }}
+  {{- $set = index . 0 1 }}
+  {{- $name = index . 0 2 }}
+{{- end }}
+{{- $svg := "" }}
+{{- with resources.Get (printf "icons/%s/%s.svg" $set $name) }}
+  {{- $paint := cond (eq $set "lucide") ` fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"` ` fill="currentColor"` }}
+  {{- $svg = replaceRE `(?s)<!--.*?-->|<title>.*?</title>` "" .Content }}
+  {{- $svg = replaceRE `(?s)^\s*<svg\b[^>]*?(\sviewBox="[^"]*")[^>]*>` (printf `<svg class="svg-icon svg-icon--%s"${1} xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"%s>` $set $paint) $svg }}
+  {{- $svg = replaceRE `>\s+<` "><" (trim $svg " \n\t") }}
+{{- end }}
+{{- return $svg }}
