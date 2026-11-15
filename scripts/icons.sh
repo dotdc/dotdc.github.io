@@ -7,6 +7,8 @@
 # - mdi, Material Design Icons (Apache-2.0, https://pictogrammers.com/library/mdi/):
 #   solid glyphs on the same 24px grid, for what has no brand logo
 # - lucide (ISC, https://lucide.dev): outlined UI icons
+# - custom: hand-made icons committed in assets/icons/custom/, never downloaded
+#   nor removed by this script
 #
 # The refs are read from the `[params.icons]` table of content/resume.md,
 # plus EXTRA_ICONS below for the ones used by the templates.
@@ -55,6 +57,11 @@ for ref in "${refs[@]}"; do
   [[ "${ref}" == *:* ]] || ref="simple-icons:${ref}"
   set="${ref%%:*}" name="${ref#*:}"
   file="${dest}/${set}/${name}.svg"
+  if [[ "${set}" == custom ]]; then
+    [[ -f "${file}" ]] || { echo "missing custom icon: ${file}" >&2; exit 1; }
+    echo "${set}: ${name} (local)"
+    continue
+  fi
   if [[ ! -d "${dest}/${set}" ]]; then
     mkdir -p "${dest}/${set}"
     printf '%s@%s (%s)\n' "${set}" "${VERSIONS[$set]}" "${LICENSES[$set]}" > "${dest}/${set}/SOURCE"

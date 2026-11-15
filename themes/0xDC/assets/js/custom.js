@@ -372,3 +372,87 @@ function getRandomDelay() {
     });
   });
 })();
+
+// Just another note
+(function () {
+  const SEQUENCE = '0xdc';
+  const NOTE = 'WyJFYXN0ZXIgRWdnICMwNCIsImVhc3RlciBlZ2cgIzA0Iiwi8J+lmiIsIkhhcHB5IDR0aCBCbG9nIEFubml2ZXJzYXJ5ISIsIvCfjoIiLCIgICAsICwgLCAsXG4gICB8IHwgfCB8XG4gX198X3xffF98X19cbnx+fn5+fn5+fn5+fnxcbnwgIDQgWUVBUlMgIHxcbnxfX19fX19fX19fX3wiXQ==';
+  let typed = '';
+  let dialog;
+
+  // base64 to utf-8 text (atob alone mangles emoji), only ever used as textContent
+  function decode(str) {
+    const bytes = Uint8Array.from(atob(str), function (c) { return c.charCodeAt(0); });
+    return JSON.parse(new TextDecoder().decode(bytes));
+  }
+
+  function el(tag, className, text) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text) node.textContent = text;
+    return node;
+  }
+
+  function isTypingField(target) {
+    return target && (target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName));
+  }
+
+  function build() {
+    const [label, title, lead, message, tail, art] = decode(NOTE);
+    dialog = el('dialog', 'cake');
+    dialog.setAttribute('aria-label', label);
+    dialog.tabIndex = -1;
+
+    // same block as the resume: a card with a panel title
+    const card = el('div', 'cake_card');
+    card.appendChild(el('p', 'resume_panel_title', title));
+
+    const text = el('p');
+    const before = el('span', '', lead);
+    const after = el('span', '', tail);
+    before.setAttribute('aria-hidden', 'true');
+    after.setAttribute('aria-hidden', 'true');
+    text.append(before, ' ' + message + ' ', after);
+    card.appendChild(text);
+
+    // same markup as an article code block, so it picks up their style
+    const block = el('div', 'highlight');
+    block.setAttribute('aria-hidden', 'true');
+    const pre = el('pre');
+    pre.appendChild(el('code', '', art));
+    block.appendChild(pre);
+    card.appendChild(block);
+
+    const form = el('form');
+    form.method = 'dialog';
+    form.appendChild(el('button', 'button cake_close', 'Close'));
+    card.appendChild(form);
+
+    dialog.appendChild(card);
+    // a click on the dialog itself (not its content) is a click on the backdrop
+    dialog.addEventListener('click', function (event) {
+      if (event.target === dialog) dialog.close();
+    });
+    document.body.appendChild(dialog);
+  }
+
+  function open() {
+    if (!dialog) build();
+    if (dialog.open) return;
+    dialog.showModal();
+    // showModal focuses the button, which opened from the keyboard would
+    // trigger its roll hover and light the card: start from the dialog instead
+    dialog.focus();
+  }
+
+  document.addEventListener('keydown', function (event) {
+    if (event.ctrlKey || event.metaKey || event.altKey || isTypingField(event.target)) return;
+    // event.key, not event.code, so layouts like AZERTY (shift + 0) still match
+    if (event.key.length !== 1) return;
+    typed = (typed + event.key.toLowerCase()).slice(-SEQUENCE.length);
+    if (typed === SEQUENCE) {
+      typed = '';
+      open();
+    }
+  });
+})();

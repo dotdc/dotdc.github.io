@@ -166,3 +166,35 @@ header, main, footer
 
 .project_archived
   color: #f0b37e
+
+.cake
+  width: unquote("min(22rem, calc(100vw - 2rem))")
+  margin: auto
+  padding: 0
+  border: none
+  border-radius: 2px
+  background: $bg
+  color: var(--text)
+  overflow: visible
+  outline: none
+  &::backdrop
+    background: rgba(0, 0, 0, 0.6)
+
+  &_card
+    +card
+    padding: 1.25rem 1.5rem
+    @media screen and (max-width: $mobile-menu-breakpoint)
+      padding: 1rem 1.1rem
+    text-align: center
+    p
+      padding: 0
+    .highlight
+      width: fit-content
+      margin: 1rem auto
+    pre
+      text-align: left
+
+  &_close
+    margin-top: 1rem
+    font-family: inherit
+    cursor: pointer

@@ -13,7 +13,8 @@ layout = "resume"
 # Icons keyed by key skill (lowercase, the "(...)" details can be left out)
 # or by certification code: a Simple Icons slug
 # (https://simpleicons.org) or "mdi:<name>" for Material Design Icons
-# (https://pictogrammers.com/library/mdi/). Run scripts/icons.sh after changing them.
+# (https://pictogrammers.com/library/mdi/), or "custom:<name>" for a hand-made
+# icon in themes/0xDC/assets/icons/custom/. Run scripts/icons.sh after changing them.
 [params.icons]
 "unix & linux systems" = "linux"
 "ci/cd automation" = "githubactions"
@@ -27,8 +28,8 @@ layout = "resume"
 "cks" = "kubernetes"
 "cka" = "kubernetes"
 "lpic-1" = "linuxprofessionalinstitute"
-"psm i" = "conventionalcommits"
-"itilf" = "conventionalcommits"
+"psm i" = "custom:scrum"
+"itilf" = "custom:peoplecert"
 +++
 
 > {{< details summary="Table of content" open=false >}}
