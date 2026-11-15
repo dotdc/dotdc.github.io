@@ -43,6 +43,17 @@ header, main, footer
     content: '# '
     @extend .grey
 
+.excerpt
+  +card
+  .post_link a::after
+    content: ''
+    position: absolute
+    inset: 0
+    z-index: 0
+  .post_meta_extra
+    position: relative
+    z-index: 1
+
 // projects page, cards are rendered by layouts/projects/_markup/render-blockquote.html
 .post_body:has(> .project)
   display: grid
