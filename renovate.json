@@ -7,6 +7,13 @@
   ],
   "minimumReleaseAge": "3 days",
   "internalChecksFilter": "strict",
+  "packageRules": [
+    {
+      "description": "Group all non-major updates touching the same file into a single PR (majors stay separate)",
+      "matchUpdateTypes": ["minor", "patch", "digest", "pinDigest"],
+      "groupName": "{{packageFile}} (non-major)"
+    }
+  ],
   "customManagers": [
     {
       "customType": "regex",
