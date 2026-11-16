@@ -2,7 +2,7 @@
 author = "David Calvert"
 title = "How to find unused Prometheus metrics using mimirtool"
 date = "2023-04-03"
-description = "In this article, I will explain how I used mimirtool to identify which metrics were used on the platform, and which wasn't."
+description = "In this article, I will explain how I used mimirtool to identify which metrics were used on the platform, and which weren't."
 tags = [
     "observability", "kubernetes", "monitoring"
 ]
@@ -18,7 +18,7 @@ featureImageAlt = 'Random numbers with the Prometheus logo in front.'
 
 ## Introduction
 
-I recently had the task to stabilize, track cardinality issues, and significantly reduce resource usage of a Prometheus setup. In order to do that, I first needed to analyze the system. In this article, I will explain how I used `mimirtool` to identify which metrics were used on the platform, and which wasn't.
+I was recently tasked with stabilizing a Prometheus setup, tracking down cardinality issues and significantly reducing its resource usage. To do that, I first needed to analyze the system. In this article, I will explain how I used `mimirtool` to identify which metrics were used on the platform, and which weren't.
 
 ## Prerequisites
 
@@ -52,16 +52,16 @@ my_prometheus_pod="prometheus-kube-prometheus-stack-prometheus-0"
 
 ## Analyze your Prometheus metrics usage
 
-The first thing we need to do is to identify the metrics we use and the metrics we have. I’ve done this manually using `grep` in the past, but `mimirtool` makes it really easy !
+The first thing we need to do is to identify the metrics we use and the metrics we have. I’ve done this manually using `grep` in the past, but `mimirtool` makes it really easy!
 
 ### Metrics in Grafana dashboards
 
 Before we can extract the list of metrics used in our Grafana instance, we first need to create a Grafana API Key with the Admin role. If you have an exposed Grafana instance, just open it and go to [https://grafana.your.domain/org/apikeys](https://grafana.your.domain/org/apikeys).
 
-If not, you may need to expose it before:
+If not, you may need to expose it first:
 
 ```bash
-# Run this is a separate terminal
+# Run this in a separate terminal
 kubectl port-forward ${my_grafana_pod} -n monitoring 3000:3000
 ```
 
@@ -89,7 +89,7 @@ Once done, you should have a `metrics-in-grafana.json` file in your current dire
 
 We are going to do the same thing for the metrics we use in our Prometheus rules.
 
-Because I use Prometheus Operator, my rules are coming from various places and format, mostly ServiceMonitors but not only. At the end, they all get loaded on the Prometheus instance itself, this is why we need to extract the metrics list directly on the Prometheus pod.
+Because I use Prometheus Operator, my rules come from various places and formats, mostly ServiceMonitors but not only. In the end, they all get loaded on the Prometheus instance itself, which is why we need to extract the metrics list directly from the Prometheus pod.
 
 All the rules were located in `/etc/prometheus/rules/` in my Prometheus pod, check yours and adapt if needed:
 
@@ -123,7 +123,7 @@ kubectl exec -it ${my_prometheus_pod} -n monitoring \
   | sed -e 's/groups://g' -e '1s/^/groups:/' > my-prom-rules.yaml
 ```
 
-Now that we have our exported rules in `my-prom-rules.yaml`, we can now use `mimirtool` to extract the list of metrics :
+Now that we have our exported rules in `my-prom-rules.yaml`, we can use `mimirtool` to extract the list of metrics:
 
 ```bash
 mimirtool analyze rule-file my-prom-rules.yaml
@@ -137,16 +137,16 @@ Depending on your environment, you might use Prometheus metrics elsewhere, for e
 
 ### Compare with Prometheus
 
-Once we have both `metrics-in-grafana.json` and `metrics-in-ruler.json`, which contains the list of metrics we currently use, we can compare them with all the metrics we have in Prometheus. This allows us to get the list of used and unused metrics of our setup.
+Once we have both `metrics-in-grafana.json` and `metrics-in-ruler.json`, which contain the list of metrics we currently use, we can compare them with all the metrics we have in Prometheus. This allows us to get the list of used and unused metrics of our setup.
 
 To do so, we need to expose our Prometheus instance:
 
 ```bash
-# run this is a separate terminal
+# Run this in a separate terminal
 kubectl port-forward ${my_prometheus_pod} -n monitoring 9090:9090
 ```
 
-Once again, we are going to use `mimirtool` that will automatically load the files we created previously and compare them with the metrics stored in our Prometheus instance:
+Once again, we are going to use `mimirtool`, which will automatically load the files we created previously and compare them with the metrics stored in our Prometheus instance:
 
 ```bash
 mimirtool analyze prometheus --address=http://localhost:9090
@@ -177,16 +177,17 @@ To save the list of unused metrics in raw text:
 jq -r ".additional_metric_counts[].metric" prometheus-metrics.json | sort > unused_metrics.txt
 ```
 
-In this example, which is a default Kubernetes deployment with only a few running applications, we see that only 270/1377 metrics are used, this means that 80% of the scraped metrics are never used! The more applications and metrics you have, the more likely this number will be higher.
+In this example, which is a default Kubernetes deployment with only a few running applications, we see that only 270 of the 1377 metrics are used, which means that 80% of the scraped metrics are never used! The more applications and metrics you have, the higher this number is likely to be.
 
-The unused list is probably the most interesting one. With it, we can identify useful metrics that we could exploit in our dashboards and alerts, but also, useless ones that we should disable from the exporter when it's possible, or drop them using [relabeling rules](https://grafana.com/blog/2022/03/21/how-relabeling-in-prometheus-works/).
+The unused list is probably the most interesting one. With it, we can identify useful metrics that we could exploit in our dashboards and alerts, but also useless ones that we should disable at the exporter level when possible, or drop using [relabeling rules](https://grafana.com/blog/2022/03/21/how-relabeling-in-prometheus-works/).
 
 ## Final words
 
-In this article, we were able to extract the list of used and unused metrics from our Prometheus instance. While this is useful to understand our setup, keep in mind that disabling and dropping unused metrics may have a limited impact on Prometheus performance. In a further article, I will explain how I dealt with cardinality issues and significantly reduce Prometheus resource usage.
+Knowing which metrics you actually use is the first step before optimizing anything, and in this example, 80% of the scraped metrics were never used. Keep in mind that disabling and dropping unused metrics alone may have a limited impact on Prometheus performance. In the follow-up article, [Prometheus’ performance and cardinality in practice](https://0xdc.me/blog/prometheus-performance-and-cardinality-in-practice/), I explain how I dealt with cardinality issues and significantly reduced Prometheus resource usage.
 
 ## References
 
 - [Mimirtool](https://grafana.com/docs/mimir/latest/operators-guide/tools/mimirtool/)
 - [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack)
 - [How relabeling in Prometheus works](https://grafana.com/blog/2022/03/21/how-relabeling-in-prometheus-works/)
+- [Prometheus’ performance and cardinality in practice](https://0xdc.me/blog/prometheus-performance-and-cardinality-in-practice/)

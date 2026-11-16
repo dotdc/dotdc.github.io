@@ -11,7 +11,7 @@ categories = [
 ]
 thumbnail = "/img/thumbs/slo-with-sloth-and-pyrra.webp"
 featureImage = "sloth-and-pyrra-banner.webp"
-featureImageAlt = 'A person standing in the middle of a street by Jon Tyson on Unspash.'
+featureImageAlt = 'A person standing in the middle of a street by Jon Tyson on Unsplash.'
 +++
 <!-- https://unsplash.com/photos/a-person-standing-in-the-middle-of-a-street-PXB7yEM5LVs -->
 
@@ -27,7 +27,7 @@ Considering that most of our platforms are running on Kubernetes, Sloth and Pyrr
 
 Both projects share the same purpose and they have a lot in common:
 
-- Easy SLOs generation
+- Easy SLO generation
 - Kubernetes SLO CRD
 - [Prometheus](https://github.com/prometheus/prometheus) & [Prometheus-operator](https://github.com/prometheus-operator) compatibility
 - [Multiwindow, Multi-Burn-Rate Alerts](https://landing.google.com/sre/workbook/chapters/alerting-on-slos/#6-multiwindow-multi-burn-rate-alerts)
@@ -61,7 +61,7 @@ broken-slo    my-svc     1              0            false              45s
 working-slo   my-svc     1              1            true     45s       45s
 ```
 
-Here’s how a `prometheusservicelevels.sloth.slok.dev` manifest looks like:
+Here’s what a `prometheusservicelevels.sloth.slok.dev` manifest looks like:
 
 ```yaml
 apiVersion: sloth.slok.dev/v1
@@ -99,12 +99,12 @@ spec:
             slack_channel: "#alerts-myteam"
 ```
 
-Sloth allows you to configure additional labels for both `pageAlert` and `ticketAlert`, which can become handy if you have multiple channels configured in your alerting stack. It also supports [SLI plugins](https://sloth.dev/usage/plugins/) and has a [common SLI plugins](https://github.com/slok/sloth-common-sli-plugins) library that can be used to extend its capabilities when you need to do custom or complex things.
+Sloth allows you to configure additional labels for both `pageAlert` and `ticketAlert`, which can come in handy if you have multiple channels configured in your alerting stack. It also supports [SLI plugins](https://sloth.dev/usage/plugins/) and has a [common SLI plugins](https://github.com/slok/sloth-common-sli-plugins) library that can be used to extend its capabilities when you need to do custom or complex things.
 
 Because it doesn’t have an integrated UI, Sloth relies on Grafana for the visualisation of the generated SLOs, and you will find the two official dashboards on [grafana.com](https://grafana.com/grafana/dashboards/?search=sloth):
 
-- ****High level Sloth SLOs :**** <https://grafana.com/grafana/dashboards/14643-high-level-sloth-slos/>
-- ****SLO / Detail :**** <https://grafana.com/grafana/dashboards/14348-slo-detail/>
+- **High level Sloth SLOs:** <https://grafana.com/grafana/dashboards/14643-high-level-sloth-slos/>
+- **SLO / Detail:** <https://grafana.com/grafana/dashboards/14348-slo-detail/>
 
 ![Screenshot: Sloth's SLOs Grafana dashboard.](sloth-grafana.webp "Screenshot: Sloth's SLOs Grafana dashboard.")
 
@@ -112,22 +112,22 @@ Overall, Sloth has a lot of built-in features and is pretty straightforward to u
 
 ## Pyrra
 
-Pyrra is also a CLI and a Kubernetes operator, it was created by Matthias Loibl ([GitHub](https://github.com/metalmatze), [Twitter](https://twitter.com/MetalMatze)) and Nadine Vehling ([GitHub](https://github.com/nadinevehling), [Twitter](https://twitter.com/nadinevehling)) in April 2021 and aims to “Making SLOs with Prometheus manageable, accessible, and easy to use for everyone!”
+Pyrra is also a CLI and a Kubernetes operator. It was created by Matthias Loibl ([GitHub](https://github.com/metalmatze), [Twitter](https://twitter.com/MetalMatze)) and Nadine Vehling ([GitHub](https://github.com/nadinevehling), [Twitter](https://twitter.com/nadinevehling)) in April 2021, with the goal of “Making SLOs with Prometheus manageable, accessible, and easy to use for everyone!”
 
 While Pyrra shares the same goal and a lot of functionalities with Sloth, it was built with a few different design choices. The most obvious one is the presence of a Web UI, and while it doesn’t seem like a big deal at first, it’s actually pretty effective!
 
-The UI is really easy to use, on the main page, you’ll find the list of the configured SLOs, and have the ability to filter them by name, availability, error budget, alert status… If you select an SLO, you’ll land on a new page showing the configured objective, the remaining error budget in multiple time windows, service level indicators (SLI) metrics, multi burn rate alerts and the SLO’s configuration.
+The UI is really easy to use. On the main page, you’ll find the list of the configured SLOs, and can filter them by name, availability, error budget, alert status… If you select an SLO, you’ll land on a new page showing the configured objective, the remaining error budget in multiple time windows, service level indicators (SLI) metrics, multi burn rate alerts and the SLO’s configuration.
 
 ![Screenshot: Pyrra's UI - SLO page.](pyrra-slo.webp "Screenshot: Pyrra UI's - SLO page.")
 
-Pyrra will currently allow you to create 4 types of SLOs:
+Pyrra currently allows you to create four types of SLOs:
 
-- **bool_gauge :** indicator that measures whether a boolean gauge is successful.
-- **ratio :** indicator that measures against errors / total events.
-- **latency :** indicator that measures a certain percentage to be faster than the expected latency.
-- **latencyNative :** indicator that measures a certain percentage to be faster than the expected latency, using the new [native histograms](https://github.com/prometheus/prometheus/pull/11447) in Prometheus.
+- **bool_gauge:** indicator that measures whether a boolean gauge is successful.
+- **ratio:** indicator that measures against errors / total events.
+- **latency:** indicator that measures a certain percentage to be faster than the expected latency.
+- **latencyNative:** indicator that measures a certain percentage to be faster than the expected latency, using the new [native histograms](https://github.com/prometheus/prometheus/pull/11447) in Prometheus.
 
-For each of them, Pyrra can group SLOs by one or more Prometheus labels, this means that you can create separate SLOs using a single SLO definition. This feature will likely avoid a lot of code duplication if you need to create similar SLOs that can be differentiated by Prometheus labels. You’ll note that the grouping feature doesn’t have an `exclude` filter, but this can be done directly within your PromQL query.
+For each of them, Pyrra can group SLOs by one or more Prometheus labels, which means that you can create separate SLOs using a single SLO definition. This feature will likely avoid a lot of code duplication if you need to create similar SLOs that can be differentiated by Prometheus labels. You’ll note that the grouping feature doesn’t have an `exclude` filter, but this can be done directly within your PromQL query.
 
 Example:
 
@@ -135,7 +135,7 @@ Example:
 http_requests_total{my_grouping_label!~"exclude_this|and_this"}
 ```
 
-Here’s how a `servicelevelobjectives.pyrra.dev` manifest looks like:
+Here’s what a `servicelevelobjectives.pyrra.dev` manifest looks like:
 
 ```yaml
 apiVersion: pyrra.dev/v1alpha1
@@ -181,7 +181,7 @@ sigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller).Start.func2
 > We've reported [this issue](https://github.com/pyrra-dev/pyrra/issues/790) because we think SLO validation would be a great addition to the project.\
 > The maintainers were responsive and said they are going to make it their priority in the coming weeks.
 
-Pyrra also have Grafana dashboards, but they’ll only work when using the `-generic-rules` flag, which doesn’t support the grouping feature as [explained in the documentation](https://github.com/pyrra-dev/pyrra/tree/main/examples/grafana#generic-rules). For this reason, you’ll likely prefer to use Pyrra’s UI to visualise your SLOs.
+Pyrra also has Grafana dashboards, but they’ll only work when using the `-generic-rules` flag, which doesn’t support the grouping feature as [explained in the documentation](https://github.com/pyrra-dev/pyrra/tree/main/examples/grafana#generic-rules). For this reason, you’ll likely prefer to use Pyrra’s UI to visualise your SLOs.
 
 Pyrra is easy to use and will help you create and manage your SLOs as advertised. The UI is well-made, and will probably become your favourite way to visualise your SLOs. The fact that it can generate multiple SLOs from a single definition will also save you a lot of time and code duplication.
 
@@ -189,13 +189,13 @@ Pyrra is easy to use and will help you create and manage your SLOs as advertised
 
 Choosing one tool over another can be tricky, especially when they are really close to one another like Sloth and Pyrra. Both projects will definitely help with SLO generation, but if one of them has at least one feature that makes it a better fit for your project, it will probably help you during the decision process.
 
-While we had a slight preference for Pyrra, the fact that Sloth didn’t have any activity in the last 7 months took a significant part in our choice. I also had the opportunity to speak with Matthias Loibl while doing this evaluation, he answered my questions and helped me gain confidence in the project’s future.
+While we had a slight preference for Pyrra, the fact that Sloth didn’t have any activity in the last 7 months played a significant part in our choice. I also had the opportunity to speak with Matthias Loibl during this evaluation. He answered my questions and helped me gain confidence in the project’s future.
 
 ## Final words
 
-In this article, we highlighted the main differences between Sloth and Pyrra, two projects that aim to help you create and manage SLOs. They can both be used as a Kubernetes operator or as a CLI to generate Prometheus rules for your SLOs.
+Sloth and Pyrra are both solid choices, and either one will save you from writing multiwindow, multi-burn-rate alerts by hand. Pick Sloth if you need SLO validation, configurable alerts or plugins, and Pyrra if you want a web UI and SLOs grouped by label. In our case, project activity tipped the balance toward Pyrra.
 
-I hope you found this article useful!
+If you're still managing SLOs manually, try both on a single service, you'll quickly see which one fits your team best!
 
 ## References
 

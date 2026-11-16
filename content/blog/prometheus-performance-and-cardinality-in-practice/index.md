@@ -2,7 +2,7 @@
 author = "David Calvert"
 title = "Prometheus’ performance and cardinality in practice"
 date = "2023-04-25"
-description = "In this article, I will explain how I analyzed and configured my Prometheus setup in order to significantly reduce its resource usage and worked around cardinality issues."
+description = "In this article, I will explain how I analyzed and configured my Prometheus setup to significantly reduce its resource usage and work around cardinality issues."
 tags = [
     "observability", "kubernetes", "monitoring"
 ]
@@ -19,17 +19,17 @@ featureImageAlt = 'Random numbers with the Prometheus logo in front.'
 
 > This article was originally published on [Medium](https://medium.com/@dotdc/prometheus-performance-and-cardinality-in-practice-74d5d9cd6230).
 
-In this article, I will explain how I analyzed and configured my Prometheus setup in order to significantly reduce its resource usage and worked around cardinality issues. This follows my previous article about Prometheus metrics analysis: [How to find unused Prometheus metrics using mimirtool](https://0xdc.me/blog/how-to-find-unused-prometheus-metrics-using-mimirtool/).
+In this article, I will explain how I analyzed and configured my Prometheus setup to significantly reduce its resource usage and work around cardinality issues. This follows my previous article about Prometheus metrics analysis: [How to find unused Prometheus metrics using mimirtool](https://0xdc.me/blog/how-to-find-unused-prometheus-metrics-using-mimirtool/).
 
 ## Prerequisites
 
 Everything described in this article has been done in a Kubernetes environment using [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack). You may need to adapt if your setup is different.
 
-I also assume you have the list of your used and unused metrics, if it’s not the case, learn how to do that in my [previous article](https://0xdc.me/blog/how-to-find-unused-prometheus-metrics-using-mimirtool/). If you want to follow with sample data, you can use the [dotdc/prometheus-cardinality](https://github.com/dotdc/prometheus-cardinality) repository.
+I also assume you have the list of your used and unused metrics. If that’s not the case, learn how to get it in my [previous article](https://0xdc.me/blog/how-to-find-unused-prometheus-metrics-using-mimirtool/). If you want to follow along with sample data, you can use the [dotdc/prometheus-cardinality](https://github.com/dotdc/prometheus-cardinality) repository.
 
 ## Introduction
 
-The Prometheus project tries to keep things as simple as they can be. It is also pretty open, and use-case specific features are generally offloaded to other projects like [Thanos](https://github.com/thanos-io/thanos), [Mimir](https://github.com/grafana/mimir) or [VictoriaMetrics](https://github.com/VictoriaMetrics/VictoriaMetrics). For this reason, there is no magic flag that will significantly change Prometheus' behavior. In order to improve the performance of your Prometheus setup, you will need to understand your usage and make the right design choice depending on your use-case and scale. Now that we know which metrics we use, and which we don’t, let’s see how we can configure our Prometheus setup.
+The Prometheus project tries to keep things as simple as they can be. It is also pretty open, and use-case-specific features are generally offloaded to other projects like [Thanos](https://github.com/thanos-io/thanos), [Mimir](https://github.com/grafana/mimir) or [VictoriaMetrics](https://github.com/VictoriaMetrics/VictoriaMetrics). For this reason, there is no magic flag that will significantly change Prometheus' behavior. In order to improve the performance of your Prometheus setup, you will need to understand your usage and make the right design choices depending on your use case and scale. Now that we know which metrics we use, and which we don’t, let’s see how we can configure our Prometheus setup.
 
 ## Dropping unused metrics
 
@@ -52,13 +52,13 @@ There are several ways to drop metrics, let’s explore the most common ones.
 
 ### Configuring the exporter
 
-Configuring the source, here the [node_exporter](https://github.com/prometheus/node_exporter), should always be the preferred solution when it’s possible. Having the source configured properly, usually applications and exporters, will save a lot of time and resources because it doesn’t have to transit any further!
+Configuring the source, here the [node_exporter](https://github.com/prometheus/node_exporter), should always be the preferred solution when it’s possible. Having the source configured properly, usually applications and exporters, will save a lot of time and resources because the data doesn’t have to travel any further!
 
-The first thing we can do is check at the source what option we have. In this case, the node_exporter has [collectors](https://github.com/prometheus/node_exporter#collectors) that be turned on and off.
+The first thing we can do is check which options we have at the source. In this case, the node_exporter has [collectors](https://github.com/prometheus/node_exporter#collectors) that can be turned on and off.
 
 ```yaml
 prometheus-node-exporter:
-  # Doc: https://github.com/prometheus/node_exporter#collectors
+  # Doc: https://github.com/prometheus/node_exporter#collectors
   extraArgs:
     # Disable unused collectors
     - --no-collector.arp
@@ -99,9 +99,9 @@ Here's the list at the time of writing:
 
 ### Using relabeling rules
 
-Now, let’s imagine that we want to drop only a few metrics from several collectors that don't have an exclude flag. Because we can’t do that through the exporter configuration, we need to make a relabeling rule to drop them. This rule will occur after scraping, but before ingestion.
+Now, let’s imagine that we want to drop only a few metrics from several collectors that don't have an exclude flag. Because we can’t do that through the exporter configuration, we need to create a relabeling rule to drop them. This rule is applied after scraping, but before ingestion.
 
-Explaining how relabeling works is not in the scope of this article, but if you want to learn more, Grafana has an excellent article about that: [How relabeling in Prometheus works](https://grafana.com/blog/2022/03/21/how-relabeling-in-prometheus-works/).
+Explaining how relabeling works is out of scope for this article, but if you want to learn more, Grafana has an excellent article about that: [How relabeling in Prometheus works](https://grafana.com/blog/2022/03/21/how-relabeling-in-prometheus-works/).
 
 Let’s imagine that we want to drop a few more unused metrics from our [unused node_exporter metrics](https://github.com/dotdc/prometheus-cardinality/blob/main/unused_metrics.txt#L977).
 
@@ -113,15 +113,15 @@ Here’s a rule that will drop a few of them:
   regex: 'node_(nf_conntrack_stat|netstat_.*6|timex_pps|network_carrie|network_iface|scrape).*'
 ```
 
-This rule need to be added to your Prometheus setup, in my case, I’m adding it to the node_exporter ServiceMonitor in my kube-prometheus-stack values.
+This rule needs to be added to your Prometheus setup. In my case, I’m adding it to the node_exporter ServiceMonitor in my kube-prometheus-stack values.
 
-Here’s the combined kube-prometheus-stack values for node-exporter metrics:
+Here are the combined kube-prometheus-stack values for node-exporter metrics:
 
 ```yaml
 # kube-prometheus-stack values for node-exporter metrics
 
 prometheus-node-exporter:
-  # Doc: https://github.com/prometheus/node_exporter#collectors
+  # Doc: https://github.com/prometheus/node_exporter#collectors
   extraArgs:
     # Disable unused collectors
     - --no-collector.arp
@@ -147,7 +147,7 @@ prometheus-node-exporter:
 
 ## Tracking cardinality issues
 
-You should now be able to disable metrics or drop them, depending on what suits best your use-case. Dropping every unused metric can be time-consuming and even counterproductive because the relabeling rules will consume a significant amount of resources on your Prometheus instance.
+You should now be able to disable metrics or drop them, depending on what best suits your use case. Dropping every unused metric can be time-consuming and even counterproductive because the relabeling rules will consume a significant amount of resources on your Prometheus instance.
 
 Instead of dropping everything, you should focus on metrics with the highest cardinality.
 
@@ -178,7 +178,7 @@ From there, you will have a bunch of useful stats to start your investigation:
 - Top 10 label names with high memory usage
 - Top 10 series count by label value pairs
 
-To start with, you should focus on the “Top 10 series count by metric names”. Note that you can also have this information by using [this PromQL query](http://localhost:9090/graph?g0.expr=topk(10%2C%20count%20by%20(__name__)(%7B__name__%3D~%22.%2B%22%7D))&g0.tab=1&g0.stacked=0&g0.show_exemplars=0&g0.range_input=1h). Feel free to adapt to see more metrics, example for the top 20:
+To start with, you should focus on the “Top 10 series count by metric names”. Note that you can also get this information by using [this PromQL query](http://localhost:9090/graph?g0.expr=topk(10%2C%20count%20by%20(__name__)(%7B__name__%3D~%22.%2B%22%7D))&g0.tab=1&g0.stacked=0&g0.show_exemplars=0&g0.range_input=1h). Feel free to adapt it to see more metrics, for example the top 20:
 
 ```promql
 topk(20, count by (__name__)({__name__=~".+"}))
@@ -221,15 +221,15 @@ Let’s analyze the `etcd_request_duration_seconds_bucket` metric using the dash
 
 As we can see here, there are 162 different values for the `type` label. This metric has a cardinality of 13032, but would be only 432 without the `type` label.
 
-As you can see, this dashboard shines at finding the dimensionality of labels in metrics. With this information, you can decide what is the best way to optimize, drop or empty a label, or even rework the metric itself. Keep in mind that dropping labels can create duplicate series, make sure that your metrics stays uniquely labelled after the drop.
+As you can see, this dashboard shines at finding the dimensionality of labels in metrics. With this information, you can decide on the best way to optimize: drop or empty a label, or even rework the metric itself. Keep in mind that dropping labels can create duplicate series, so make sure that your metrics stay uniquely labelled after the drop.
 
 ## Going further
 
-Once you found the good settings for your setup, you should notice a significant improvement in  performance and resource usage. Depending on your goals and scale, you might need to push it even further.
+Once you’ve found the right settings for your setup, you should notice a significant improvement in performance and resource usage. Depending on your goals and scale, you might need to push it even further.
 
 ### Analyze resource usage with pprof
 
-If you want to see and understand how Prometheus use its CPU and memory resources, pprof can probably give you a lot of additional information.
+If you want to see and understand how Prometheus uses its CPU and memory resources, pprof can probably give you a lot of additional information.
 
 Once you have [pprof](https://github.com/google/pprof) and [graphviz](https://www.graphviz.org/download/) installed, you will be able to export this data in svg format:
 
@@ -247,19 +247,19 @@ Example:
 
 ### Configure scrapeInterval
 
-It’s always a good practice to configure the scrape_interval for each target or ServiceMonitor depending on your use-case. When you monitor infrastructure or applications performance, you often need a good resolution, but some use-cases don’t have this requirement, and they should be configured accordingly.
+It’s always a good practice to configure the scrape_interval for each target or ServiceMonitor depending on your use case. When you monitor infrastructure or application performance, you often need a good resolution, but some use cases don’t have this requirement, and they should be configured accordingly.
 
 ### Consider alternative solutions
 
-Depending on your use-case and scale, and if it’s not already the case, you might want to consider using other Prometheus compatible solutions like [Thanos](https://github.com/thanos-io/thanos), [Mimir](https://github.com/grafana/mimir) or [VictoriaMetrics](https://github.com/VictoriaMetrics/VictoriaMetrics).
+Depending on your use case and scale, and if it’s not already the case, you might want to consider using other Prometheus compatible solutions like [Thanos](https://github.com/thanos-io/thanos), [Mimir](https://github.com/grafana/mimir) or [VictoriaMetrics](https://github.com/VictoriaMetrics/VictoriaMetrics).
 
 ## Conclusion
 
-The results you will get by doing this will highly depend on your starting point, environment, and the choices you make regarding metrics. To give you a real-world example, I did this at work and was able to cut average CPU usage by 46% and average memory usage by 58% while increasing overall performance and stability.
+The results you will get by doing this will depend heavily on your starting point, environment, and the choices you make regarding metrics. To give you a real-world example, I did this at work and was able to cut average CPU usage by 46% and average memory usage by 58% while increasing overall performance and stability.
 
 ![Screenshot: Evolution of resource usage while doing optimizations.](grafana-screenshot.webp "Screenshot: Evolution of resource usage while doing optimizations.")
 
-If you plan to do this on your setup, you should focus your efforts towards high-cardinality metrics. I also recommend the [k8s-views-pods.json](https://github.com/dotdc/grafana-dashboards-kubernetes/blob/master/dashboards/k8s-views-pods.json) dashboard to track the resource usage of your Prometheus instances during the process.
+If you plan to do this on your setup, you should focus your efforts on high-cardinality metrics. I also recommend the [k8s-views-pods.json](https://github.com/dotdc/grafana-dashboards-kubernetes/blob/master/dashboards/k8s-views-pods.json) dashboard to track the resource usage of your Prometheus instances during the process.
 
 **Useful tools:**
 
@@ -274,7 +274,7 @@ If you plan to do this on your setup, you should focus your efforts towards high
 
 ## Final words
 
-In this article, we learned how to significantly reduce resource usage and solve cardinality issues in our Prometheus setup. At scale, this can have a huge impact on performance and reduce the overall cost of your platform. I hope you found this article useful!
+Prometheus doesn't have a magic flag, but knowing your metrics does most of the work. At scale, it can have a huge impact on performance and on the overall cost of your platform. If your Prometheus instances are struggling, open the TSDB status page and start with your biggest series!
 
 ## References
 

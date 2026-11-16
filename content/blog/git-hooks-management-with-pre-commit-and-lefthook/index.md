@@ -11,7 +11,7 @@ categories = [
 ]
 thumbnail = "/img/thumbs/git-hooks.webp"
 featureImage = "git-hooks.webp"
-featureImageAlt = 'A person standing in the middle of a street by Jon Tyson on Unspash.'
+featureImageAlt = 'A person standing in the middle of a street by Jon Tyson on Unsplash.'
 +++
 <!-- https://unsplash.com/photos/a-person-standing-in-the-middle-of-a-street-PXB7yEM5LVs -->
 
@@ -161,7 +161,7 @@ sys     0m0.017s
 
 As we can see, lefthook completed the tasks in 1.016s, whereas pre-commit took 5.149s, which highlights lefthook's faster performance.
 
-To have more information on lefthook, check out <https://evilmartians.com/opensource/lefthook>.
+For more information on lefthook, check out <https://evilmartians.com/opensource/lefthook>.
 
 ## Using both
 
@@ -206,9 +206,11 @@ user    0m0.163s
 sys     0m0.051s
 ```
 
-## Final Words
+## Final words
 
-In this article, we've compared pre-commit and lefthook, two tools designed to streamline git hooks management. Lefthook has better performance due to concurrent execution support, whereas pre-commit offers a smoother start due to its extensive collection of community hooks. Testing both will allow you to find the one that suits your project best, and either choice will be a good one.
+pre-commit and lefthook solve the same problem with different strengths: pre-commit offers a smoother start with its extensive collection of community hooks, while lefthook is faster thanks to parallel execution. Either choice will be a good one, so test both on your project to find the one that suits it best.
+
+If you're starting today, also have a look at [prek](https://0xdc.me/blog/replacing-pre-commit-with-prek/), which combines pre-commit's hook compatibility with parallel execution.
 
 ## References
 

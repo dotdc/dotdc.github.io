@@ -34,8 +34,6 @@ We manage several Kubernetes clusters, but for convenience, we are using a singl
 
 ![Powder’s federated Grafana architecture](powder-guest-blog-1.webp "Powder’s federated Grafana architecture.")
 
-An architectural diagram shows Powder's Kubernetes monitoring cluster as well as two Kubernetes application clusters.
-Powder’s federated Grafana architecture.
 Because Kubernetes was at the core of our infrastructure, I installed the dashboards from [dotdc/grafana-dashboards-kubernetes](https://github.com/dotdc/grafana-dashboards-kubernetes), my own open source project, because I was already familiar with them and I knew they would be a good addition to kube-prometheus-stack’s Grafana dashboards already in place.
 
 Our teams started using them, and based on their feedback, we contributed back all the changes that would benefit users of this project. During the same time period, I also worked on the side to implement other features and ideas that I thought could be useful to the project. For example, I worked with [Richard Durso](https://twitter.com/richdurso), a project contributor, on his ideas to make it easier to do container and pod sizing using Kubernetes requests and limits on the “pods” dashboard in [this issue](https://github.com/dotdc/grafana-dashboards-kubernetes/issues/21). I was also inspired by online resources like Grafana’s webinar “[Getting started with Grafana dashboard design](https://grafana.com/go/webinar/guide-to-dashboard-design/)”, which I recommend to everyone building Grafana dashboards.
@@ -69,7 +67,9 @@ Going further, we are migrating from OpenTracing to OpenTelemetry, and we’re s
 
 ## Final words
 
-Thanks the Grafana Customer and Community Marketing team for the opportunity to share this story on the Grafana blog.
+Open source works both ways for us: we rely on community projects to monitor our platform, and we contribute back what we build on top of them. If you run Kubernetes with Prometheus, the [dashboards](https://github.com/dotdc/grafana-dashboards-kubernetes) are free and open source, give them a try!
+
+Thanks to the Grafana Customer and Community Marketing team for the opportunity to share this story on the Grafana blog.
 
 ## References
 

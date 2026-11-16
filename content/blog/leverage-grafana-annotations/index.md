@@ -17,7 +17,7 @@ featureImageAlt = "A Grafana graph panel with Grafana annotations."
 ## Introduction
 
 Grafana annotations can help you and your team track key events like deployments, incidents, marketing campaigns or planned traffic spikes in your dashboards.
-In larger teams, not everyone knows what happened and when, annotations make it easy for SREs, QA engineers and developers to correlate graph data points with important events, which makes troubleshooting easier and faster.
+In larger teams, not everyone knows what happened and when. Annotations make it easy for SREs, QA engineers and developers to correlate graph data points with important events, which makes troubleshooting easier and faster.
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ To create a service account, go to: <https://grafana.domain.tld/org/serviceaccou
 - Give the service account a name (e.g. `annotations_sa`), and the `Editor` role.
 - Create a token using the `Add service account token` button, then `Generate token`.
 
-Save the token somewhere or export it on your terminal:
+Save the token somewhere or export it in your terminal:
 
 ```bash
 export GRAFANA_TOKEN=glsa_OlX64rUBFgWD0FpwyuZDtvgBGjqWNQQk_aed22945
@@ -69,13 +69,13 @@ Here's the default annotations field from Grafana's dashboard [JSON model](https
   },
 ```
 
-The Grafana documentation explain [how to manually add annotations to dashboards](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/#add-an-annotation).\
+The Grafana documentation explains [how to manually add annotations to dashboards](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/#add-an-annotation).\
 It should work out-of-the-box, as soon as you have the `Editor` role.
 
 ## Custom annotations
 
 Being able to annotate dashboards is nice, but you can also configure your Grafana dashboards to display annotations with custom tags.
-If you manage dashboards, you can configure them to have extra annotations source.
+If you manage dashboards, you can configure them to have extra annotation sources.
 
 For example, here's a JSON model with a custom `terraform` tag as an annotation source:
 
@@ -111,7 +111,7 @@ To create your own, open a Grafana dashboard, then click on: `Edit` > `Settings`
 On the form, make sure to select `-- Grafana --` as the data source, and to filter by `Tags`.\
 Feel free to configure everything else to fit your needs.
 
-If running on a Kubernetes cluster, expose the Grafana service on a terminal:
+If running on a Kubernetes cluster, expose the Grafana service in a terminal:
 
 ```bash
 kubectl port-forward svc/kube-prometheus-stack-grafana -n monitoring 3000:80
@@ -158,7 +158,7 @@ curl -X POST http://localhost:3000/api/annotations \
 }'
 ```
 
-Here's how a region annotation should look like in your dashboard:
+Here's what a region annotation should look like in your dashboard:
 ![Screenshot: Region Grafana annotation.](custom-region-annotation.webp "Screenshot: Region Grafana annotation.")
 
 ## Logs annotations
@@ -242,7 +242,7 @@ You can then update the Loki `uid` field to use the `${datasource_loki}` variabl
     ]
 ```
 
-If running on a Kubernetes cluster, expose your Loki service on a terminal:
+If running on a Kubernetes cluster, expose your Loki service in a terminal:
 
 ```bash
 # Expose the Loki service if running on a Kubernetes cluster
@@ -274,10 +274,12 @@ curl -X POST http://localhost:3100/loki/api/v1/push \
 You should now see the annotation from your Loki logs on your dashboard:
 ![Screenshot: Grafana annotation from Loki logs.](loki-logs-annotation.webp "Screenshot: Grafana annotation from Loki logs.")
 
-## Conclusion
+## Final words
 
 Whether you're tracking deployments, incidents or other important events, Grafana annotations provide an efficient way to correlate events with dashboard data.
-You can customize and automate annotations for events that matter to you, such as: pull request merges, Terraform apply operations or email campaign launches. Leveraging Grafana annotations will make troubleshooting on Grafana easier and faster!
+You can customize and automate annotations for events that matter to you, such as pull request merges, Terraform apply operations or email campaign launches. Leveraging Grafana annotations will make troubleshooting on Grafana easier and faster!
+
+A good first step is to send an annotation from your deployment pipeline: it only takes a single `curl` call, and deployments are often the first thing you'll look for during an incident.
 
 ## References
 

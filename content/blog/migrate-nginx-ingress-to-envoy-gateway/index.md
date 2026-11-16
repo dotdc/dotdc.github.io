@@ -36,7 +36,7 @@ To get all Ingress resources:
 kubectl get ingress -A
 ```
 
-To get nginx-ingress annotations in use:
+To get the ingress-nginx annotations in use:
 
 ```bash
 kubectl get ingress -A -o yaml | grep "nginx.ingress.kubernetes.io" | sort -u
@@ -139,9 +139,11 @@ Depending on your setup, you will likely end up with:
 
 Once all the Gateway API and Envoy Gateway resources were running alongside the existing configuration, the final switch was straightforward and had no impact on customers. In our case, this simply meant enabling the `use_envoy_gateway` feature flag in our Terraform module. It also made rollback easy in case something went wrong.
 
-## Final thoughts
+## Final words
 
-The complexity of migrating from ingress-nginx to Envoy Gateway depends heavily on your platform requirements. It also requires some attention, especially if you are new to the Gateway API. I hope this article gives you a useful starting point if you need to make the switch.
+Migrating from ingress-nginx to Envoy Gateway depends heavily on your platform requirements, and takes some attention if you are new to the Gateway API. Running both side by side behind a feature flag kept ours safe, with no customer impact and an easy rollback. With ingress-nginx retired, I hope this article gives you a useful starting point.
+
+If you haven't started yet, list the ingress-nginx annotations you use, as they'll drive most of the work. I hope this article gives you a useful starting point to make the switch!
 
 ## References
 

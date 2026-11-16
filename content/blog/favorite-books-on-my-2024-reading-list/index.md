@@ -21,7 +21,7 @@ This article features my favorite tech or work-related reads from 2024.
 Author: [Erin Meyer](https://x.com/erinmeyerinsead)\
 Publish Date: May 27, 2014
 
-I have been working with multicultural teams for the past few years, and I was curious to see how this book could improve my understanding of cultural differences and enhance my communication skills in such teams. I was happily surprised and learned a lot from the concepts described in the book!
+I have been working with multicultural teams for the past few years, and I was curious to see how this book could improve my understanding of cultural differences and enhance my communication skills in such teams. I was pleasantly surprised and learned a lot from the concepts described in the book!
 
 The book defines and explores the following aspects of cultural differences:
 
@@ -48,7 +48,7 @@ Favorite Quote:
 Authors: [Katie Hafner](https://x.com/katiehafner) and Matthew Lyon\
 Publish Date: January 21, 1998
 
-The book is about the bold, visionary, and fascinating history of the creation of the internet! It covers the people, events, decisions and work which contributed to the development of what we now call the internet. It is full of details and amazing anecdotes, such as the creation of the Interface Message Processor (IMP), the first Request for Comments (RFC), the use of the "@" symbol in email addresses and much more!
+The book is about the bold, visionary, and fascinating history of the creation of the internet! It covers the people, events, decisions and work that contributed to the development of what we now call the internet. It is full of details and amazing anecdotes, such as the creation of the Interface Message Processor (IMP), the first Request for Comments (RFC), the use of the "@" symbol in email addresses and much more!
 
 I highly recommend it to anyone interested in the history of computing and the origins of the internet.
 
@@ -62,11 +62,11 @@ Favorite Quote:
 ## Géopolitique du numérique : l'impérialisme à pas de géants
 
 Author: [Ophélie Coelho](https://www.linkedin.com/in/ophelie-coelho)\
-Publish Date: January 21, 1998
+Publish Date: August 31, 2023
 
 The title of this book can be translated to "Geopolitics of the digital world: imperialism in giant leaps." The book explains how Big Tech has taken control of the digital world, building modern empires and managing critical internet infrastructure.
 
-I like the analyses and insights provided by this book, especially around internet infrastructure like the submarine cable map and their owners. Although the book was published very recently, things are going so fast that it already lacks at least two chapters. For instance, Silicon Valley is changing, and the impact of generative AI is yet to come. Big Tech is also preparing for the future: [Microsoft is about to restart Three Mile Island](https://www.technologyreview.com/2024/09/26/1104516/three-mile-island-microsoft/), [Google is betting on small modular reactors](https://blog.google/outreach-initiatives/sustainability/google-kairos-power-nuclear-energy-agreement/) (SMR), and [Amazon is doing the same thing](https://heatmap.news/technology/amazon-x-energy-nuclear-deal).
+I like the analyses and insights provided by this book, especially around internet infrastructure like the map of submarine cables and their owners. Although the book was published very recently, things are going so fast that it already lacks at least two chapters. For instance, Silicon Valley is changing, and the impact of generative AI is yet to come. Big Tech is also preparing for the future: [Microsoft is about to restart Three Mile Island](https://www.technologyreview.com/2024/09/26/1104516/three-mile-island-microsoft/), [Google is betting on small modular reactors](https://blog.google/outreach-initiatives/sustainability/google-kairos-power-nuclear-energy-agreement/) (SMR), and [Amazon is doing the same thing](https://heatmap.news/technology/amazon-x-energy-nuclear-deal).
 
 I'm curious to see how things will evolve in the coming years!
 
@@ -82,7 +82,7 @@ Favorite Quote (translated):
 Authors: Yoann Vandoorselaere, [Philippe Langlois](https://www.linkedin.com/in/langlois), Alexandre Golovanivsky\
 Publish Date: March 23, 1999
 
-I came across this book while visiting [Texplained](https://www.texplained.com) offices, and was curious enough to pick up a copy. The book title can be translated to "Knights of the Internet and computer hackers", it covers the authors' stories, sharing their passion, motivations and reflections on their hacking activities. Throughout the book, you'll read about [World-NET](https://en.wikipedia.org/wiki/World-NET), the [2600: The Hacker Quarterly](https://www.2600.com) meetings, the "[Free Kevin](https://en.wikipedia.org/wiki/Kevin_Mitnick)" movement and much more from that era!
+I came across this book while visiting the [Texplained](https://www.texplained.com) offices, and was curious enough to pick up a copy. The book title can be translated to "Knights of the Internet and computer hackers". It covers the authors' stories, sharing their passion, motivations and reflections on their hacking activities. Throughout the book, you'll read about [World-NET](https://en.wikipedia.org/wiki/World-NET), the [2600: The Hacker Quarterly](https://www.2600.com) meetings, the "[Free Kevin](https://en.wikipedia.org/wiki/Kevin_Mitnick)" movement and much more from that era!
 
 Reading this book felt like traveling back in time.
 
@@ -121,7 +121,7 @@ Favorite Quote #2:
 
 ![Book: Hackers: Heroes of the Computer Revolution](hackers.webp "Book: Hackers: Heroes of the Computer Revolution")
 
-Does any of these books resonate with you?
+That's it for 2024! From the origins of the internet to the geopolitics of Big Tech, I hope one of these books makes it to your reading list. Do any of them resonate with you?
 
 ## References
 

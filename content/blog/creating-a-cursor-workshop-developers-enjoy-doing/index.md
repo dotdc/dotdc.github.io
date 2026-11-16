@@ -2,7 +2,7 @@
 author = "David Calvert"
 title = "Creating a Cursor workshop developers enjoy doing"
 date = "2025-11-11"
-description = "Creating a Cursor workshop developers enjoy doing"
+description = "How I built an open-source, quest-based Cursor workshop for my local developer community, and how the first event went."
 tags = [
     "AI", "Cursor", "Workshop"
 ]
@@ -50,7 +50,7 @@ I wanted the workshop to be available in several programming languages so people
 > You can complete most of it using [Cursor's free tier](https://cursor.com/pricing) (Auto Mode).\
 > 👉 Repository: <https://github.com/dotdc/cursor-workshop>
 
-## Workshop Quests
+## Workshop quests
 
 Here's a summary of the workshop quests and their purpose.
 
@@ -63,7 +63,7 @@ Here's a summary of the workshop quests and their purpose.
 | The Caffeinated Artist | Demonstrate how Cursor can use images to troubleshoot rendering issues. |
 | The Hidden Easter Egg | See how Cursor can help with codebase discovery based on an assumption. |
 | Trekkie Health Check | Another funny exercise to show how Cursor can assist on feature development. |
-| The Rust Rewrite | Go as far as translating an entire project from a language to another. |
+| The Rust Rewrite | Go as far as translating an entire project from one language to another. |
 | The Forgotten TDD Course | Use Cursor to generate and refine unit tests on existing code. |
 | The Documentalist | Create project documentation quickly with Cursor's help. |
 
@@ -71,7 +71,7 @@ Here's a summary of the workshop quests and their purpose.
 
 The event took place on Thursday, November 6, at Datadog's offices in Sophia-Antipolis.
 
-![workshop](workshop.wepb " ")
+![Participants and speakers during the Cursor workshop](workshop.webp " ")
 
 **Program:**
 
@@ -84,7 +84,9 @@ The event went really well. Everyone already had Cursor installed and was able t
 
 ## Final words
 
-It was fun to prepare this workshop, and I'm glad people enjoyed it! Thanks to the other organizers from [JSSophia](https://www.linkedin.com/company/jssophia/) and [GDG Sophia-Antipolis](https://www.linkedin.com/company/gdg-sophia-antipolis/) for their initiative, [Ben](https://www.linkedin.com/in/benmlang/) from Cursor for providing vouchers and swag, and Datadog for hosting the event. See you next time for another one, maybe on [MCP](https://modelcontextprotocol.io) servers!
+It was fun to prepare this workshop, and I'm glad people enjoyed it! If you want to run it with your team or your local community, the [workshop](https://github.com/dotdc/cursor-workshop) is open source, and most of it works with Cursor's free tier.
+
+Thanks to the other organizers from [JSSophia](https://www.linkedin.com/company/jssophia/) and [GDG Sophia-Antipolis](https://www.linkedin.com/company/gdg-sophia-antipolis/) for their initiative, [Ben](https://www.linkedin.com/in/benmlang/) from Cursor for providing vouchers and swag, and Datadog for hosting the event. See you next time for another one, maybe on [MCP](https://modelcontextprotocol.io) servers!
 
 ## References
 

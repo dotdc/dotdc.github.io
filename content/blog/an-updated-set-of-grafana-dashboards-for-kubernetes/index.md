@@ -2,7 +2,7 @@
 author = "David Calvert"
 title = "An updated set of Grafana dashboards for Kubernetes"
 date = "2024-06-26"
-description = "An updated set of Grafana dashboards for Kubernetes"
+description = "An update on my Grafana dashboards for Kubernetes: project news, new dashboards and the main changes from the last two years."
 tags = [
     "observability", "kubernetes", "monitoring", "grafana"
 ]
@@ -23,7 +23,7 @@ featureImageAlt = 'Banner of the grafana-dashboards-kubernetes project'
 
 Two years ago, I published [A set of modern Grafana dashboards for Kubernetes](https://0xdc.me/blog/a-set-of-modern-grafana-dashboards-for-kubernetes/) to share the dashboards I created for Kubernetes with the community. In this article, I'll provide an update on the project and walk through the main changes that have been made since then.
 
-## Project's updates
+## Project updates
 
 The [dotdc/grafana-dashboards-kubernetes](https://github.com/dotdc/grafana-dashboards-kubernetes) project has evolved significantly over the last two years! Following several retweets, both the original article and the project saw a noticeable increase in traffic, which also brought several new contributors. I was surprised to see so many people from all around the world [using my dashboards](https://github.com/search?q=dotdc%2Fgrafana-dashboards-kubernetes&type=code) in their home labs or in companies such as Rakuten, Orange, Swisscom, and Nokia. Some projects even directly embedded the dashboards, such as [Victoria Metrics](https://github.com/VictoriaMetrics/helm-charts/blob/master/charts/victoria-metrics-k8s-stack/hack/sync_grafana_dashboards.py#L48), the [GCP Cloud Foundation Fabric](https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/tree/master/blueprints/gke/autopilot/bundle/monitoring/dashboards) and the [Microsoft Azure Arc Jumpstart](https://github.com/microsoft/azure_arc/blob/main/azure_jumpstart_ag/artifacts/monitoring/grafana-cluster-global.json).
 
@@ -65,7 +65,7 @@ The project now includes a dashboard for Prometheus with panels related to Prome
 
 ### k8s-addons-trivy-operator.json
 
-The k8s-addons-starboard-operator.json which used the Giant Swarm [starboard-exporter](https://github.com/giantswarm/starboard-exporter) has been replaced in favor of  k8s-addons-trivy-operator.json, based on metrics from the [trivy-operator](https://github.com/aquasecurity/trivy-operator) of Aqua Security.
+The k8s-addons-starboard-operator.json which used the Giant Swarm [starboard-exporter](https://github.com/giantswarm/starboard-exporter) has been replaced by k8s-addons-trivy-operator.json, based on metrics from the [trivy-operator](https://github.com/aquasecurity/trivy-operator) of Aqua Security.
 
 ![Screenshot: k8s-addons-trivy-operator.json](k8s-addons-trivy-operator.webp "Screenshot: k8s-addons-trivy-operator.json")
 
@@ -79,7 +79,7 @@ k8s-views-global.json:
 k8s-views-namespaces.json:
 
 - added throttled cpu panels ([dbf01b1](https://github.com/dotdc/grafana-dashboards-kubernetes/commit/dbf01b17628642bda8e02bf9283f95ca2363f79b))
-- ability to filter on a specific deployments, statefulsets or deamonsets ([d173be7](https://github.com/dotdc/grafana-dashboards-kubernetes/commit/d173be73556bc98dc46950aebb2995fdde61be89))
+- ability to filter on specific deployments, statefulsets or daemonsets ([d173be7](https://github.com/dotdc/grafana-dashboards-kubernetes/commit/d173be73556bc98dc46950aebb2995fdde61be89))
 - added cluster variable ([7ac58e5](https://github.com/dotdc/grafana-dashboards-kubernetes/commit/7ac58e53a4a0c2380a504cd233ead36977d18cc2))
 
 k8s-views-nodes.json:
@@ -104,15 +104,15 @@ Other changes:
 
 ## Final words
 
-I hope that this article was useful and that it gave additional information over the [original article](https://0xdc.me/blog/a-set-of-modern-grafana-dashboards-for-kubernetes/)!
+Two years after the [original article](https://0xdc.me/blog/a-set-of-modern-grafana-dashboards-for-kubernetes/), the project has grown well beyond my own clusters, and many of these changes started as ideas from the people using the dashboards every day.
 
 It has been truly rewarding to receive [feedback](https://github.com/dotdc/grafana-dashboards-kubernetes/issues?q=is%3Aissue+is%3Aclosed), [compliments](https://www.reddit.com/r/kubernetes/comments/1ctwivj/comment/l4f13xy/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button), [ideas](https://github.com/dotdc/grafana-dashboards-kubernetes/issues/107), and engage in [technical discussions](https://github.com/dotdc/grafana-dashboards-kubernetes/issues/80) with the community. This ultimately led me to join the [Grafana Champion](https://grafana.com/community/champions/) program. Thank you! ❤️
 
 Your feedback and suggestions are always welcome, so feel free to contribute to this project:
 
 - Give a [GitHub ⭐](https://github.com/dotdc/grafana-dashboards-kubernetes/stargazers) if you like it
-- Create an [Issue](https://github.com/dotdc/grafana-dashboards-kubernetes/issues) to make a feature request, report a bug or share an idea.
-- Create a [Pull Request](https://github.com/dotdc/grafana-dashboards-kubernetes/pulls) if you want to share code or anything useful to this project.
+- Create an [Issue](https://github.com/dotdc/grafana-dashboards-kubernetes/issues) to make a feature request, report a bug or share an idea.
+- Create a [Pull Request](https://github.com/dotdc/grafana-dashboards-kubernetes/pulls) if you want to share code or anything useful to this project.
 
 ## References
 
