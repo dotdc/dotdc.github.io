@@ -32,7 +32,7 @@ jobs:
     env:
       # Doc: https://github.com/gohugoio/hugo/releases
       # renovate: datasource=github-releases depName=gohugoio/hugo extractVersion=^v(?<version>.+)$
-      HUGO_VERSION: 0.169.0
+      HUGO_VERSION: 0.170.0
     steps:
       # Doc: https://github.com/marketplace/actions/checkout
       - name: Checkout ${{ github.repository }}
@@ -47,7 +47,7 @@ jobs:
 
       # Doc: https://github.com/marketplace/actions/hugo-setup
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@2752ce1d29631191ea3f27c23495fa06139a5b78 # v3.2.1
+        uses: peaceiris/actions-hugo@d1c81a15d4e6dca7086a17b9c2565cb70fd576bf # v3.3.0
         with:
           hugo-version: ${{ env.HUGO_VERSION }}
           extended: true
