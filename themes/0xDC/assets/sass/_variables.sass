@@ -1,12 +1,22 @@
+@use 'sass:color'
+
+// configured from the site params by main.sass
+$iconsPath: '../icons/' !default
+
 $light: #fff
 $haze: #fafafa
 $white: #fff
 $green: #30c992
-$xhaze: darken($haze, 11%)
-$bg: #1e1e1e
-$theme: #0077b8
+$xhaze: color.adjust($haze, $lightness: -11%)
+$bg: #272727
+$theme: $green
 $mobile-menu-breakpoint: 769px
 $single-column-breakpoint: 42rem
+
+// roll hover of the buttons, see _components.sass
+$roll-offset: 2em
+$roll-ink: #1e1e1e
+$roll-speed: 0.4s
 
 @mixin  content()
   --maxWidth: 1440px

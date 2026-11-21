@@ -1,3 +1,8 @@
+@use 'variables' as *
+@use 'cards' as *
+// for @extend .grey
+@use 'components'
+
 // add customs styles and general overrides here
 
 // covers the whole page so blocks scroll with the content
@@ -179,7 +184,7 @@ header, main, footer
   color: #f0b37e
 
 .cake
-  width: unquote("min(22rem, calc(100vw - 2rem))")
+  width: min(22rem, calc(100vw - 2rem))
   margin: auto
   padding: 0
   border: none

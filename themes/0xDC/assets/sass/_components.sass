@@ -1,3 +1,5 @@
+@use 'variables' as *
+
 %upcaret
   width: 0
   height: 0
@@ -14,7 +16,6 @@
   @include content
   &_active
     color: $green
-  &, &_body
   &_icon
     width: 0.7rem
     margin-left: 0.33rem
@@ -204,10 +205,7 @@
 // roll hover: the label rolls up while a green fill rolls in from below with a
 // dark copy of it. Both copies are text-shadows of the transparent label, so any
 // .button gets it without extra markup (tags, print, generated project tags)
-$roll-offset: 2em
-$roll-ink: #1e1e1e
-$roll-speed: 0.4s
-
+// $roll-offset, $roll-ink and $roll-speed live in _variables.sass
 =roll-fill
   &::after
     content: ''
@@ -938,7 +936,7 @@ figcaption
     display: inline-flex
 
 .openstreetmap
-	border: none
+  border: none
 
 .grey
   color: #838383
