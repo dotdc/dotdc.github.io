@@ -39,7 +39,7 @@ jobs:
     env:
       # Doc: https://github.com/gohugoio/hugo/releases
       # renovate: datasource=github-releases depName=gohugoio/hugo extractVersion=^v(?<version>.+)$
-      HUGO_VERSION: 0.170.0
+      HUGO_VERSION: 0.170.1
       # Doc: https://github.com/sass/dart-sass/releases
       # renovate: datasource=github-releases depName=sass/dart-sass
       DART_SASS_VERSION: 1.108.2
