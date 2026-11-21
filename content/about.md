@@ -9,6 +9,7 @@ showReadTime = false
 showShare = false
 sidebar = false
 authorbox = false
+hexdump = ["David", "Calvert", "", "French", "Engineer", "܀"]
 +++
 
 Hi, I'm David Calvert, an engineer working remotely from the south of France.

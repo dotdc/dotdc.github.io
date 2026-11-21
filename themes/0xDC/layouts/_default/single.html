@@ -9,7 +9,12 @@
 {{- end }}
 {{- $image := $scratch.Get "image" }}
 {{- $bg := absLangURL (path.Join "images" $image) }}
-<div class="{{ if ne $p.singleColumn true }}grid-inverse {{ end }}wrap content">
+{{- /* a page without sidebar can show a hex dump of its "hexdump" param in that slot */ -}}
+{{- $dump := "" }}
+{{- if and (eq $p.sidebar false) (ne $p.singleColumn true) }}
+  {{- with $p.hexdump }}{{ $dump = . }}{{ end }}
+{{- end }}
+<div class="{{ if ne $p.singleColumn true }}grid-inverse {{ end }}wrap content{{ with $dump }} has-dump{{ end }}">
   <article class="post_content">
     {{- $t := .Title }}
     <h1 class="post_title">{{ $t | markdownify }}</h1>
@@ -54,5 +59,8 @@
   {{- if ( ne $p.sidebar false ) }}
     {{- partial "sidebar" . }}
   {{ end }}
+  {{- with $dump }}
+    {{- partial "hexdump" . }}
+  {{- end }}
 </div>
 {{- end }}

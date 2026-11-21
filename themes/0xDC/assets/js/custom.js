@@ -105,6 +105,17 @@ function getRandomDelay() {
   return Math.floor(Math.random() * 250) + 88;
 }
 
+// a random byte, shared by the background blocks and the about page dump
+function hexPair() {
+  return Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+}
+
+// base64 JSON to a value (atob alone mangles emoji), its text only ever used as textContent
+function decodeNote(str) {
+  const bytes = Uint8Array.from(atob(str), function (c) { return c.charCodeAt(0); });
+  return JSON.parse(new TextDecoder().decode(bytes));
+}
+
 (function () {
   const layer = document.getElementById('hex-bg');
   if (!layer) return;
@@ -124,7 +135,7 @@ function getRandomDelay() {
 
   // blocks only show up in empty space, never over these
   const CONTENT = 'header, footer, nav, article, li, p, h1, h2, h3, h4, h5, h6, a, button, ' +
-    'img, svg, figure, pre, table, blockquote, form, input, iframe, video, .authorbox_bio';
+    'img, svg, figure, pre, table, blockquote, form, input, iframe, video, .authorbox_bio, .dump_card';
 
   // X is a byte, . an empty slot
   const SHAPES = [
@@ -147,10 +158,6 @@ function getRandomDelay() {
   });
 
   const blocks = [];
-
-  function hexPair() {
-    return Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
-  }
 
   function isFree(x, y) {
     const el = document.elementFromPoint(x, y);
@@ -373,18 +380,342 @@ function getRandomDelay() {
   });
 })();
 
+// about page: the hex dump scrambles in like the background blocks, then
+// pointing at a byte lights up its character, and the other way around
+(function () {
+  const card = document.querySelector('.dump_card');
+  if (!card) return;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const STAGGER = 25;   // ms between two bytes showing up
+  const SCRAMBLE = 300; // ms a byte cycles through random values before settling
+  const NAMES = { 0: 'null (padding)', 0xdc: 'U+0700 ܀ 1/2', 0x80: 'U+0700 ܀ 2/2', 9: 'tab', 10: 'line feed', 13: 'carriage return', 32: 'space' };
+
+  // bytes whose value in the status line is a link, and what clicking it does
+  const LINKS = { 0xdc: hatch };
+
+  const rows = card.querySelector('.dump_rows');
+  const title = card.querySelector('.resume_panel_title');
+  const status = card.querySelector('.dump_status');
+  const idle = status.textContent;
+  const original = { title: title.textContent, label: card.getAttribute('aria-label'), role: card.getAttribute('role') };
+
+  // one entry per byte: its hex and character elements, and its real value
+  const bytes = [];
+  card.querySelectorAll('.dump_hex [data-i]').forEach(function (hex) {
+    bytes[hex.dataset.i] = { hex: hex, value: hex.textContent };
+  });
+  card.querySelectorAll('.dump_ascii [data-i]').forEach(function (chr) {
+    bytes[chr.dataset.i].chr = chr;
+  });
+
+  let active = -1;
+  let mode = 'dump'; // or 'busy' while an animation swaps the content, or 'eee'
+
+  function light(index, on) {
+    if (index < 0) return;
+    bytes[index].hex.classList.toggle('is-on', on);
+    bytes[index].chr.classList.toggle('is-on', on);
+  }
+
+  // the status line works like the inspector of a hex editor
+  function select(index) {
+    if (index === active || mode !== 'dump') return;
+    light(active, false);
+    light(index, true);
+    active = index;
+    if (index < 0) {
+      status.textContent = idle;
+      return;
+    }
+    const code = parseInt(bytes[index].value, 16);
+    const name = NAMES[code] || (code > 32 && code < 127 ? "'" + String.fromCharCode(code) + "'" : 'not printable');
+    const value = '0x' + bytes[index].value;
+    status.textContent = 'offset 0x' + index.toString(16).padStart(2, '0') + ' · ';
+    if (LINKS[code]) {
+      status.append(action(value, LINKS[code]));
+    } else {
+      status.append(value);
+    }
+    status.append(' · ' + name);
+  }
+
+  // link in the status line should run
+  function action(text, run) {
+    const link = document.createElement('a');
+    link.href = '#';
+    link.textContent = text;
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      run();
+    });
+    return link;
+  }
+
+  // the gaps between two bytes keep the current one lit, so the status doesn't flicker
+  card.addEventListener('pointerover', function (event) {
+    const cell = event.target.closest('[data-i]');
+    if (cell) select(Number(cell.dataset.i));
+  });
+  // a touch has no hover to leave: the tapped byte stays lit
+  card.addEventListener('pointerleave', function (event) {
+    if (event.pointerType !== 'touch') select(-1);
+  });
+
+  // runs step(elapsed ms) on every frame until it returns true, then done
+  function animate(step, done) {
+    let start = null;
+    function frame(now) {
+      if (start === null) start = now;
+      if (step(now - start)) {
+        if (done) done();
+      } else {
+        requestAnimationFrame(frame);
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function hide() {
+    bytes.forEach(function (byte) {
+      byte.hex.classList.add('is-off');
+      byte.chr.classList.add('is-off');
+    });
+  }
+
+  // a byte shows up hot with random values, then settles on its own and reveals its character
+  function scrambleIn(done) {
+    if (reducedMotion) {
+      bytes.forEach(function (byte) {
+        byte.hex.textContent = byte.value;
+        byte.hex.classList.remove('is-off', 'is-hot');
+        byte.chr.classList.remove('is-off');
+      });
+      if (done) done();
+      return;
+    }
+    hide();
+    bytes.forEach(function (byte) { byte.done = false; byte.changed = undefined; });
+    animate(function (t) {
+      bytes.forEach(function (byte, i) {
+        const age = t - i * STAGGER;
+        if (byte.done || age < 0) return;
+        if (age >= SCRAMBLE) {
+          byte.hex.textContent = byte.value;
+          byte.hex.classList.remove('is-hot');
+          byte.chr.classList.remove('is-off');
+          byte.done = true;
+        } else if (byte.changed === undefined || age - byte.changed >= 60) {
+          byte.hex.classList.remove('is-off');
+          byte.hex.classList.add('is-hot');
+          byte.hex.textContent = hexPair();
+          byte.changed = age;
+        }
+      });
+      return bytes[bytes.length - 1].done;
+    }, done);
+  }
+
+  // the way back: bytes heat up, lose their character, then burn out
+  function scrambleOut(done) {
+    if (reducedMotion) {
+      hide();
+      done();
+      return;
+    }
+    const STEP = 8;
+    bytes.forEach(function (byte) { byte.done = false; byte.changed = undefined; });
+    animate(function (t) {
+      bytes.forEach(function (byte, i) {
+        const age = t - i * STEP;
+        if (byte.done || age < 0) return;
+        if (age >= SCRAMBLE) {
+          byte.hex.classList.remove('is-hot');
+          byte.hex.classList.add('is-off');
+          byte.done = true;
+        } else if (byte.changed === undefined || age - byte.changed >= 60) {
+          byte.chr.classList.add('is-off');
+          byte.hex.classList.add('is-hot');
+          byte.hex.textContent = hexPair();
+          byte.changed = age;
+        }
+      });
+      return bytes[bytes.length - 1].done;
+    }, done);
+  }
+
+  const EEE = 'eyJsYWJlbCI6IkVhc3RlciBFZ2cgIzA1OiBEYXZpZCBDYWx2ZXJ0LCBFYXN0ZXIgRWdnIEVuZ2luZWVyIiwidGl0bGUiOiJlYXN0ZXIgZWdnICMwNSIsImJ1c3kiOiJoYXRjaGluZy4uLiIsImZvdW5kIjoiZWdnICMwNSBmb3VuZCDCtyAiLCJiYWNrIjoiYmFjayIsImVlZSI6WyIgICAgLi0tLiIsIiAgIC8gICAgXFwiLCIgIC8gICAgICBcXCIsIiB8ICAgICAgICB8IiwiICBcXCAgICAgIC8iLCIgICBgLS0tLSciXSwiY3JhY2siOlsiICAgIC4tLS4iLCIgICAvIC9cXCBcXCIsIiAgL1xcLyAgXFwvXFwiLCIgfCAgICAgICAgfCIsIiAgXFwgICAgICAvIiwiICAgYC0tLS0nIl0sInBlZWsiOlsiIiwiICAgIF8vXFxfIiwiKiAgICAobzwiLCIgfFxcL1xcL1xcL1xcfCIsIiAgXFwgICAgICAvIiwiICAgYC0tLS0nIl0sImhhdGNoIjpbIiAgXy9cXC9cXF8iLCIqICAgIChvPiIsIiogICAvL1xcIiwiIHxcXC9cXC9cXC9cXHwiLCIgIFxcICAgICAgLyIsIiAgIGAtLS0tJyJdLCJ0ZXh0IjpbIiIsIkRhdmlkIENhbHZlcnQiLCJFYXN0ZXIgRWdnIEVuZ2luZWVyIiwiIiwiR2l0SHViIMK3IExpbmtlZEluIMK3IEJsdWVza3kiLCIiXSwibGlua3MiOnsiR2l0SHViIjoiaHR0cHM6Ly9naXRodWIuY29tL2RvdGRjIiwiTGlua2VkSW4iOiJodHRwczovL3d3dy5saW5rZWRpbi5jb20vaW4vMHhkYy8iLCJCbHVlc2t5IjoiaHR0cHM6Ly9ic2t5LmFwcC9wcm9maWxlLzB4ZGMubWUifX0=';
+  const TYPE = 22;      // ms per typed character
+  const FIDGET = 1200;  // average ms between two moves of the hatched chick
+  let eee, art, text, pieces, fidgeter;
+
+  function buildEee(note) {
+    eee = document.createElement('div');
+    eee.className = 'dump_eee';
+    art = [];
+    text = [];
+    note.text.forEach(function (_, i) {
+      const line = document.createElement('div');
+      art[i] = document.createElement('span');
+      art[i].className = 'dump_eee_art';
+      art[i].setAttribute('aria-hidden', 'true');
+      text[i] = document.createElement('span');
+      text[i].className = 'dump_eee_text';
+      line.append(art[i], text[i]);
+      eee.appendChild(line);
+    });
+
+    const width = Math.max.apply(null, note.text.map(function (line) { return line.length; }));
+    text.forEach(function (span) { span.style.width = width + 'ch'; });
+    // each line split on its link words, kept as their own pieces
+    const words = Object.keys(note.links).map(function (word) {
+      return word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    });
+    const split = new RegExp('(' + words.join('|') + ')');
+    pieces = note.text.map(function (line) {
+      return line.split(split).filter(Boolean).map(function (piece) {
+        return { text: piece, href: note.links[piece] };
+      });
+    });
+    rows.appendChild(eee);
+  }
+
+  // shows the first n characters of line j, a link word typed in is already a link
+  function typeLine(j, n) {
+    const span = text[j];
+    if (span.typed === n) return;
+    span.typed = n;
+    span.textContent = '';
+    pieces[j].forEach(function (piece) {
+      if (n <= 0) return;
+      const shown = piece.text.slice(0, n);
+      n -= shown.length;
+      if (!piece.href) {
+        span.append(shown);
+        return;
+      }
+      const link = document.createElement('a');
+      link.href = piece.href;
+      link.textContent = shown;
+      span.append(link);
+    });
+  }
+
+  function draw(frame) {
+    frame.forEach(function (line, i) {
+      const chick = line.charAt(0) === '*';
+      if (chick) line = ' ' + line.slice(1);
+      // a blank line still takes a row, or the art would jump up
+      art[i].textContent = line || ' ';
+      art[i].classList.toggle('is-chick', chick);
+    });
+  }
+
+  // once out, blinks or looks back
+  function fidget(note) {
+    const head = note.hatch.findIndex(function (line) { return line.indexOf('(o>') !== -1; });
+    fidgeter = setTimeout(function () {
+      const look = Math.random() < 0.4;
+      art[head].textContent = art[head].textContent.replace('(o>', look ? '(o<' : '(->');
+      fidgeter = setTimeout(function () {
+        art[head].textContent = art[head].textContent.replace(look ? '(o<' : '(->', '(o>');
+        fidget(note);
+      }, look ? 500 : 140);
+    }, FIDGET * (0.5 + Math.random()));
+  }
+
+  function found(note) {
+    mode = 'eee';
+    status.textContent = note.found;
+    status.append(action(note.back, unhatch));
+    // a glyph swap now and then, not motion: it plays with reduced motion too
+    fidget(note);
+  }
+
+  function hatch() {
+    if (mode !== 'dump') return;
+    const note = decodeNote(EEE);
+    light(active, false);
+    active = -1;
+    mode = 'busy';
+    status.textContent = note.busy;
+    title.textContent = note.title;
+    card.setAttribute('aria-label', note.label);
+    // an image can't hold links: the card becomes a labelled group of text
+    card.setAttribute('role', 'group');
+    if (!eee) buildEee(note);
+    text.forEach(function (_, j) { typeLine(j, 0); });
+    eee.hidden = true;
+
+    scrambleOut(function () {
+      rows.classList.add('is-eee');
+      eee.hidden = false;
+      // still frames: the shell cracks, the chick peeks out under a piece of
+      // shell, then pops out and the card types itself in (all at once with
+      // reduced motion)
+      const STILL = 500; // ms per frame
+      const frames = [
+        [note.eee, STILL], [note.crack, STILL], [note.peek, STILL], [note.hatch, 0]
+      ];
+      const type = reducedMotion ? 0 : TYPE;
+      draw(frames[0][0]);
+      let shown = 0;
+      const total = note.text.join('').length;
+      let end = 0;
+      frames.forEach(function (f) { end += f[1]; });
+      animate(function (t) {
+        let at = 0;
+        let i = 0;
+        while (i < frames.length - 1 && t >= at + frames[i][1]) at += frames[i++][1];
+        if (i !== shown) {
+          draw(frames[i][0]);
+          shown = i;
+        }
+        // typing starts once the chick is out
+        let left = t < end ? 0 : type ? Math.floor((t - end) / type) : Infinity;
+        note.text.forEach(function (line, j) {
+          const n = Math.min(line.length, left);
+          typeLine(j, n);
+          left -= n;
+        });
+        return t >= end + total * type;
+      }, function () { found(note); });
+    });
+  }
+
+  function unhatch() {
+    if (mode !== 'eee') return;
+    clearTimeout(fidgeter);
+    mode = 'busy';
+    eee.hidden = true;
+    rows.classList.remove('is-eee');
+    title.textContent = original.title;
+    card.setAttribute('aria-label', original.label);
+    card.setAttribute('role', original.role);
+    status.textContent = idle;
+    scrambleIn(function () { mode = 'dump'; });
+  }
+
+  if (reducedMotion || !('IntersectionObserver' in window)) return;
+
+  // nothing to point at or hatch until the bytes have settled
+  mode = 'busy';
+  hide();
+  // on small screens the dump sits below the content: wait for it to scroll in
+  const observer = new IntersectionObserver(function (entries) {
+    if (!entries.some(function (entry) { return entry.isIntersecting; })) return;
+    observer.disconnect();
+    scrambleIn(function () { mode = 'dump'; });
+  }, { threshold: 0.4 });
+  observer.observe(card);
+})();
+
 // Just another note
 (function () {
   const SEQUENCE = '0xdc';
   const NOTE = 'WyJFYXN0ZXIgRWdnICMwNCIsImVhc3RlciBlZ2cgIzA0Iiwi8J+lmiIsIkhhcHB5IDR0aCBCbG9nIEFubml2ZXJzYXJ5ISIsIvCfjoIiLCIgICAsICwgLCAsXG4gICB8IHwgfCB8XG4gX198X3xffF98X19cbnx+fn5+fn5+fn5+fnxcbnwgIDQgWUVBUlMgIHxcbnxfX19fX19fX19fX3wiXQ==';
   let typed = '';
   let dialog;
-
-  // base64 to utf-8 text (atob alone mangles emoji), only ever used as textContent
-  function decode(str) {
-    const bytes = Uint8Array.from(atob(str), function (c) { return c.charCodeAt(0); });
-    return JSON.parse(new TextDecoder().decode(bytes));
-  }
 
   function el(tag, className, text) {
     const node = document.createElement(tag);
@@ -398,7 +729,7 @@ function getRandomDelay() {
   }
 
   function build() {
-    const [label, title, lead, message, tail, art] = decode(NOTE);
+    const [label, title, lead, message, tail, art] = decodeNote(NOTE);
     dialog = el('dialog', 'cake');
     dialog.setAttribute('aria-label', label);
     dialog.tabIndex = -1;

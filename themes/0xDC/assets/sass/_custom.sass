@@ -214,3 +214,138 @@ header, main, footer
     margin-top: 1rem
     font-family: inherit
     cursor: pointer
+
+// about page: a hex dump of who I am sits in the sidebar slot
+$dump-aside-breakpoint: 70rem
+
+.has-dump
+  // the usual 30% column is too narrow for the dump: stack until there is room
+  @media screen and (min-width: $single-column-breakpoint)
+    grid-template-columns: minmax(0, 1fr)
+  @media screen and (min-width: $dump-aside-breakpoint)
+    grid-template-columns: minmax(0, 1fr) auto
+
+.dump
+  margin-top: 2rem
+  @media screen and (min-width: $single-column-breakpoint)
+    margin-top: 0
+  @media screen and (min-width: $dump-aside-breakpoint)
+    align-self: start
+    // lines up with the first paragraph, below the page title
+    margin-top: 4.35rem
+
+  &_card
+    +card
+    width: fit-content
+    padding: 1.1rem 1.25rem 0.9rem
+    font-family: $resume-mono
+    // shrinks on small phones so a row always fits
+    font-size: clamp(0.6rem, 3vw, 0.85rem)
+    line-height: 1.75
+    p
+      padding: 0
+
+  &_row
+    display: flex
+    gap: 2ch
+    white-space: pre
+
+  &_offset, &_status, &_ascii::before, &_ascii::after, &_ascii .is-muted
+    color: #838383
+
+  // padding bytes, quieter than the offsets so the words read first
+  &_hex .is-muted
+    color: color-mix(in srgb, #838383 60%, transparent)
+
+  &_hex
+    display: flex
+    gap: 1ch
+    // room for a full row, so the text column stays aligned on the last one
+    width: 24ch
+    color: color-mix(in srgb, var(--text) 75%, transparent)
+    // split in two groups of 4 bytes
+    span:nth-child(4)
+      margin-right: 1ch
+
+  &_ascii
+    &::before, &::after
+      content: '|'
+
+  [data-i]
+    border-radius: 1px
+    cursor: default
+    transition: color 0.6s ease, background-color 0.6s ease, box-shadow 0.6s ease, text-shadow 0.6s ease, opacity 0.3s ease
+    // the byte under the pointer and its character
+    &.is-on
+      color: $green
+      background-color: rgba($green, 0.16)
+      box-shadow: 0 0 0 2px rgba($green, 0.16)
+      transition-duration: 0.1s
+    // scrambling in, same hot state as the background blocks
+    &.is-hot
+      color: $green
+      text-shadow: 0 0 0.6em rgba($green, 0.6)
+      transition-duration: 0.15s
+    &.is-off
+      opacity: 0
+      transition: none
+
+  &_status
+    margin-top: 0.75rem
+    padding-top: 0.6rem
+    border-top: 1px dashed var(--card-border)
+    white-space: pre
+    // never wider than the rows, whatever the byte description: the card keeps its size
+    width: 0
+    min-width: 100%
+    overflow: hidden
+    text-overflow: ellipsis
+    // no underline, even the global hover one: the link glows like a hot byte
+    a
+      color: $green
+      transition: text-shadow 0.15s ease
+      &, &:hover
+        text-decoration: none
+      &:hover, &:focus-visible
+        text-shadow: 0 0 0.6em rgba($green, 0.6)
+
+  &_rows
+    position: relative
+    // offsets and pipes too, not only the bytes
+    &.is-eee .dump_row
+      visibility: hidden
+
+  &_eee
+    position: absolute
+    inset: 0
+    // the lines as one left aligned block, centered in the card
+    display: grid
+    place-content: center
+    white-space: pre
+    &[hidden]
+      display: none
+    > div
+      display: flex
+      gap: 2ch
+
+  &_eee_art
+    // a fixed column, so the text stays put whatever the frame
+    width: 12ch
+    color: #838383
+    &.is-chick
+      color: $green
+      text-shadow: 0 0 0.6em rgba($green, 0.4)
+
+  &_eee_text
+    color: color-mix(in srgb, var(--text) 75%, transparent)
+  &_eee > div:nth-child(2) &_eee_text
+    color: $green
+  &_eee > div:nth-child(5) &_eee_text
+    color: #838383
+  &_eee_text a
+    color: $green
+    transition: text-shadow 0.15s ease
+    &, &:hover
+      text-decoration: none
+    &:hover, &:focus-visible
+      text-shadow: 0 0 0.6em rgba($green, 0.6)

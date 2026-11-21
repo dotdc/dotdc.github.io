@@ -1,0 +1,58 @@
+{{- /*
+  Hex dump in the style of `hexdump -C` with 8 bytes per row. Takes a list of
+  words (the "hexdump" front matter param of a page without sidebar, see
+  single.html). Each word but the last is padded with null bytes to a full
+  row, like the char[8] fields of a C struct, so words are never split across
+  rows, and an empty word is a row of null bytes. Text is dumped as UTF-8. It
+  is fully rendered here, custom.js only adds the scramble and the byte <->
+  character pairing.
+*/ -}}
+{{- $cols := 8 }}
+{{- $label := slice }}
+{{- $hex := "" }}
+{{- range $i, $word := . }}
+  {{- with $word }}{{ $label = $label | append . }}{{ end }}
+  {{- /* "%x" on a string prints the hex of its UTF-8 bytes */ -}}
+  {{- $h := printf "%x" $word }}
+  {{- if lt $i (sub (len $) 1) }}
+    {{- $pad := $cols }}
+    {{- with $word }}{{ $pad = mod (sub $cols (mod (div (len $h) 2) $cols)) $cols }}{{ end }}
+    {{- $h = print $h (strings.Repeat $pad "00") }}
+  {{- end }}
+  {{- $hex = print $hex $h }}
+{{- end }}
+{{- $bytes := findRE `..` $hex }}
+<aside class="dump">
+  <div class="dump_card" role="img" aria-label="Hex dump of the text: {{ delimit $label ", " }}">
+    <p class="resume_panel_title">whoami | hexdump -c</p>
+    <div class="dump_rows">
+      {{- range $start := seq 0 $cols (sub (len $bytes) 1) }}
+      {{- $row := first $cols (after $start $bytes) }}
+      <div class="dump_row">
+        <span class="dump_offset">{{ printf "%04x" $start }}</span>
+        <span class="dump_hex">
+          {{- range $j, $byte := $row }}
+          {{- $code := int (printf "0x%s" $byte) }}
+          {{- /* only the null padding fades out, like xxd -R and hexyl give null bytes
+            their own color: bytes of a non ASCII character are still text */ -}}
+          <span data-i="{{ add $start $j }}"{{ if eq $code 0 }} class="is-muted"{{ end }}>{{ $byte }}</span>
+          {{- end -}}
+        </span>
+        <span class="dump_ascii">
+          {{- range $j, $byte := $row }}
+          {{- $code := int (printf "0x%s" $byte) }}
+          {{- /* like hexdump, anything that isn't printable ASCII is a dot */ -}}
+          {{- if and (ge $code 32) (lt $code 127) -}}
+          <span data-i="{{ add $start $j }}">{{ printf "%c" $code }}</span>
+          {{- else -}}
+          <span data-i="{{ add $start $j }}" class="is-muted">.</span>
+          {{- end }}
+          {{- end -}}
+        </span>
+      </div>
+      {{- end }}
+    </div>
+    {{- /* hexdump ends with the offset after the last byte, which is the length */}}
+    <p class="dump_status">{{ printf "%04x" (len $bytes) }} · {{ len $bytes }} bytes</p>
+  </div>
+</aside>
