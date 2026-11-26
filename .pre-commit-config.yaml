@@ -20,7 +20,7 @@ repos:
 
   # Markdown linter
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: cbcdc463be5464e25e3e955a511599a67b9b987f # v0.50.0
+    rev: bf6d1792b8bc7f6cc93f10cc27735a4cb0c38e47 # v0.50.1
     hooks:
     - id: markdownlint
       args:
@@ -33,7 +33,7 @@ repos:
 
   # Zizmor
   - repo: https://github.com/zizmorcore/zizmor-pre-commit
-    rev: 06a39750ec31860bb44f2acf67182c40016cd1e7 # v1.32.0
+    rev: c7d31dc612dffdd4d3b2f2b88b9660d3ab057ee8 # v1.33.1
     hooks:
       - id: zizmor
         args: [--no-progress, --fix]
